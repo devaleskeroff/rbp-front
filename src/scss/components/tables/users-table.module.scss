@@ -1,0 +1,98 @@
+@import "../variables";
+
+.container_styles {
+  width: 100%;
+  background-color: #fff;
+  margin-top: 25px;
+  @extend .border-radius;
+}
+
+.users_table_panel {
+  margin-top: 50px;
+  @extend .container_styles;
+}
+
+.users_table_container {
+  @extend .container_styles;
+
+  table {
+    thead tr td {
+      font-family: $ff-pf-light;
+      letter-spacing: 0.8px;
+    }
+
+    tbody {
+      tr {
+        td:first-child {
+          label {
+            cursor: pointer;
+          }
+        }
+
+        td:last-child {
+          position: relative;
+          width: min-content;
+
+          .user_email {
+            position: absolute;
+            right: 24px;
+            bottom: 21px;
+            font-size: 17px;
+            cursor: default;
+          }
+
+          button {
+            position: absolute;
+            opacity: 0;
+            right: 24px;
+            bottom: 24px;
+          }
+        }
+
+        &:hover {
+          td:last-child {
+            .user_email {
+              opacity: 0;
+            }
+
+            button {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// SINGLE USER TABLE
+
+.user_table_info_block {
+  margin-top: 25px;
+  color: #626262;
+  font-family: $ff-pf-light;
+  font-weight: 400;
+
+  .user_table_name {
+    font-size: 19px;
+  }
+
+  .user_table_info_text {
+    margin-top: 4px;
+    font-size: 14px;
+  }
+}
+
+.user_table_top_panel {
+  background-color: #fff;
+  margin-top: 50px;
+  margin-bottom: 15px;
+}
+
+// OTHER
+
+.edit_icon {
+  filter: invert(1);
+  -ms-filter: invert(1);
+  -webkit-filter: invert(1);
+}

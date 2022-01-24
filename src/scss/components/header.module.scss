@@ -1,0 +1,223 @@
+@import 'variables.scss';
+
+.header {
+  width: 100%;
+  height: 80px;
+  background: #fff;
+  border-bottom: 1px solid $gray;
+}
+
+.header_cont {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  padding-left: 1%;
+}
+
+.header_logo {
+  width: 70px;
+  margin-right: 20px;
+  object-fit: contain;
+}
+
+.company_logo {
+  max-width: 205px;
+  max-height: 54px;
+  object-fit: contain;
+}
+
+.menu_burg {
+  display: none;
+  width: 25px;
+  height: 25px;
+  color: #000;
+  cursor: pointer;
+}
+
+.right_side {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .header_account_panel {
+    display: flex;
+    cursor: pointer;
+    position: relative;
+    padding-right: 1%;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background-color: $gray;
+      left: -15px;
+    }
+
+    .user_small_img_link {
+      display: flex;
+      align-items: center;
+    }
+
+    .user_small_img {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .header_panel_wrapper {
+      display: flex;
+    }
+
+    .header_user_data {
+      width: 200px;
+      margin: 0 15px;
+
+      .user_name {
+        font-family: $ff-ssp;
+        color: $dark;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 23px;
+      }
+
+      .company_name {
+        height: 24px;
+        font-family: $ff-ssp;
+        color: $gray-darker;
+        font-size: 16px;
+        overflow: hidden;
+      }
+    }
+
+    .dropdown_arrow {
+      width: 12px;
+      margin-left: 25px;
+      object-fit: contain;
+      justify-self: flex-end;
+      transition: 300ms;
+
+      &.active {
+        -webkit-transform: rotate(-180deg);
+        -moz-transform: rotate(-180deg);
+        -ms-transform: rotate(-180deg);
+        -o-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+      }
+    }
+
+    // ACCOUNT DROPDOWN PANEL
+    .account_dropdown {
+      position: absolute;
+      width: calc(100% + 15px);
+      height: auto;
+      bottom: -5px;
+      right: 0;
+      display: none;
+      background-color: #fff;
+      border-bottom-left-radius: 15px;
+      overflow: hidden;
+      -webkit-border-bottom-left-radius: 15px;
+      -webkit-transform: translateY(100%);
+      -moz-transform: translateY(100%);
+      -ms-transform: translateY(100%);
+      -o-transform: translateY(100%);
+      transform: translateY(100%);
+      z-index: 2;
+      @extend .shadow-md;
+
+      &.active {
+        display: flex;
+      }
+
+      .account_dropdown_cont {
+        width: 100%;
+        height: 100%;
+
+        .user_panel_actions {
+          width: 100%;
+
+          .user_panel_action_item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            font-family: $ff-ssp;
+            font-size: 16px;
+            color: $dark;
+            transition: 250ms;
+            padding: 10px 20px;
+
+            &:focus {
+              outline: none;
+            }
+
+            &:hover {
+              background: $gray;
+            }
+
+            svg {
+              width: 17px;
+              height: 17px;
+              color: rgba(0, 184, 86, 0.8);
+              margin-right: 13px;
+            }
+
+            img {
+              margin-right: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1024px) {
+  .header_cont {
+    justify-content: space-between;
+  }
+
+  .menu_burg {
+    display: block;
+  }
+
+  .right_side {
+    margin-left: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .right_side {
+    .header_account_panel {
+      .header_user_data {
+        display: none;
+      }
+
+      .account_dropdown {
+        width: 320px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .company_logo {
+    display: none;
+    width: 180px;
+  }
+
+  .right_side {
+    .header_account_panel {
+      .dropdown_arrow {
+        margin-left: 15px;
+      }
+    }
+  }
+}

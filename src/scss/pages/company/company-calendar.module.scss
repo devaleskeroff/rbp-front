@@ -1,0 +1,453 @@
+@import '../../components/variables';
+
+.calendar_section {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0;
+  flex-wrap: wrap;
+  @extend .standard-content-padding;
+}
+
+.calendar_panel {
+  width: 49%;
+  position: relative;
+
+  .calendar_day_item {
+    position: relative;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #EFF1F8;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid $green;
+      border-radius: 5px;
+    }
+
+    &.active {
+      background-color: #EFF1F8;
+    }
+
+    .event_block {
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .calendar_event {
+        width: 6px;
+        height: 6px;
+        border-radius: 100%;
+        background: $gray-darker;
+        margin: 0 3px;
+        opacity: 0;
+
+        &.active {
+          opacity: 1;
+        }
+
+        &.green {
+          opacity: 1;
+          background: $green;
+        }
+
+        &.red {
+          opacity: 1;
+          background: $red;
+        }
+      }
+    }
+  }
+
+  .calendar_control__btn {
+    width: 15px;
+    height: 15px;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  .calendar_control__panel {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid $gray;
+
+    .calendar_month_panel {
+      width: 90px;
+      position: relative;
+      margin-right: 25px;
+    }
+
+    .calendar_year_panel {
+      width: 55px;
+      position: relative;
+    }
+
+    .calendar_option_list {
+      position: absolute;
+      left: 0;
+      bottom: -15px;
+      -webkit-transform: translateY(100%);
+      -moz-transform: translateY(100%);
+      -ms-transform: translateY(100%);
+      -o-transform: translateY(100%);
+      transform: translateY(100%);
+      width: 100%;
+      display: none;
+      flex-direction: column;
+      background-color: #fff;
+      border: 1px solid $gray-dark;
+      border-radius: 5px;
+      overflow-y: auto;
+      height: auto;
+      max-height: 300px;
+      font-family: $ff-ssp;
+      color: $dark;
+      z-index: 1;
+      line-height: 30px;
+      padding: 5px 0;
+
+      &.active {
+        display: flex;
+      }
+      
+      button {
+        text-align: left;
+        padding-left: 10px;
+
+        &.active {
+          color: $green;
+        }
+      }
+    }
+
+    .year_btn,
+    .month_btn {
+      font-family: $ff-ssp;
+      color: $dark;
+      font-weight: 600;
+      font-size: 18px;
+      margin: 0 10px;
+      display: flex;
+      align-items: center;
+
+      .calendar_control__arrow_down {
+        position: relative;
+        margin-top: 2px;
+        margin-left: 12px;
+      }
+    }
+  }
+}
+
+.events_panel {
+  width: 49%;
+
+  // EVENTS PANEL -> TOP PANEL
+  .events_panel__top_content {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $gray;
+
+    .today_text {
+      font-family: $ff-ssp;
+      color: $green;
+      font-weight: 600;
+      font-size: 18px;
+      text-decoration: underline;
+    }
+
+    .selected_calendar_date {
+      display: flex;
+      align-items: center;
+
+      .selected_calendar_date__text {
+        font-family: $ff-ssp;
+        font-weight: 600;
+        font-size: 18px;
+        color: $dark;
+        position: relative;
+        margin: -2px 24px 0;
+      }
+
+      button {
+        position: relative;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .selected_calendar_date__prev_btn {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+      }
+
+      .selected_calendar_date__next_btn {
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+      }
+    }
+
+    .calendar_create_event_btn {
+      height: 40px;
+      padding: 0 23px;
+      display: flex;
+      align-items: center;
+      @extend .green-colorful-btn;
+
+      img {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  //  EVENTS PANEL -> EVENTS CONTENT
+  .events_panel__event_items {
+    width: 100%;
+
+    .event_item {
+      width: 100%;
+      height: max-content;
+      border: #fff;
+      margin-top: 16px;
+      border-radius: 15px;
+      @extend .shadow-md, .standard-content-padding;
+
+      .event_item__top_panel {
+        width: 100%;
+        min-height: 24px;
+        height: max-content;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .event_title {
+          display: flex;
+          align-items: center;
+          font-size: 18px;
+          font-weight: 600;
+          color: $dark;
+          font-family: $ff-ssp;
+
+          img {
+            width: 24px;
+            margin-right: 12px;
+          }
+        }
+
+        .event_item__buttons {
+          display: flex;
+          min-width: max-content;
+
+          .event_item__button {
+            margin: 0 10px;
+
+            &:last-child {
+              margin-right: 0;
+            }
+
+            &:focus {
+              outline: none;
+            }
+
+            img {
+              width: 20px;
+              height: auto;
+            }
+          }
+        }
+      }
+
+      .event_item__date {
+        font-family: $ff-ssp;
+        font-size: 16px;
+        color: $gray-darker;
+        margin-top: 4px;
+      }
+
+      .event_item__desc {
+        font-size: 16px;
+        color: $dark;
+        line-height: 20px;
+        margin-top: 8px;
+      }
+
+      .event_item__resignature_btn {
+        @extend .colorful-btn;
+        padding: 0 15px;
+        height: 40px;
+        margin-top: 8px;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 1500px) {
+  .events_panel {
+    // EVENTS PANEL -> TOP PANEL
+    .events_panel__top_content {
+      .today_text {
+        font-size: 17px;
+      }
+
+      .selected_calendar_date {
+        .selected_calendar_date__text {
+          font-size: 17px;
+          margin: -2px 5px 0;
+        }
+      }
+
+      .calendar_create_event_btn {
+        padding: 0 16px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1350px) {
+  .events_panel {
+    // EVENTS PANEL -> TOP PANEL
+    .events_panel__top_content {
+      flex-direction: column;
+      height: max-content;
+      padding: 16px 0;
+
+      .today_text {
+        font-size: 18px;
+      }
+
+      .selected_calendar_date {
+        padding: 10px 0;
+
+        .selected_calendar_date__text {
+          font-size: 18px;
+          margin: -2px 12px 0;
+        }
+      }
+
+      .calendar_create_event_btn {
+        padding: 0 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .calendar_panel {
+    width: 100%;
+  }
+
+  .events_panel {
+    width: 100%;
+
+    // EVENTS PANEL -> TOP PANEL
+    .events_panel__top_content {
+      flex-direction: row;
+      height: 70px;
+      padding: 0;
+      margin-top: 24px;
+
+      .selected_calendar_date {
+        .selected_calendar_date__text {
+          margin: -2px 24px 0;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 400px) and (max-width: 650px) {
+  .events_panel {
+    // EVENTS PANEL -> TOP PANEL
+    .events_panel__top_content {
+      flex-direction: column;
+      height: max-content;
+      padding: 0 0 16px;
+    }
+
+    .events_panel__event_items {
+      width: 100%;
+
+      .event_item {
+        padding-left: 15px;
+        padding-right: 15px;
+
+        .event_item__top_panel {
+          .event_title {
+            font-size: 18px;
+            line-height: 20px;
+          }
+
+          .event_item__buttons {
+            .event_item__button {
+              margin: 0 8px;
+
+              &:last-child {
+                margin-right: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .events_panel {
+    // EVENTS PANEL -> TOP PANEL
+    .events_panel__top_content {
+      flex-direction: column;
+      height: max-content;
+      padding: 0 0 16px;
+    }
+
+    .events_panel__event_items {
+      width: 100%;
+
+      .event_item {
+        @extend .shadow-md, .standard-content-padding;
+
+        .event_item__top_panel {
+          .event_title {
+            font-size: 17px;
+            line-height: 20px;
+          }
+
+          .event_item__buttons {
+            .event_item__button {
+              margin: 0 8px;
+
+              &:last-child {
+                margin-right: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

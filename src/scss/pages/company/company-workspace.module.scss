@@ -1,0 +1,192 @@
+@import '../../components/variables';
+
+// TABLE STYLES
+
+.path_text {
+  font-family: $ff-ssp;
+  color: $dark;
+  padding-top: 0;
+  @extend .standard-content-padding;
+}
+
+.workspace_table {
+  .file_icon {
+    margin-right: 20px;
+  }
+
+  button.folder {
+    width: 100%;
+    display: block;
+
+    .file_icon {
+      margin-right: 20px;
+    }
+
+    label {
+      cursor: pointer;
+    }
+  }
+
+  tbody {
+    tr {
+      td:first-child {
+        label {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.archiveTable {
+  tbody {
+    tr {
+      td:last-child {
+        position: relative;
+        width: min-content;
+
+        .document_date {
+          position: absolute;
+          right: 24px;
+          bottom: 21px;
+          font-size: 17px;
+          cursor: default;
+        }
+
+        button {
+          position: absolute;
+          opacity: 0;
+          right: 24px;
+          bottom: 24px;
+        }
+      }
+
+      &:hover {
+        td:last-child {
+          .document_date {
+            opacity: 0;
+          }
+
+          button {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+.table_buttons {
+  button {
+    margin-left: 12px;
+    opacity: 0.4;
+    transition: opacity 250ms;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.signature_status_2 {
+  color: $red;
+}
+
+// WORKSPACE PAGE STYLES
+
+.workspace_top_panel {
+  font-family: $ff-ssp;
+  color: $dark;
+  @extend .standard-content-padding;
+}
+
+// WORKSPACE GROUPS
+.workspace_groups {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  .workspace_group_item {
+    width: max-content;
+    margin-right: 12px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: $gray-darker;
+    background-color: $gray-dark;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    transition: 200ms;
+    margin-bottom: 10px;
+
+    &:first-child button {
+      padding-right: 14px;
+    }
+
+    &:hover,
+    &.active {
+      color: #fff;
+      background-color: $green;
+
+      .workspace_group_edit_icon {
+        color: #fff;
+      }
+    }
+
+    .workspace_group_edit_btn {
+      padding: 9px 10px 9px 14px;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+
+      &:focus {
+        outline: none;
+      }
+
+      &.without_btn {
+        padding: 9px 10px;
+      }
+    }
+
+    .workspace_group_edit_icon {
+      width: 35px;
+      height: 22px;
+      color: $gray-darker;
+      padding-right: 14px;
+      cursor: pointer;
+      transition: color 200ms;
+    }
+  }
+}
+
+// CREATION BUTTONS
+
+.workspace_buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 15px;
+}
+
+
+
+@media (max-width: 450px) {
+  .workspace_groups {
+    .workspace_group_item {
+      margin-right: 5px;
+
+      .workspace_group_edit_btn {
+        padding: 7px 10px 7px 12px;
+
+        &.without_btn {
+          padding: 7px 10px;
+        }
+      }
+
+      .workspace_group_edit_icon {
+        padding-right: 12px;
+      }
+    }
+  }
+}

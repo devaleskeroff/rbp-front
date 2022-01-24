@@ -1,0 +1,507 @@
+{
+  "news": {
+    "success": true,
+    "data": [
+      {
+        "id": 1,
+        "title": "Официально открыт корпоративный портал нашей компании",
+        "text": "Сегодня официально заработал корпоративный портал нашей компании...",
+        "tags": ["#Электричество", "#Строительство"],
+        "images": ["/img/static/study-item.png", "/img/static/study-item.png"],
+        "created_at": "12.12.2012"
+      },
+      {
+        "id": 2,
+        "title": "Официально открыт корпоративный портал нашей компании",
+        "text": "Сегодня официально заработал корпоративный портал нашей компании...",
+        "tags": ["#Электричество", "#Строительство"],
+        "images": ["/img/static/study-item.png", "/img/static/study-item.png"],
+        "created_at": "12.12.2012"
+      },
+      {
+        "id": 3,
+        "title": "Официально открыт корпоративный портал нашей компании",
+        "text": "Сегодня официально заработал корпоративный портал нашей компании...",
+        "tags": ["#Электричество", "#Строительство"],
+        "images": ["/img/static/study-item.png", "/img/static/study-item.png"],
+        "created_at": "12.12.2012"
+      },
+      {
+        "id": 4,
+        "title": "Официально открыт корпоративный портал нашей компании",
+        "text": "Сегодня официально заработал корпоративный портал нашей компании...",
+        "tags": ["#Электричество", "#Строительство"],
+        "images": ["/img/static/study-item.png", "/img/static/study-item.png"],
+        "created_at": "12.12.2012"
+      }
+    ]
+  },
+  "home": {
+    "success": true,
+    "data": {
+      "companies": [
+        {
+          "id": 1,
+          "name": "Aleskeroff.ru"
+        },
+        {
+          "id": 2,
+          "name": "Aleskeroff.com"
+        },
+        {
+          "id": 3,
+          "name": "Aleskeroff.org"
+        }
+      ],
+      "ads": [
+        {
+          "id": 1,
+          "image": "/img/static/slider-first.png",
+          "url": "/"
+        },
+        {
+          "id": 2,
+          "image": "/img/static/slider-first.png",
+          "url": "/"
+        },
+        {
+          "id": 3,
+          "image": "/img/static/slider-first.png",
+          "url": "/"
+        },
+        {
+          "id": 4,
+          "image": "/img/static/slider-first.png",
+          "url": "/"
+        }
+      ],
+      "payment": {
+        "id": 1,
+        "tariff": {
+          "id": 1,
+          "name": "Workplace"
+        },
+        "month_limit": 3,
+        "date_start": "12.12.2012",
+        "date_end": "12.12.2013",
+        "is_serve": true
+      }
+    }
+  },
+  "feedback": {
+    "success": true,
+    "data": [
+      {
+        "id": 1,
+        "title": "Сломанный файл",
+        "question": "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum Давно выяснено Давно выяснено, что при оценке дизайна и композиции читаемый...",
+        "user": {
+          "id": 1,
+          "name": "Иван Иванович",
+          "company_name": "Aleskeroff.ru"
+        },
+        "answer": "Ваш запрос принят в обработку",
+        "date_answer": "12.12.2002",
+        "files": [
+          {
+            "id": 1,
+            "basename": "filename.pdf",
+            "dirname": "C:/user/dirname",
+            "extension": "pdf",
+            "filename": "filename",
+            "path": "http://someurl.com/filename.pdf",
+            "size": 1024,
+            "timestamp": "1265195165465"
+          },
+          {
+            "id": 2,
+            "basename": "filename2.docx",
+            "dirname": "C:/user/dirname",
+            "extension": "docx",
+            "filename": "filename2",
+            "path": "http://someurl.com/filename2.docx",
+            "size": 2048,
+            "timestamp": "126519516925985"
+          }
+        ],
+        "created_at": "09.09.2009",
+        "is_answer": true
+      },
+      {
+        "id": 2,
+        "title": "Не сломанный файл 2",
+        "question": "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum Давно выяснено Давно выяснено, что при оценке дизайна и композиции читаемый...",
+        "answer": "",
+        "date_answer": "",
+        "user": {
+          "id": 1,
+          "name": "Иван Василевич",
+          "company_name": "Aleskeroff.com"
+        },
+        "files": [
+          {
+            "id": 1,
+            "basename": "filename.pdf",
+            "dirname": "C:/user/dirname",
+            "extension": "pdf",
+            "filename": "filename",
+            "path": "http://someurl.com/filename.pdf",
+            "size": 1024,
+            "timestamp": "1265195165465"
+          },
+          {
+            "id": 2,
+            "basename": "filename2.docx",
+            "dirname": "C:/user/dirname",
+            "extension": "docx",
+            "filename": "filename2",
+            "path": "http://someurl.com/filename2.docx",
+            "size": 2048,
+            "timestamp": "126519516925985"
+          }
+        ],
+        "created_at": "10.10.2010",
+        "is_answer": false
+      }
+    ]
+  },
+  "document": {
+    "success": true,
+    "document": {
+      "id": 1,
+      "name": "Название документа",
+      "works": [1, 2],
+      "groups": [1, 2],
+      "units": [1, 3],
+      "created_at": "09.06.2021",
+      "signature": [
+        {
+          "id": 1,
+          "date_signature": "17.06.2021",
+          "status": "no_signature",
+          "employee": {
+            "id": 1,
+            "name": "Иван Иванович"
+          }
+        },
+        {
+          "id": 2,
+          "date_signature": "10.06.2021",
+          "status": "no_verified",
+          "employee": {
+            "id": 1,
+            "name": "Иван Иванович"
+          }
+        },
+        {
+          "id": 3,
+          "date_signature": "14.06.2021",
+          "status": "verified",
+          "employee": {
+            "id": 1,
+            "name": "Иван Иванович"
+          }
+        }
+      ],
+      "periodicity": 1001
+    },
+    "units": [
+      {
+        "id": 1,
+        "name": "Тест подразделение"
+      }
+    ],
+    "groups": [
+      {
+        "id": 1,
+        "name": "Тест группа"
+      }
+    ],
+    "works": [
+      {
+        "id": 1,
+        "name": "Тест должность"
+      }
+    ]
+  },
+  "user": {
+    "id": 1,
+    "name": "Владимир Владимирович",
+    "email": "vladimirovich@mail.ru",
+    "phone": "+7 906 96 96",
+    "changed_company": {
+      "id": 2,
+      "name": "СК Звезда ООО"
+    },
+    "changed_company_id": 2,
+    "companies": [
+      {
+        "id": 1,
+        "name": "Aleskeroff.ru"
+      },
+      {
+        "id": 2,
+        "name": "СК Звезда ООО"
+      },
+      {
+        "id": 3,
+        "name": "Лифтстройуправление ООО"
+      }
+    ],
+    "role": {
+      "id": 1,
+      "name": "Администратор"
+    },
+    "avatar": "avatarurl.jpg"
+  },
+  "events": {
+    "success": true,
+    "data": [
+      {
+        "id": 1,
+        "date_start": "23.06.2021 15:30",
+        "date_finish": "26.06.2021 15:30",
+        "desc": "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum Давно выяснено",
+        "title": "Название ивента",
+        "type": "EVENT",
+        "status": "ACTUALLY",
+        "history": "any"
+      },
+      {
+        "id": 2,
+        "date_start": "19.06.2021 12:00",
+        "date_finish": "21.06.2021 12:00",
+        "desc": "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum Давно выяснено",
+        "title": "Название оповещения",
+        "type": "SIGNATURE",
+        "status": "NO_ACTUALLY",
+        "history": "any"
+      },
+      {
+        "id": 3,
+        "date_start": "17.06.2021 09:20",
+        "date_finish": "29.06.2021 09:20",
+        "desc": "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum Давно выяснено",
+        "title": "Название оповещения",
+        "type": "SIGNATURE",
+        "status": "ACTUALLY",
+        "history": "any"
+      },
+      {
+        "id": 4,
+        "date_start": "17.06.2021 09:20",
+        "date_finish": "29.06.2021 09:20",
+        "desc": "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum Давно выяснено",
+        "title": "Название оповещения",
+        "type": "EVENT",
+        "status": "ACTUALLY",
+        "history": "any"
+      },
+      {
+        "id": 5,
+        "date_start": "19.06.2021 12:00",
+        "date_finish": "21.06.2021 12:00",
+        "desc": "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum Давно выяснено",
+        "title": "Название оповещения",
+        "type": "SIGNATURE",
+        "status": "NO_ACTUALLY",
+        "history": "any"
+      },
+      {
+        "id": 6,
+        "date_start": "19.06.2021 12:00",
+        "date_finish": "21.06.2021 12:00",
+        "desc": "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum Давно выяснено",
+        "title": "Название оповещения",
+        "type": "SIGNATURE",
+        "status": "NO_ACTUALLY",
+        "history": "any"
+      }
+    ]
+  },
+  "company": {
+    "success": true,
+    "data": {
+      "id": 1,
+      "name": "Логарифм ООО",
+      "address": "г. Москва, ул. Краснознаменная, д 4",
+      "address_entity": "г. Москва, ул. Краснознаменная, д 4",
+      "clients": [
+        {
+          "id": 1,
+          "name": "Максим Максимович"
+        },
+        {
+          "id": 2,
+          "name": "Иван Иванович"
+        },
+        {
+          "id": 3,
+          "name": "Алексей Алексеевич"
+        }
+      ],
+      "client": {
+        "id": 1,
+        "name": "Максим Максимович"
+      },
+      "description": "Строительная компания",
+      "image": "/img/static/company-logo.png",
+      "legal_entity": "Иванов Иван Иванович",
+      "tax_id":  "54894885935334"
+    }
+  },
+  "tariff": {
+    "success": true,
+    "data": {
+      "is_serve": true,
+      "tariff": {
+        "id": 1,
+        "title": "Workplace",
+        "date_start": "12.12.2012",
+        "date_end": "12.12.2013",
+        "month_limit": 12
+      }
+    }
+  },
+  "study_center": {
+    "success": true,
+    "count": 10,
+    "limit": 50,
+    "data": {
+      "tags": ["#Строительство", "#Электричество", "#Бизнес"],
+      "types": [
+        {
+          "id": 1,
+          "title": "Курс"
+        },
+        {
+          "id": 2,
+          "title": "Вебинар"
+        }
+      ],
+      "items": [
+        {
+          "id": 1,
+          "title": "Название",
+          "description": "Описание",
+          "tags": [
+            "Строительство",
+            "Электричество"
+          ],
+          "type": {
+            "id": 1,
+            "title": "Курс"
+          },
+          "teachers": "Алла Николаевна, Андрей Панчин, Вероника Кузнецова",
+          "speakers": "",
+          "date_start": "12.12.2012",
+          "url": "http://localhost:3000/",
+          "image": "/img/static/study-item.png"
+        },
+        {
+          "id": 2,
+          "title": "Название 2",
+          "description": "Описание",
+          "tags": [
+            "Строительство",
+            "Электричество"
+          ],
+          "type": {
+            "id": 2,
+            "title": "Вебинар"
+          },
+          "teachers": "Алла Николаевна, Андрей Панчин, Вероника Кузнецова",
+          "speakers": "",
+          "date_start": "12.12.2013",
+          "url": "http://localhost:3000/",
+          "image": "/img/static/study-item.png"
+        },
+        {
+          "id": 3,
+          "title": "Название 3",
+          "description": "Описание",
+          "tags": [
+            "Строительство",
+            "Электричество"
+          ],
+          "type": {
+            "id": 1,
+            "title": "Курс"
+          },
+          "teachers": "",
+          "speakers": "Алла Николаевна, Андрей Панчин, Вероника Кузнецова",
+          "date_start": "12.12.2014",
+          "url": "http://localhost:3000/",
+          "image": "/img/static/study-item.png"
+        }
+      ]
+    }
+  },
+  "payment_history": {
+    "success": true,
+    "count": 10,
+    "limit": 50,
+    "data": [
+      {
+        "id": 1,
+        "name": "Продление тарифа",
+        "term": 3,
+        "income_amount": "1900",
+        "date_start": "12.12.2020"
+      },
+      {
+        "id": 2,
+        "name": "Продление тарифа",
+        "term": 3,
+        "income_amount": "1900",
+        "date_start": "12.12.2020"
+      },
+      {
+        "id": 3,
+        "name": "Продление тарифа",
+        "term": 3,
+        "income_amount": "1900",
+        "date_start": "12.12.2020"
+      },
+      {
+        "id": 4,
+        "name": "Продление тарифа",
+        "term": 3,
+        "income_amount": "1900",
+        "date_start": "12.12.2020"
+      },
+      {
+        "id": 5,
+        "name": "Продление тарифа",
+        "term": 3,
+        "income_amount": "1900",
+        "date_start": "12.12.2020"
+      }
+    ]
+  },
+  "question_answer": {
+    "success": true,
+    "data": [
+      {
+        "title": "Вопрос",
+        "description": "Ответ"
+      },
+      {
+        "title": "Вопрос2",
+        "description": "Ответ2"
+      },
+      {
+        "title": "Вопрос3",
+        "description": "Ответ3"
+      },
+      {
+        "title": "Вопрос4",
+        "description": "Ответ4"
+      },
+      {
+        "title": "Вопрос5",
+        "description": "Ответ5"
+      }
+    ]
+  }
+}

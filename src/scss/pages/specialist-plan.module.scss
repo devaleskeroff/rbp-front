@@ -1,0 +1,314 @@
+@import "../components/variables";
+
+.companies_list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+
+  .company_item {
+    width: 245px;
+    height: 110px;
+    background: #fff;
+    box-sizing: border-box;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-right: 15px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    @extend .shadow-sm;
+
+    &.active {
+      border: 1px solid $green;
+    }
+
+    .company_img {
+      height: 70px;
+      margin: auto;
+      object-fit: contain;
+    }
+
+    .company_info_text {
+      font-family: $ff-ssp;
+      font-weight: 600;
+      font-size: 14px;
+      text-align: center;
+    }
+  }
+}
+
+.plan_content {
+  width: 100%;
+  height: auto;
+  background: #fff;
+  border-radius: 12px;
+  margin: 12px auto;
+  @extend .shadow-md;
+
+  .plan_top_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px;
+    padding-bottom: 12px;
+    @extend .standard-content-padding;
+
+    button {
+      margin-top: 0 !important;
+    }
+
+    .download_plan_btn {
+      height: 40px;
+      padding: 0 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      white-space: nowrap;
+      @extend .colorful-btn;
+
+      img {
+        margin-left: 10px;
+      }
+
+      &:hover img {
+        filter: invert(1) brightness(3);
+      }
+    }
+  }
+}
+
+// TABLE STYLES
+.specialist_plan_table {
+  thead tr,
+  tbody tr {
+    text-align: left;
+
+    td:last-child {
+      min-width: 300px;
+    }
+  }
+
+  thead tr {
+    td:nth-child(2),
+    td:nth-child(3), {
+      width: 150px;
+    }
+
+    td:nth-child(4) {
+      width: 175px;
+    }
+
+    td:nth-child(5) {
+      width: 150px;
+    }
+  }
+
+  tbody {
+    tr {
+      td:first-child {
+        .chevron_icon_label {
+          margin-left: 24px;
+          -webkit-transform: rotate(180deg);
+          -moz-transform: rotate(180deg);
+          -ms-transform: rotate(180deg);
+          -o-transform: rotate(180deg);
+          transform: rotate(180deg);
+          filter: invert(0.7);
+
+          .chevron_icon {
+            width: 12px;
+          }
+        }
+
+        input[name="disclosed"]:checked ~ .chevron_icon_label {
+          filter: unset;
+          -webkit-transform: unset;
+          -moz-transform: unset;
+          -ms-transform: unset;
+          -o-transform: unset;
+          transform: unset;
+        }
+
+        label {
+          cursor: pointer;
+        }
+      }
+    }
+
+    tr.task_row {
+      td:first-child {
+        padding-left: 50px;
+      }
+    }
+
+    tr.subtask_row {
+      td:first-child {
+        padding-left: 100px;
+      }
+    }
+  }
+
+  label {
+    cursor: pointer;
+  }
+}
+
+.table_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  button {
+    margin-left: 12px;
+    opacity: 0.4;
+    transition: opacity 250ms;
+
+    &:first-child {
+      opacity: 1;
+      margin-top: 0 !important;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.green_txt {
+  color: $green;
+}
+
+.status_checkbox_item label:last-child {
+  padding-left: 8px;
+}
+
+.subtask_row .table_buttons button:first-child {
+  opacity: 0.4;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.pagination_btn {
+  margin: 15px auto !important;
+}
+
+// TASK HISTORY TABLE
+.task_history_table {
+  width: 650px;
+  max-width: 100%;
+
+  table {
+    width: 100%;
+
+    tr td {
+      width: 140px;
+      
+      &:nth-child(2) {
+        text-align: left;
+      }
+
+      &:nth-child(3) {
+        text-align: left;
+      }
+
+      &:first-child {
+        width: 180px;
+      }
+
+      &:last-child {
+        width: 170px;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.change_text_row {
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 16px;
+    margin-left: 10px;
+    margin-top: 2px;
+  }
+}
+
+/** MODAL STYLES **/
+// CREATING TASK
+.datepickers_title {
+  font-family: $ff-ssp;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  color: $dark;
+  margin-top: 30px;
+  margin-bottom: -20px;
+  padding-left: 10px;
+}
+
+// VIEW TASK MODAL
+.view_task_modal {
+  width: 650px;
+  max-width: 100%;
+  font-family: $ff-ssp;
+}
+
+.view_task_date {
+  color: $gray-darker;
+  margin-top: 8px;
+}
+
+.view_task_desc {
+  font-size: 16px;
+  line-height: 20px;
+  color: $dark;
+  margin-top: 12px;
+  white-space: pre-line;
+}
+
+.history_title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: $dark;
+  margin-top: 30px;
+  margin-bottom: -5px;
+}
+
+// MEDIA QUERIES
+@media (max-width: 1124px) {
+  .companies_list {
+    .company_item {
+      width: 200px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .companies_list {
+    .company_item {
+      width: 48%;
+      margin-right: 2%;
+
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .plan_content {
+    .plan_top_content {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      .download_plan_btn {
+        margin-top: 10px;
+      }
+    }
+  }
+}

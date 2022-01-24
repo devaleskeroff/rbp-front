@@ -1,0 +1,80 @@
+@import "../../components/variables";
+
+.upload_image_modal {
+  width: 650px;
+  height: auto;
+}
+
+.upload_image_modal_content {
+  padding: 10px 20px 20px;
+}
+
+.upload_image_subtitle {
+  font-family: $ff-ssp;
+  font-size: 12px;
+  line-height: 1.66667;
+  letter-spacing: normal;
+  font-weight: 300;
+  color: $gray-darker;
+  margin-bottom: 25px;
+}
+
+.cropper {
+  float: left;
+  width: 80%;
+  height: 280px;
+}
+
+.cropper_rotate_buttons {
+  display: inline-block;
+  margin-left: 15px;
+
+  .cropper_rotate_item {
+    font-family: $ff-ssp;
+    color: $gray-darker;
+    font-weight: 300;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+
+    svg {
+      opacity: .5;
+      margin-right: 10px;
+    }
+
+    &:nth-child(2) {
+      svg {
+        transform: scale(-1, 1);
+      }
+    }
+  }
+}
+
+.cropper_handler_btn {
+  height: 40px;
+  padding: 0 20px;
+  margin-top: 24px;
+  @extend .green-colorful-btn;
+}
+
+@media (max-width: 768px) {
+  .upload_image_modal {
+    width: 100%;
+  }
+
+  .upload_image_modal_content {
+    padding: 10px 10px 20px;
+  }
+
+  .cropper {
+    width: 100%;
+  }
+
+  .cropper_rotate_buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0 0;
+  }
+}

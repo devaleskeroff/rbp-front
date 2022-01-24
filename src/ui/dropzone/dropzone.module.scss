@@ -1,0 +1,32 @@
+
+.dropzone_container {
+  width: 100%;
+  height: 150px;
+  border: 1px dashed #d7d7d7;
+  cursor: pointer;
+  transition: border-color 250ms;
+  text-align: center;
+  font-size: 15px;
+
+  .dropzone {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .uploaded_text {
+    font-size: 16px;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+  svg {
+    margin: auto;
+  }
+
+  &:hover {
+    border-color: #6e6e6e;
+  }
+}

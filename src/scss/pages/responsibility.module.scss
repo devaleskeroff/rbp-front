@@ -1,0 +1,84 @@
+@import "../components/variables";
+
+// TABLE STYLES
+
+.responsibility_table {
+  button.folder {
+    width: 100%;
+    display: block;
+
+    .file_icon {
+      margin-right: 20px;
+    }
+
+    label {
+      cursor: pointer;
+    }
+  }
+
+  tr td {
+    .file_icon {
+      margin-right: 20px;
+    }
+  }
+}
+
+.action_col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  float: right;
+  text-align: right;
+
+  .action_buttons {
+    display: flex;
+
+    img {
+      padding-left: 8px;
+      opacity: .4;
+      transition: 200ms;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  img {
+    margin-top: 3px;
+    cursor: pointer;
+  }
+}
+
+// MODAL STYLES
+
+.responsibility_document_modal {
+  width: 650px;
+}
+
+.responsibility_document_modal_form {
+  margin-top: 12px;
+}
+
+// PAGE STYLES
+
+.creation_buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 5px;
+  @extend .standard-content-padding;
+}
+
+@media (max-width: 768px) {
+  .responsibility_document_modal {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .creation_buttons {
+    padding-top: 0;
+  }
+}

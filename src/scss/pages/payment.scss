@@ -1,0 +1,164 @@
+@import '../components/variables';
+
+/* TAB CONTENT SECTIONS */
+// TARIFF SECTION (FIRST TAB)
+
+main.payment section.tab-content-item:first-child {
+  @extend .standard-content-padding;
+}
+
+div.tariff {
+  width: 265px;
+  height: 120px;
+  background: url($imgPath + "/tariff-bg.jpg");
+  background-size: cover;
+  overflow: hidden;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 24px;
+  @extend .rounded-xl;
+
+  &.light-tariff {
+    background-image: url($imgPath + "/light-tariff-bg.jpg");
+  }
+
+  &.choosing-tariff {
+    height: 180px;
+  }
+
+  div.tariff-cont {
+    padding: 0 10px;
+  }
+}
+
+p.tariff-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+p.tariff-subtitle {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+p.tariff-desc {
+  font-weight: normal;
+  font-size: 14px;
+}
+
+div.tariffication-period {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  margin-bottom: 14px;
+}
+
+div.payment-method {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+// BUTTON || DIV || LINK
+button.tariff-period-btn {
+  height: 55px;
+  padding: 0 40px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  @extend .bordered-btn;
+}
+
+button.payment-method-btn {
+  margin-right: 15px;
+  @extend .small-bordered-btn;
+}
+
+div.payment-price {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  margin-bottom: 20px;
+
+  p {
+    margin-right: 10px;
+  }
+
+  span {
+    font-size: 30px;
+  }
+}
+
+
+// PAYMENT HISTORY SECTION (SECOND TAB)
+
+// TARIFF TABLE
+
+div.tariff-table-container {
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow-x: auto;
+  @extend .standard-content-padding;
+}
+
+button.choose-tariff-btn {
+  width: 100%;
+  @extend .large-colorful-btn;
+}
+
+div.choosing-tariff {
+  margin-bottom: 24px;
+
+  div.tariff-cont {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px;
+  }
+}
+
+table.tariff-table {
+  width: max-content;
+  font-family: $ff-ssp;
+  font-weight: 600;
+  font-size: 18px;
+  color: $dark;
+
+  tbody tr {
+    &:nth-child(even) {
+      background: $gray-dark;
+    }
+  }
+
+  thead, tbody {
+    tr {
+      width: 100%;
+
+      td {
+        width: 265px;
+        padding-right: 20px;
+
+        img {
+          margin: auto;
+        }
+
+        &:first-child {
+          width: max-content;
+          text-indent: 16px;
+          padding-top: 12px;
+          padding-bottom: 12px;
+        }
+
+        &:last-child {
+          padding-right: 16px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@import '../../components/variables';
+@import '../../app';
+
+.company_info {
+  .tab_top_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+.company_info {
+  @extend .standard-content-padding;
+}
+
+.company_name {
+  margin: 0 15px 15px 0;
+  @extend .content-title;
+}
+
+.company_edit_btn {
+  height: 40px;
+  padding: 0 24px;
+  margin-bottom: 15px;
+  @extend .green-colorful-btn;
+}
+
+.company_info_content_logo {
+  width: 360px;
+  height: 250px;
+  object-fit: contain;
+  max-width: 100%;
+}
+
+/* INFO SECTION */
+
+.company_info_section {
+  width: max-content;
+  max-width: 100%;
+  margin-top: 15px;
+
+  .underline {
+    margin: 10px 0;
+  }
+}
+
+.company_info__item {
+  font-size: 14px;
+  font-weight: normal;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: var(--dark);
+  line-height: 18px;
+  padding: 7px 0;
+
+  span {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+.company_info_group {
+  display: flex;
+  align-items: flex-start;
+}
+
+.company_info_group__list {
+  line-height: 8px;
+  padding-left: 10px;
+}
+
+@media (max-width: 480px) {
+  .company_info {
+    padding-top: 24px;
+  }
+
+  .company_edit_btn {
+    height: 36px;
+    padding: 0 16px;
+  }
+}

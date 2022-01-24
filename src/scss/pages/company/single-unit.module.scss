@@ -1,0 +1,55 @@
+@import "../../components/variables";
+
+.unit_top_panel {
+  padding-top: 25px;
+  width: max-content;
+  display: inline-block;
+  @extend .standard-content-padding;
+
+  .unit_title {
+    font-size: 20px;
+    font-family: $ff-ssp;
+    margin-bottom: 15px;
+  }
+
+  .unit_type_btn {
+    height: 36px;
+    padding: 0 20px;
+    font-family: $ff-pf-light;
+    font-size: 15px;
+    font-weight: 300;
+    margin-right: 10px;
+    @extend .colorful-btn;
+
+    &.active {
+      background-color: $green;
+      color: #fff;
+    }
+  }
+}
+
+.creation_btn {
+  display: inline-block;
+  float: right;
+  margin: 24px 14px;
+
+  button {
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .unit_top_panel {
+    width: auto;
+
+    button {
+      margin-bottom: 15px;
+    }
+  }
+
+  .creation_btn {
+    display: block;
+    float: none;
+    margin-top: 10px;
+  }
+}

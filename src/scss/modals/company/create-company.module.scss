@@ -1,0 +1,29 @@
+@import "../../components/variables";
+
+.overflowYVisible {
+  overflow-y: visible !important;
+}
+
+.create_company_modal {
+  width: 650px;
+  height: auto;
+
+  #clients_select {
+    padding: 15px 10px 10px;
+  }
+
+  section {
+    margin: 24px 0 10px;
+  }
+
+  #clients_label {
+    z-index: 2;
+    padding-left: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .create_company_modal {
+    width: 100%;
+  }
+}

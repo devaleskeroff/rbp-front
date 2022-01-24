@@ -1,0 +1,75 @@
+@import "../../components/variables";
+
+// SEND EVENT EMAIL MODAL
+#event_email_modal {
+  width: 600px;
+  border-radius: 25px;
+  padding: 50px 0;
+
+  .content {
+    height: 100%;
+
+    .modal_form {
+      width: 500px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: auto;
+
+      .send {
+        width: max-content;
+        padding: 5px 20px;
+        border: 1px solid $green;
+        border-radius: 25px;
+        transition: 250ms;
+        margin-top: 25px;
+
+        &:hover {
+          background: $green;
+          color: #fff;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+// CREATE EVENT MODAL
+
+.create_event_modal {
+  button {
+    &:focus {
+      outline: none !important;
+    }
+  }
+}
+
+.main_pickers_container{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.pickers_container{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.pickers_input {
+  overflow-y: hidden !important;
+  overflow-x: auto !important;
+  height: 50px;
+
+  input {
+    overflow-y: hidden !important;
+    padding: 10px 0px 10px 10px !important;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 100% !important;
+  }
+}

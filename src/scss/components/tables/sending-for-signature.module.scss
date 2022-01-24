@@ -1,0 +1,24 @@
+@import "../variables";
+
+.sending_for_signature_table {
+
+  .actions_col {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-left: 75px;
+
+    button {
+      height: 36px;
+      margin-right: 10px;
+      white-space: nowrap;
+      padding: 0 20px;
+      @extend .colorful-btn;
+    }
+
+    img {
+      margin-left: 15px;
+      cursor: pointer;
+    }
+  }
+}

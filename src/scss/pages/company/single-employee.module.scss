@@ -1,0 +1,117 @@
+@import "../../components/variables";
+
+// EMPLOYEE SIGNATURES TABLE STYLES
+
+.employee_signatures_table {
+  tbody tr td:last-child {
+    width: max-content;
+    display: flex;
+    float: right;
+    justify-content: flex-end;
+    align-items: center;
+    padding-left: 35px;
+
+    .action_icons {
+      display: flex;
+      align-items: center;
+      min-height: 60px;
+      height: auto;
+
+      img {
+        margin-left: 15px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.send_to_signature_btn {
+  height: 36px;
+  padding: 0 30px;
+  border: 1px solid $gray-dark2;
+  margin-top: 17px;
+  margin-bottom: 17px;
+  white-space: nowrap;
+  margin-right: 5px;
+  @extend .large-colorful-btn;
+
+  &:hover {
+    border-color: rgba(0,0,0,0);
+  }
+}
+
+// PAGE STYLES
+
+.single_employee__info_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  padding-top: 0;
+  @extend .standard-content-padding;
+
+  .single_employee__section {
+    width: 450px;
+    min-height: 314px;
+    background: #fff;
+    border-radius: 10px;
+    @extend .standard-content-padding, .shadow-sm;
+
+    .single_employee__section_top_panel {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .employee_name {
+        display: flex;
+        align-items: center;
+        font-family: $ff-ssp;
+        font-weight: 600;
+        font-size: 18px;
+        color: $dark;
+
+        img {
+          margin-right: 10px;
+        }
+      }
+
+      .single_employee__buttons {
+        display: flex;
+        align-items: center;
+        min-width: max-content;
+
+        .single_employee__button {
+          margin: 0 10px;
+
+          &:focus {
+            outline: none;
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    .key_value_item {
+      font-family: $ff-ssp;
+      font-size: 14px;
+      color: $dark;
+      margin-bottom: 10px;
+
+      span {
+        font-weight: 600;
+        font-size: 16px;
+      }
+    }
+
+    .block_title {
+      font-family: $ff-ssp;
+      font-weight: 600;
+      font-size: 18px;
+      color: $gray-darker;
+    }
+  }
+}

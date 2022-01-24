@@ -1,0 +1,182 @@
+@import "../components/variables";
+
+// TABLE STYLES
+
+.sending_for_signature_modal {
+  width: 1350px;
+  max-width: 100%;
+
+  // <-- ADDING DOCUMENT MODAL
+  .adding_doc_modal_content {
+    padding-top: 20px;
+  }
+  // -->
+
+  .documents_counter {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-left: 23px;
+  }
+}
+
+.large_modal {
+  max-width: 95% !important;
+}
+
+// PAGE STYLES
+
+.container_styles {
+  width: 100%;
+  height: auto;
+  min-height: calc(100vh - 80px);
+  background-color: $gray-dark;
+  display: flex;
+  justify-content: center;
+  font-family: $ff-ssp;
+  color: $dark;
+
+  .documents_signed_title {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 38px;
+    margin-bottom: 16px;
+  }
+}
+
+// DOCUMENTS SIGNED CONTENT
+
+.documents_signed_container {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  @extend .container_styles;
+}
+
+// DOCUMENTS SIGNING CONTENT
+
+.signing_container {
+  @extend .container_styles;
+}
+
+.signing_content {
+  width: 600px;
+  max-width: 95%;
+  font-family: $ff-ssp;
+  color: $dark;
+  margin-top: 50px;
+
+  // WELCOME TEXTS
+  .welcome_title {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 38px;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  // DOCUMENTS
+  .documents {
+    margin-top: 32px;
+
+    .document_item {
+      width: 100%;
+      height: auto;
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid $green;
+      margin-bottom: 24px;
+      cursor: pointer;
+
+      .view_status {
+        width: max-content;
+        background-color: $green;
+        color: #fff;
+        padding: 6px 24px 6px 18px;
+        border-bottom-right-radius: 50px;
+      }
+
+      &.viewed {
+        border-color: $gray;
+
+        .view_status {
+          background-color: $gray;
+          color: $gray-darker;
+        }
+      }
+
+      .document_name {
+        font-size: 16px;
+        line-height: 20px;
+        padding: 12px 24px 20px;
+      }
+    }
+  }
+
+  // SENDING FIELD AND BUTTONS
+  .sending_code_container {
+    width: 310px;
+    max-width: 100%;
+    margin: auto;
+    text-align: center;
+
+    .sending_code_btn {
+      border: 1px solid $gray-dark2;
+      border-radius: 25px;
+      width: 95%;
+      height: 40px;
+      transition: all 250ms;
+      margin-top: 10px;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover:enabled {
+        background-color: $green;
+        color: #fff;
+      }
+    }
+
+    .sending_code_desc {
+      font-size: 14px;
+      line-height: 18px;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .signing_docs_btn {
+      width: 100%;
+      padding: 10px 16px;
+      border-radius: 25px;
+      margin-top: 24px;
+      transition: all 250ms;
+      margin-bottom: 40px;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:disabled {
+        background-color: $gray-dark2;
+        color: $gray-darker;
+      }
+
+      &:enabled {
+        background-color: $green;
+        color: #fff;
+      }
+
+      &:hover:enabled {
+        @extend .shadow-md;
+      }
+    }
+  }
+}

@@ -1,0 +1,348 @@
+$green: #00B856;
+$green-darker: #007D3B;
+$red: #E24826;
+$dark: #373737;
+$gray: #eff1f8;
+$gray-dark: #F5F6FA;
+$gray-darker: #8D96A5;
+$gray-dark2: #D7DCED;
+$ff-ssp: 'Source Sans Pro', sans-serif;
+$ff-pf-light: 'PF Centro Sans Pro Light', sans-serif;
+
+$front_url: 'https://rbp.aleskeroff.ru';
+$imgPath: 'https://rbp.aleskeroff.ru/img/static/';
+
+
+.white-btn {
+  min-width: max-content;
+  height: 40px;
+  background: #fff;
+  border-radius: 100px;
+  overflow: hidden;
+  font-family: $ff-pf-light;
+  font-size: 16px;
+  color: #7a7a7a;
+  border: 1px solid #e2e5f1;
+  -webkit-transition: box-shadow 250ms;
+  -moz-transition: box-shadow 250ms;
+  -o-transition: box-shadow 250ms;
+  transition: box-shadow 250ms;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    box-shadow: 0 0 2px 1px rgba(0,0,0,.05);
+  }
+}
+
+.green-btn {
+  min-width: max-content;
+  height: 40px;
+  background: $green;
+  border-radius: 100px;
+  overflow: hidden;
+  font-family: $ff-pf-light;
+  font-size: 16px;
+  color: #fff;
+  -webkit-transition: box-shadow 250ms;
+  -moz-transition: box-shadow 250ms;
+  -o-transition: box-shadow 250ms;
+  transition: box-shadow 250ms;
+  padding: 0 20px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px 2px rgba(0,0,0,.1);
+  }
+}
+
+.small-green-btn {
+  padding: 0 30px;
+  @extend .green-btn;
+}
+
+.colorful-btn {
+  width: auto;
+  height: 32px;
+  border-radius: 1000px;
+  color: $dark;
+  background: #fff;
+  font-family: $ff-pf-light;
+  font-size: 16px;
+  border: 1px solid #e2e5f1;
+  @extend .transition-all;
+
+  &:hover,
+  &.active {
+    color: #fff;
+    background: $green;
+    @extend .shadow-md;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.large-colorful-btn {
+  height: 40px;
+  @extend .colorful-btn;
+}
+
+.small-colorful-btn {
+  padding: 0 18px;
+  @extend .colorful-btn;
+}
+
+.green-colorful-btn {
+  color: #fff;
+  background: $green;
+  @extend .colorful-btn;
+
+  &:hover,
+  &.active {
+    @extend .shadow-md;
+  }
+}
+
+.bordered-btn {
+  width: max-content;
+  height: 32px;
+  text-align: center;
+  color: $gray-darker;
+  border: 1px solid $gray;
+  border-radius: 15px;
+  overflow: hidden;
+
+  &.active, &:hover {
+    color: $dark;
+    border-color: $green;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.small-bordered-btn {
+  height: max-content;
+  padding: 3px 15px;
+  @extend .bordered-btn;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.standard-content-padding {
+  padding: 24px;
+}
+
+@media (max-width: 768px) {
+  .standard-content-padding {
+    padding: 20px 15px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .standard-content-padding {
+    padding: 15px 10px 10px;
+  }
+}
+
+.border-radius {
+  border-radius: 5px;
+}
+
+// FLEX
+
+.flex {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-c-c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-n-c {
+  display: flex;
+  align-items: center;
+}
+
+.flex-c-n {
+  display: flex;
+  justify-content: center;
+}
+
+// BORDER-RADIUS & MARGINS/PADDINGS
+
+.rounded-md {
+  border-radius: 5px;
+}
+
+.rounded-xl {
+  border-radius: 10px;
+}
+
+.mt-25 {
+  margin-top: 25px;
+}
+
+//.mt-10 {
+//  margin-top: 10px;
+//}
+
+//.my-25 {
+//  margin: 25px 0;
+//}
+
+//.my-6 {
+//  margin-top: 6px;
+//  margin-bottom: 6px;
+//}
+
+//.mr-10 {
+//  margin-right: 10px;
+//}
+
+//.mb-3 {
+//  margin-bottom: 3px;
+//}
+
+//.mb-5 {
+//  margin-bottom: 5px;
+//}
+
+.mt-12 {
+  margin-top: 12px;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.mt-50 {
+  margin-top: 50px;
+}
+
+.mb-5 {
+  margin-bottom: 5px;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+.px-10 {
+  padding: 0 10px;
+}
+
+.px-20 {
+  padding: 0 20px;
+}
+
+//.space-x-5 > * + * {
+//  margin-left: 10px !important;
+//  margin-right: 10px !important;
+//}
+
+//.space-x-10 > * + * {
+//  margin-left: 10px;
+//  margin-right: 10px;
+//}
+
+
+// BACKGROUNDS
+
+.bg-white {
+  background-color: #fff;
+}
+
+// FONTS
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-thin {
+  font-weight: 100;
+}
+
+.font-extralight {
+  font-weight: 200;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
+.font-black	{
+  font-weight: 900;
+}
+
+// SHADOW
+
+.shadow-md {
+  -webkit-box-shadow: 1px 2px 5px rgba(79, 79, 79, 0.2);
+  -moz-box-shadow: 1px 2px 5px rgba(79, 79, 79, 0.2);
+  -o-box-shadow: 1px 2px 5px rgba(79, 79, 79, 0.2);
+  box-shadow: 1px 2px 5px rgba(79, 79, 79, 0.2);
+}
+
+.shadow-sm {
+  -webkit-box-shadow: 1px 2px 5px rgba(79, 79, 79, 0.1);
+  -moz-box-shadow: 1px 2px 5px rgba(79, 79, 79, 0.1);
+  -o-box-shadow: 1px 2px 5px rgba(79, 79, 79, 0.1);
+  box-shadow: 1px 2px 5px rgba(79, 79, 79, 0.1);
+}
+
+// ANIMATION
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}

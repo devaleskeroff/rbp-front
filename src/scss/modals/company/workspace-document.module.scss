@@ -1,0 +1,25 @@
+@import "../../components/variables";
+
+.workspace_document_modal {
+  width: 650px;
+  height: auto;
+}
+
+.workspace_document_modal_form {
+  margin-top: 20px;
+}
+
+.period_select {
+  min-width: 285px !important;
+}
+
+@media (max-width: 768px) {
+  .workspace_document_modal {
+    min-width: 310px;
+    width: 100%;
+  }
+
+  .workspace_document_modal_form {
+    margin-top: 10px;
+  }
+}

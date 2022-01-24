@@ -1,0 +1,15 @@
+
+.document_view_modal {
+  width: 750px;
+  height: 90vh;
+  max-width: 100%;
+
+  .document_view_modal_content {
+    height: 85%;
+
+    .document_view_iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

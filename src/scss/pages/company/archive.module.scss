@@ -1,0 +1,29 @@
+@import "../../components/variables";
+
+.archive_top_panel {
+  padding-bottom: 10px;
+  @extend .standard-content-padding;
+}
+
+.archive__type_btn {
+  height: 36px;
+  padding: 0 20px;
+  font-family: $ff-pf-light;
+  font-size: 15px;
+  font-weight: 300;
+  margin-right: 10px;
+  @extend .colorful-btn;
+
+  &.active {
+    background-color: $green;
+    color: #fff;
+  }
+}
+
+// EMPLOYEE TABLE STYLES
+
+.employee_table {
+  tr td {
+    text-align: left;
+  }
+}

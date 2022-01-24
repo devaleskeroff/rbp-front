@@ -1,0 +1,325 @@
+@import "../components/variables";
+
+.profile_content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+
+  .profile_content_item {
+    width: 32%;
+    height: max-content;
+    background-color: #fff;
+    padding: 20px;
+    font-family: $ff-ssp;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: $dark;
+    @extend .border-radius;
+
+    // FIRST ITEM CONTENT
+    &:first-child {
+      //width: 390px;
+      width: 25%;
+      min-height: 390px;
+    }
+
+    .profile_img_container {
+      width: 135px;
+      height: 135px;
+      margin: 24px 0;
+      position: relative;
+      cursor: pointer;
+
+      &:before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        border: 2px solid $gray-dark;
+        border-radius: 50%;
+        transition: opacity 250ms;
+        opacity: 0;
+        z-index: 2;
+      }
+
+      &:after {
+        position: absolute;
+        left: 0;
+        top: 0;
+        content: '';
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        opacity: 0;
+        transition: opacity 250ms;
+        @extend .border-radius;
+      }
+
+      &:hover:before {
+        opacity: .8;
+      }
+
+      &:hover:after {
+        opacity: .5;
+      }
+
+      &:hover .edit_icon {
+        opacity: 1;
+      }
+
+      .edit_icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 250ms;
+        z-index: 2;
+      }
+
+      .profile_img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        @extend .border-radius;
+      }
+    }
+
+    .submit_btn {
+      width: 100%;
+      margin: 20px 0 10px;
+      @extend .green-btn;
+    }
+
+    .cancel_btn {
+      width: 100%;
+      height: 40px;
+      @extend .white-btn;
+    }
+
+    // USER INFO
+
+    .user_info {
+      .user_info_item {
+        font-family: $ff-ssp;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 17px;
+        color: $dark;
+
+        span {
+          font-weight: bolder;
+        }
+      }
+
+      .edit_data_btn {
+        width: 100%;
+        margin-top: 24px;
+        @extend .white-btn;
+      }
+    }
+
+    // SECOND ITEM CONTENT
+    &:nth-child(2) {
+      width: 25%;
+      height: auto;
+      min-height: 415px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .password_section_content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-top: 24px;
+    }
+
+    .edit_password_btn {
+      @extend .white-btn;
+    }
+
+    .password_mask {
+      font-family: $ff-ssp;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 20px;
+      color: $dark;
+
+      p {
+        display: inline;
+        margin-left: 10px;
+      }
+    }
+
+    // THIRD ITEM CONTENT
+    &:nth-child(3) {
+      //width: 800px;
+      width: 48%;
+      max-height: 520px;
+    }
+
+    .companies {
+      max-height: 460px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      padding-right: 5px;
+      padding-bottom: 24px;
+
+      .company_item {
+        width: 100%;
+        height: 160px;
+        border: 1px solid $gray-dark2;
+        border-radius: 20px;
+        padding: 16px;
+        margin-top: 24px;
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        &.active {
+          border-color: $green;
+        }
+
+        .img_section {
+          width: 200px;
+
+          img {
+            width: 100%;
+            height: 130px;
+            object-fit: contain;
+          }
+        }
+
+        .info_section {
+          margin-left: 24px;
+
+          .company_name {
+            font-family: $ff-ssp;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 30px;
+            color: $dark;
+          }
+
+          .company_info_item {
+            font-family: $ff-ssp;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            color: $dark;
+
+            p {
+              font-family: $ff-ssp;
+              display: inline;
+              font-size: 16px;
+              font-weight: 600;
+              margin-left: 1px;
+            }
+          }
+        }
+
+        .action_buttons {
+          position: absolute;
+          right: 24px;
+          top: 24px;
+          display: flex;
+
+          img {
+            cursor: pointer;
+          }
+
+          .edit_company_icon {
+            -webkit-filter: invert(1);
+            -ms-filter: invert(1);
+            filter: invert(1);
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1550px) {
+  .profile_content {
+    flex-wrap: wrap;
+
+    .profile_content_item {
+      &:first-child,
+      &:nth-child(2) {
+        width: 48%;
+      }
+
+      &:nth-child(3) {
+        width: 100%;
+        margin-top: 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .profile_content {
+    flex-wrap: wrap;
+
+    .profile_content_item {
+      width: 100% !important;
+
+      &:first-child {
+        margin-bottom: 24px;
+      }
+
+      &:nth-child(3) {
+        .companies {
+          .company_item {
+            padding: 10px;
+
+            .img_section {
+              width: 135px;
+            }
+
+            .info_section {
+              margin-left: 15px;
+
+              .company_name {
+                font-size: 20px;
+              }
+
+              .company_info_item {
+                font-size: 13px;
+
+                p {
+                  margin-left: 2px;
+                  font-size: 15px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .profile_content .profile_content_item {
+    padding: 10px;
+
+    &:nth-child(3) {
+      .companies .company_item .img_section {
+        display: none;
+      }
+    }
+  }
+}

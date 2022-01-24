@@ -1,0 +1,245 @@
+@import "../../components/variables";
+
+.company_info_container {
+  margin-top: 15px;
+  font-family: $ff-pf-light;
+  color: #484848;
+  font-weight: 400;
+
+  .company_name {
+    font-size: 20px;
+    line-height: 34px;
+  }
+
+  .company_ot_specialist {
+    font-size: 14px;
+  }
+}
+
+.prescriptions_content_container {
+  padding-top: 0;
+  @extend .standard-content-padding;
+}
+
+.prescriptions {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 24px;
+
+  .prescription_item {
+    width: 32.5%;
+    height: 240px;
+    margin-right: 1.25%;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 50px;
+    @extend .shadow-md, .rounded-md;
+
+    &:nth-child(3n+3) {
+      margin-right: 0;
+    }
+
+    .prescription_item_content {
+      width: 100%;
+      height: 100%;
+      @extend .standard-content-padding;
+
+      // PRESCRIPTION ITEM SECTION
+      .prescription_item_title {
+        display: flex;
+        justify-content: space-between;
+
+        .prescription_action_buttons {
+          min-width: 60px;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 20px;
+            object-fit: contain;
+            margin-left: 10px;
+            cursor: pointer;
+          }
+        }
+
+        label:first-child {
+          display: flex;
+        }
+        
+        label {
+          cursor: pointer;
+        }
+
+        .prescription_title_text {
+          font-family: $ff-ssp;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 18px;
+          color: $dark;
+          margin-top: -3px;
+          padding-left: 12px;
+          overflow: hidden;
+          width: auto;
+          height: 27px;
+        }
+      }
+
+      .prescription_executor {
+        font-family: $ff-ssp;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 18px;
+        color: $dark;
+        margin-top: 8px;
+
+        span {
+          font-weight: 600;
+          font-size: 16px;
+        }
+      }
+
+      .prescription_gray_text {
+        font-family: $ff-ssp;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 18px;
+        color: $gray-darker;
+        margin-top: 8px;
+      }
+
+      .prescription_text {
+        font-family: $ff-ssp;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 20px;
+        color: $dark;
+        margin-top: 8px;
+        height: 80px;
+        overflow-y: auto;
+        padding-right: 5px;
+      }
+    }
+
+    .prescription_files_amount {
+      display: flex;
+      align-items: center;
+      margin-top: 16px;
+      position: absolute;
+      left: 24px;
+      bottom: 20px;
+      font-family: $ff-ssp;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 18px;
+      color: $gray-darker;
+
+      img {
+        padding-right: 10px;
+      }
+    }
+
+    &.single_item {
+      width: 800px;
+      height: auto;
+      background: #fff;
+
+      .prescription_item_content {
+        height: auto;
+
+        .prescription_title_text {
+          height: auto;
+        }
+
+        .prescription_text {
+          height: auto;
+        }
+      }
+    }
+  }
+}
+
+// CHECKBOX
+
+.checkbox_item {
+  width: 21px;
+  height: 21px;
+  border-radius: 0;
+  background: $gray;
+}
+
+.checkbox_item + label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 21px;
+  height: 21px;
+  min-width: 21px;
+  min-height: 21px;
+  text-align: center;
+  background-color: $gray;
+  color: rgba(250,250,250,0);
+}
+
+.checkbox_item:checked + label {
+  color: $dark;
+}
+
+
+@media (max-width: 1500px) {
+  .prescriptions {
+    .prescription_item {
+      width: 49%;
+      margin-right: 2%;
+
+      &:nth-child(3n+3) {
+        margin-right: 2%;
+      }
+
+      &:nth-child(2n+2) {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .prescriptions {
+    .prescription_item {
+      width: 100%;
+      margin-right: 0;
+
+      &:nth-child(3n+3) {
+        margin-right: 0;
+      }
+
+      .prescription_files_amount {
+        left: 16px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .company_info_container {
+    padding-left: 12px;
+
+    .company_name {
+      font-size: 19px;
+      line-height: 24px;
+      margin-bottom: 5px;
+    }
+  }
+
+  .prescriptions {
+    .prescription_item {
+      .prescription_files_amount {
+        left: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@import "../../components/variables";
+
+.unit_top_panel {
+  padding-top: 10px;
+  @extend .standard-content-padding;
+}
+
+// TABLE STYLES
+
+.units_table {
+  tbody tr td:first-child label {
+    width: 100%;
+    cursor: pointer;
+  }
+
+  tr td {
+    text-align: left;
+
+    .signatures_list_btn {
+      width: auto;
+      height: 36px;
+      padding: 0 20px;
+      background: #fff;
+      @extend .colorful-btn;
+    }
+  }
+}
+
+.unit_actions_col {
+  width: max-content;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  float: right;
+
+  button {
+    margin-top: 0 !important;
+  }
+
+  img {
+    margin-left: 18px;
+    cursor: pointer;
+  }
+}
+
+.red {
+  color: $red;
+}

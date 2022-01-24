@@ -1,0 +1,50 @@
+@import "../../components/variables";
+
+// TABLE STYLES
+
+.employee_table {
+  .employee_control_col {
+    display: flex;
+    align-items: center;
+    float: right;
+
+    img {
+      margin-left: 15px;
+      cursor: pointer;
+    }
+  }
+
+  tbody tr td:first-child label {
+    cursor: pointer;
+  }
+
+  tr td {
+    text-align: left;
+  }
+}
+
+
+// PAGE STYLES
+
+.employees_top_panel {
+  @extend .standard-content-padding;
+
+  &.second_top_panel {
+    padding-top: 10px;
+  }
+}
+
+.employees_type_btn {
+  height: 36px;
+  padding: 0 20px;
+  font-family: $ff-pf-light;
+  font-size: 15px;
+  font-weight: 300;
+  margin-right: 10px;
+  @extend .colorful-btn;
+
+  &.active {
+    background-color: $green;
+    color: #fff;
+  }
+}

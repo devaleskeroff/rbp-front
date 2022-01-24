@@ -1,0 +1,165 @@
+@import "../components/variables";
+
+.study_content {
+  font-family: $ff-ssp;
+  margin-top: 15px;
+}
+
+.categories {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  margin-top: 14px;
+  margin-bottom: 3px;
+
+  .tag_item {
+    color: $gray-darker;
+    cursor: pointer;
+    margin-right: 12px;
+  }
+}
+
+.course_items {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.course_item {
+  width: 24%;
+  height: 460px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 0.5% 25px;
+  position: relative;
+
+  .course_edit_btn,
+  .course_delete_btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    background: #fff;
+    color: $dark;
+    padding: 10px;
+    border-radius: 50%;
+    z-index: 3;
+  }
+
+  .course_edit_btn {
+    right: 65px;
+  }
+
+  .img_section {
+    width: 100%;
+    height: 250px;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      -o-object-fit: cover;
+    }
+
+    &.with_label {
+      .course_label {
+        position: absolute;
+        bottom: 18px;
+        left: 22px;
+        color: #fff;
+        background: $green;
+        display: flex;
+        align-items: center;
+        border: none;
+        @extend .small-colorful-btn, .shadow-md;
+      }
+    }
+  }
+
+  .info_section {
+    width: 100%;
+    height: 200px;
+    padding: 0 24px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .course_title {
+      font-family: $ff-ssp;
+      font-weight: 600;
+      font-size: 18px;
+      color: $dark;
+      margin-bottom: 5px;
+    }
+
+    .course_date {
+      color: $gray-darker;
+      font-size: 14px;
+    }
+
+    .teachers {
+      font-weight: 600;
+      font-size: 16px;
+      color: $dark;
+      margin-top: 6px;
+      margin-bottom: 6px;
+
+      span {
+        font-weight: 500;
+      }
+    }
+
+    .course_desc {
+      font-size: 16px;
+      color: $dark;
+    }
+  }
+}
+
+@media (max-width: 1800px) {
+  .course_item {
+    width: 32%;
+  }
+}
+
+@media (max-width: 1350px) {
+  .course_item {
+    width: 49%;
+  }
+}
+
+@media (max-width: 768px) {
+  .course_item {
+    .info_section {
+      padding: 0 10px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .categories,
+  .tags {
+    padding: 0 10px;
+  }
+
+  .course_item {
+    width: 100%;
+    margin: 0 0 25px;
+
+    .tags {
+      padding: 0;
+    }
+  }
+}
+
