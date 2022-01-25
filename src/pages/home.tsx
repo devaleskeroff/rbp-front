@@ -26,7 +26,6 @@ import 'slick-carousel/slick/slick.css'
 import style from '@scss/pages/home.module.scss'
 import baseTable from '@scss/components/tables/base-table.module.scss'
 
-
 export enum BannersImagesEnum {
     Banner = 'BANNER', 
     Slide = 'SLIDE', 
@@ -131,11 +130,26 @@ const Home = () => {
                             </div>
                         }
                         {/* SECOND (TARIFF) BLOCK */ }
-                        <div className={ clsx(style.tariff_block) }>
-                            <p className={ clsx(style.tariff_subtitle) }>Ваш тариф:</p>
-                            <p className={ clsx(style.tariff_name) }>Premium</p>
-                            <p className={ clsx(style.tariff_subtitle) }>У вас осталось: 3 месяца</p>
-                            <Link className={ clsx(style.tariff_extension_btn) } to={ '/' }>Продлить</Link>
+                        <div className={ clsx(style.second_block) }>
+                            <div className={ clsx(style.tariff_block) }>
+                                <p className={ clsx(style.tariff_subtitle) }>Ваш тариф:</p>
+                                <p className={ clsx(style.tariff_name) }>Premium</p>
+                                <p className={ clsx(style.tariff_subtitle) }>У вас осталось: 3 месяца</p>
+                                <Link className={ clsx(style.tariff_extension_btn) } to={ '/' }>Продлить</Link>
+                            </div>
+                            <div className={ clsx(style.spacer) } />
+                            <div className={ clsx(style.test_block) }>
+                                <img src="/img/static/vision-zero-logo.jpg" alt="" />
+                                <p className={ clsx(style.test_block_title) }>
+                                    Семь «золотых правил» производства
+                                </p>
+                                <p className={ clsx(style.test_subtitle) }>
+                                    С нулевым травматизмоми с безопасными условиями труда
+                                </p>
+                                <button className={`green-colorful-btn ${ clsx(style.start_test_btn) }`}>
+                                    Начать тестирование
+                                </button>
+                            </div>
                         </div>
                         {/* THIRD (PROMPTS) BLOCK */ }
                         <div className={ clsx(style.prompts_block) }>
@@ -301,7 +315,7 @@ const Home = () => {
                                                         </div>
                                                         </div>
                                                         {/* TODO REMOVE BACKEND URL LATER */}
-                                                        <img src={src} alt="" className={ clsx(style.home_slider_img) } />
+                                                        <img src={process.env.API_URL + src} alt="" className={ clsx(style.home_slider_img) } />
                                                     </div>
                                                 </Link>
                                             })
@@ -324,7 +338,7 @@ const Home = () => {
                                                 </svg>
                                             </div>
                                             {/* TODO REMOVE BACKEND URL LATER */}
-                                            <img src={src} alt=""
+                                            <img src={process.env.API_URL + src} alt=""
                                                 className={ clsx(style.home_slider_img, style.home_banner_img) } />
                                         </div>
                                     ))

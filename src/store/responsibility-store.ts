@@ -1,4 +1,5 @@
 import { createEvent, createStore } from 'effector'
+// TYPES
 import {
     CommonResponsibilityDocsStoreT,
     ResponsibilityDirectoryT,

@@ -3,6 +3,8 @@ export type ResponsibilityFileT = {
     id: number
     title: string
     hash: string
+    path: string
+    extension: string
     updatedAt: string
 }
 

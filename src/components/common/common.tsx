@@ -2,19 +2,19 @@ import React, { FC } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 // COMPONENTS
 import Select, { Styles } from 'react-select'
-import { useModal } from '@modals/index'
+// UTILS
+import { GetFileName } from "@utils/rus-to-latin";
 // ICONS
 import EyeIcon from '@assets/images/eye.png'
 // TYPES
 import {
     ColorfulActionButtonPropsT,
+    FileForViewButtonT,
     ItemsOfStringArrayT, SortOptionT,
     TabItemsPropsT,
     TableTopPanelPropsT,
     TitlePropsT
 } from '@interfaces/common'
-import { WorkspaceFileShortDataT } from '@interfaces/company/workspace'
-import {GetFileName} from "@utils/rus-to-latin";
 
 export const BreadCrumb: FC<ItemsOfStringArrayT> = ({ items }) => {
     const content = items.map((item, idx) => {
@@ -187,9 +187,7 @@ export const Title: React.FC<TitlePropsT> = ({ text, withHistory }) => {
     return <h1 className="content-title">{ text }</h1>
 }
 
-export const DocumentViewButton: React.FC<{ file: WorkspaceFileShortDataT | string }> = ({ file }) => {
-    const { open } = useModal()
-
+export const DocumentViewButton: React.FC<{ file: FileForViewButtonT | string, type?: string }> = ({ file, type }) => {
     const viewBtnForImageAndPdf = (
         <button>
             <a href={ process.env.API_URL + (typeof file === 'string' ? file : file.path) } target='_blank' rel='noreferrer'>
@@ -198,19 +196,19 @@ export const DocumentViewButton: React.FC<{ file: WorkspaceFileShortDataT | stri
         </button>
     )
     // TODO @deprecated remove later & DocumentViewModal as well
-    const viewBtnForDoc = (
-        <button>
-            <img src={ EyeIcon } alt="Посмотреть" onClick={ () => open('DocumentViewModal', {
-                modalData: { src: typeof file === 'string' ? file : file.path }
-            }) }/>
-        </button>
-    )
+    // const viewBtnForDoc = (
+        // <button>
+        //     <img src={ EyeIcon } alt="Посмотреть" onClick={ () => open('DocumentViewModal', {
+        //         modalData: { src: typeof file === 'string' ? file : file.path }
+        //     }) }/>
+        // </button>
+    // )
 
     const viewBtnForDocInEditor = () => {
         if (typeof file === 'string') {
             return null
         }
-        const pathHash = btoa(`${ process.env.API_URL }/api/v1/file/${ file.id }?type=workspace&hash=${ file.hash }`)
+        const pathHash = btoa(`${ process.env.API_URL }/api/v1/file/${ file.id }?type=${ type }&hash=${ file.hash }`)
         const filename = GetFileName(file.title, file.extension)
         const fullEditorUrl = `${process.env.EDITOR_URL}/?document=${pathHash}&filename=${filename}&mode=readonly`
 

@@ -104,6 +104,7 @@ const EventCalendar: React.FC<CompanyTabPropsT> = () => {
             currentMonthEvents.forEach(event => {
                 const eventStartDate = new Date(event.dateStart)
                 const eventFinishDate = new Date(event.dateFinish)
+                const isExpired = eventFinishDate.getTime() < today.getTime()
 
                 if (
                     (eventStartDate.getDate() === date.getDate() &&
@@ -116,8 +117,9 @@ const EventCalendar: React.FC<CompanyTabPropsT> = () => {
                 ) {
                     jsxArr.push(
                         <p key={ Math.random() } className={ clsx([style.calendar_event, {
-                            [style.green]: event.type === 'EVENT',
-                            [style.red]: event.type === 'SIGNATURE',
+                            [style.green]: !isExpired && event.type === 'EVENT',
+                            [style.yellow]: event.type === 'SIGNATURE',
+                            [style.red]: isExpired,
                             [style.active]: event?.signature?.status === 1
                         }]) } />
                     )

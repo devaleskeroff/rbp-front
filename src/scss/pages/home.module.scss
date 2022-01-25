@@ -170,7 +170,7 @@
 
   // FIRST USER BLOCK
   .user_block {
-    width: 29%;
+    width: 25%;
     height: 350px;
     background: #fff;
     border-radius: 15px;
@@ -248,48 +248,95 @@
     }
   }
 
-  // SECOND TARIFF BLOCK
-  .tariff_block {
-    width: 40%;
+  // SECOND BLOCK
+  .second_block {
+    width: 44%;
     height: 350px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background: url($front_url + '/img/static/blue-tariff-bg.png');
-    background-size: cover;
-    border-radius: 15px;
-    @extend .shadow-sm;
+    justify-content: space-between;
 
-    .tariff_subtitle {
-      font-family: $ff-ssp;
-      font-weight: 600;
-      font-size: 18px;
-      color: #fff;
-    }
-
-    .tariff_name {
-      font-family: $ff-ssp;
-      font-weight: 900;
-      font-size: 72px;
-      color: #fff;
-      line-height: 35px;
-      margin: 24px 0;
-    }
-
-    .tariff_extension_btn {
-      width: 140px;
-      height: 40px;
-      font-family: $ff-ssp;
-      font-size: 16px;
-      color: #fff;
-      text-align: center;
-      margin-top: 32px;
+    .tariff_block {
+      width: 100%;
+      height: 350px;
       display: flex;
       justify-content: center;
       align-items: center;
-      border: none;
-      @extend .green-colorful-btn;
+      flex-direction: column;
+      background: url($front_url + '/img/static/blue-tariff-bg.png');
+      background-size: cover;
+      border-radius: 15px;
+      @extend .shadow-sm;
+  
+      .tariff_subtitle {
+        font-family: $ff-ssp;
+        font-weight: 600;
+        font-size: 18px;
+        color: #fff;
+      }
+  
+      .tariff_name {
+        font-family: $ff-ssp;
+        font-weight: 900;
+        font-size: 55px;
+        color: #fff;
+        line-height: 60px;
+        margin: 0 0 12px;
+      }
+  
+      .tariff_extension_btn {
+        width: 140px;
+        height: 38px;
+        font-family: $ff-ssp;
+        font-size: 16px;
+        color: #fff;
+        text-align: center;
+        margin-top: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        @extend .green-colorful-btn;
+      }
+    }
+
+    .spacer {
+      width: 20px;
+    }
+
+    .test_block {
+      width: 100%;
+      height: 350px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: #fff;
+      border-radius: 15px;
+      @extend .shadow-sm;
+      text-align: center;
+      padding: 0 10px;
+      font-family: $ff-ssp;
+
+      .test_block_title {
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 23px;
+        line-height: 100%;
+        color: $dark;
+      }
+
+      .test_subtitle {
+        margin-top: 24px;
+        font-size: 18px;
+        line-height: 24px;
+        color: $dark;
+      }
+
+      button.start_test_btn {
+        height: 40px;
+        padding: 0 35px;
+        margin-top: 35px;
+      }
     }
   }
 
@@ -334,7 +381,7 @@
       width: 49%;
     }
 
-    .tariff_block {
+    .second_block {
       width: 100%;
       order: 1;
       margin-top: 16px;
@@ -354,11 +401,13 @@
       width: 100%;
     }
 
-    .tariff_block {
-      width: 100%;
+    .second_block {
+      flex-direction: column;
+      height: auto;
 
-      .tariff_name {
-        font-size: 55px;
+      .spacer {
+        width: 0;
+        height: 12px;
       }
     }
 

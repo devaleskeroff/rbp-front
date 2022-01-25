@@ -113,3 +113,11 @@ export type TitlePropsT = {
    text: string
    withHistory?: boolean
 }
+
+export type FileForViewButtonT = {
+   id: number
+   title: string
+   hash: string
+   extension: string
+   path: string
+}

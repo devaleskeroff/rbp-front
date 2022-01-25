@@ -15,6 +15,9 @@ import EditIcon from '@assets/images/dark-edit.png'
 import DeleteIcon from '@assets/images/delete.png'
 // SERVICE
 import ResponsibilityService from '@services/responsibility-service'
+// UTILS
+import { GetFileName } from '@utils/rus-to-latin'
+import { DocumentViewButton } from '@components/common/common'
 // STORE
 import {
     $CommonResponsibilityDocuments,
@@ -241,6 +244,7 @@ const ResponsibilityTable: React.FC<ResponsibilityTablePropsT> = ({ setWithHisto
                 <label htmlFor={`key`} className={ clsx(tableStyle.checkbox_label) }>{ file.title }</label>
             </label>
         )
+        const editorUrl = `${process.env.EDITOR_URL}/?document=${btoa(process.env.API_URL + '/api/v1/file/' + file.id + '?type=responsibility&hash=' + file.hash)}&filename=${GetFileName(file.title, file.extension)}&mode=readonly`
 
         return (
             <tr key={file.id}>
@@ -249,6 +253,9 @@ const ResponsibilityTable: React.FC<ResponsibilityTablePropsT> = ({ setWithHisto
                     <div className={ clsx(style.action_col) }>
                         <span>{ moment(file.updatedAt).format('DD.MM.YYYY') }</span>
                         <div className={ clsx(style.action_buttons) }>
+                            <Tooltip title="Посмотреть" placement="top">
+                                <DocumentViewButton file={file} type={'document'} />
+                            </Tooltip>
                             {
                                 userRole !== UserRoleEnum.SuperAdmin ? null :
                                     <Tooltip title={'Изменить'} placement='top'>
@@ -271,7 +278,7 @@ const ResponsibilityTable: React.FC<ResponsibilityTablePropsT> = ({ setWithHisto
                                         <img src={ DownloadIcon } alt="Скачать"/>
                                     </a>
                                 </button>
-                            </Tooltip>
+                            </Tooltip>  
                             {
                                 userRole !== UserRoleEnum.SuperAdmin ? null :
                                     <Tooltip title={'Удалить'} placement='top'>

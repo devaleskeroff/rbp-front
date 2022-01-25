@@ -1,11 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useStore } from 'effector-react'
 import clsx from 'clsx'
 // COMPONENTS
-import { BreadCrumb, Categories } from '@components/common'
+import { BreadCrumb } from '@components/common'
 import { ColorfulButton, Title } from '@components/common/common'
-import { CourseItems } from '@components/study-center'
-import { ErrorIndicator, Loader } from '@ui/indicators'
 // STORE
 import { $UserRole, UserRoleEnum } from '@store/user-store'
 import {
@@ -170,40 +168,42 @@ const StudyCenter = () => {
                </div>
             </div>
             <section className={ clsx(style.study_content) }>
-               {/* <div className={ clsx(style.study_content__promo) }>
+               <div className={ clsx(style.study_content__promo) }>
                   <img src="/img/static/study-center-img.jpg" alt="" />
                </div>
                <div className={ clsx(style.download_doc_section) }>
                   <p className={ clsx(style.download_doc__title) }>Подать заявку на обучение</p>
                   <p className={ clsx(style.download_doc__title) }>И получите доступ ко всем курсам!</p>
                   <div>
-                     <ColorfulButton text={'Скачать заявку'} plusIcon={false} customIcon={
+                     <a href={ process.env.API_URL + '/uploads/files/static/zayavka.doc' } download 
+                        className={`green-colorful-btn ${ clsx(style.download_doc_btn) }`}>
+                        Скачать заявку
                         <svg style={{ width: '15px', height: '15px' }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                         </svg>
-                     } />
+                     </a>
                   </div>
-               </div> */}
-               <Categories onClick={ categoryChangingHandler } items={ [
+               </div>
+               {/* <Categories onClick={ categoryChangingHandler } items={ [
                   { value: 'ANY', label: 'Все' },
                   { value: 'COURSE', label: 'Курсы' },
                   { value: 'WEBINAR', label: 'Вебинары' }
-               ] }/>
+               ] }/> */}
                {/* {
                   courseTags ?
                      <Tags selectedTag={tag} items={['Все темы', ...courseTags]} onClick={onTagClick} />
                      : null
                } */}
-               {
+               {/* {
                   error ? <ErrorIndicator/> : isLoading ? <Loader/> :
                       <CourseItems items={ currentCourses }/>
-               }
-               {
+               } */}
+               {/* {
                   !isLoading && currentCourses.length < currentCoursesCount ?
                       <button className='pagination-button' onClick={ fetchMoreCourses }>
                          Показать еще
                       </button> : null
-               }
+               } */}
             </section>
          </div>
       </main>

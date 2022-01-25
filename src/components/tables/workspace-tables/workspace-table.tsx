@@ -317,7 +317,7 @@ const WorkspaceTable: React.FC<WorkspaceTablePropsT> = ({ setWithHistory }) => {
                 <td>
                     <div className={ clsx(style.table_buttons) }>
                         <Tooltip title="Посмотреть" placement="top">
-                            <DocumentViewButton file={item} />
+                            <DocumentViewButton file={item} type={'workspace'} />
                         </Tooltip>
                         {
                             user.role === UserRoleEnum.Client ? null :
