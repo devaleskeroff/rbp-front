@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useStore } from 'effector-react'
 import clsx from 'clsx'
 // COMPONENTS
-import { BreadCrumb } from '@components/common'
+import { BreadCrumb, Categories } from '@components/common'
 import { ColorfulButton, Title } from '@components/common/common'
 // STORE
 import { $UserRole, UserRoleEnum } from '@store/user-store'
@@ -18,6 +18,8 @@ import {
 import { CourseT } from '@interfaces/study-center'
 // STYLES
 import style from '@scss/pages/study-center.module.scss'
+import { ErrorIndicator, Loader } from '@ui/indicators'
+import { CourseItems } from '@components/study-center'
 
 const itemsPerPage = 8
 
@@ -172,8 +174,8 @@ const StudyCenter = () => {
                   <img src="/img/static/study-center-img.jpg" alt="" />
                </div>
                <div className={ clsx(style.download_doc_section) }>
-                  <p className={ clsx(style.download_doc__title) }>Подать заявку на обучение</p>
-                  <p className={ clsx(style.download_doc__title) }>И получите доступ ко всем курсам!</p>
+                  <p className={ clsx(style.download_doc__title) }>Подайте заявку на обучение</p>
+                  <p className={ clsx(style.download_doc__title) }>и получите доступ к выбранному курсу!</p>
                   <div>
                      <a href={ process.env.API_URL + '/uploads/files/static/zayavka.doc' } download 
                         className={`green-colorful-btn ${ clsx(style.download_doc_btn) }`}>
@@ -184,26 +186,28 @@ const StudyCenter = () => {
                      </a>
                   </div>
                </div>
-               {/* <Categories onClick={ categoryChangingHandler } items={ [
-                  { value: 'ANY', label: 'Все' },
-                  { value: 'COURSE', label: 'Курсы' },
-                  { value: 'WEBINAR', label: 'Вебинары' }
-               ] }/> */}
+               <div style={{ marginTop: '10px' }}>
+                  <Categories onClick={ categoryChangingHandler } items={[
+                     { value: 'ANY', label: 'Все' },
+                     { value: 'COURSE', label: 'Курсы' },
+                     { value: 'WEBINAR', label: 'Вебинары' }
+                  ]} />
+               </div>
                {/* {
                   courseTags ?
                      <Tags selectedTag={tag} items={['Все темы', ...courseTags]} onClick={onTagClick} />
                      : null
                } */}
-               {/* {
+               {
                   error ? <ErrorIndicator/> : isLoading ? <Loader/> :
                       <CourseItems items={ currentCourses }/>
-               } */}
-               {/* {
+               }
+               {
                   !isLoading && currentCourses.length < currentCoursesCount ?
                       <button className='pagination-button' onClick={ fetchMoreCourses }>
                          Показать еще
                       </button> : null
-               } */}
+               }
             </section>
          </div>
       </main>

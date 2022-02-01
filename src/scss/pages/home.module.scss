@@ -37,6 +37,10 @@
   width: 24%;
   margin-top: 85px;
 
+  .edit_btn {
+    display: none;
+  }
+
   &.editable {
     .edit_btn {
       display: block;
@@ -95,18 +99,11 @@
   height: 100%;
   min-height: 100%;
 
-  &.editable {
-    .actions {
-      display: block;
-    }
-  }
-
   .actions {
     display: none;
     position: absolute;
     right: 15px;
     top: 10px;
-    display: flex;
     justify-content: space-between;
     padding: 0 10px;
 
@@ -123,6 +120,12 @@
       svg {
         color: #fff;
       }
+    }
+  }
+
+  &.editable {
+    .actions {
+      display: flex;
     }
   }
 }
@@ -194,7 +197,9 @@
         font-family: $ff-ssp;
         font-weight: 600;
         font-size: 18px;
+        line-height: 130%;
         color: $dark;
+        text-align: center;
       }
 
       .user_companies_select {
@@ -359,8 +364,8 @@
       font-weight: 600;
       font-size: 18px;
       color: $dark;
-      padding: 16px;
-      line-height: 130%;
+      padding: 14px 16px;
+      line-height: 120%;
     }
 
     .prompts_list {
@@ -368,6 +373,7 @@
 
       .checkbox_label {
         color: $green;
+        line-height: 140%;
       }
     }
   }

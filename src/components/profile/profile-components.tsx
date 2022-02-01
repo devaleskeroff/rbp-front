@@ -23,6 +23,7 @@ import { UserDataT } from '@interfaces/user'
 import { CompanyT } from '@interfaces/company/company'
 // STYLES
 import style from '@scss/pages/profile.module.scss'
+import moment from 'moment'
 
 export const UserData = () => {
     const user = useStore($User) as UserDataT
@@ -117,12 +118,20 @@ export const UserData = () => {
                 <p className={ clsx(style.user_info_item) }>ФИО: <span>{ user.name }</span></p>
                 <p className={ clsx(style.user_info_item) }>Почта: <span>{ user.email }</span></p>
                 <p className={ clsx(style.user_info_item) }>Телефон: <span>{ user.phone }</span></p>
+                <p className={ clsx(style.user_info_item) }>Премиум: <span>{
+                    user.premium ? user.premium === 777
+                            ? 'пожизненный'
+                            : 'до ' + moment(user.premium).format('ll')
+                        : 'отсутствует'
+                }</span></p>
                 <button className={ clsx(style.edit_data_btn) } onClick={() => setEditMode(true)}>Изменить данные</button>
             </div>
     )
 }
 
 export const UserPassword = () => {
+    const user = useStore($User) as UserDataT
+    // STATES
     const [editMode, setEditMode] = useState<boolean>(false)
     const [validation, setValidation] = useState({
         oldPasswordError: '',
@@ -189,7 +198,12 @@ export const UserPassword = () => {
             </form>
             : <div className={ clsx(style.password_section_content) }>
                 <div className={ clsx(style.password_mask) }>Пароль: <p>**********</p></div>
-                <button className={ clsx(style.edit_password_btn) } onClick={() => setEditMode(true)}>Сменить пароль</button>
+                {
+                    user.premium === null ? null :
+                        <button className={ clsx(style.edit_password_btn) } onClick={() => setEditMode(true)}>
+                            Сменить пароль
+                        </button>
+                }
             </div>
     )
 }

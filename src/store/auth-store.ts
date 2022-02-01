@@ -16,7 +16,6 @@ import { AuthStoreLoginPropsT, AuthStoreSignupPropsT } from '@interfaces/store/a
 
 // AUTH STORE
 export const setAuth = createEvent<boolean>()
-// export const resetAllStates = createEvent('Resetting all stores(needed when user logs out or changes company)')
 
 export const $Auth = createStore<boolean | null>(null) /* MUST BE NULL FOR INITIAL STATE */
     .on(setAuth, (_, newState) => newState)

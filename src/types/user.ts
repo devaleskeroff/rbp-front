@@ -12,6 +12,7 @@ export type UserDataT = {
     createdAt: string
     updatedAt: string
     selectedCompany: number
+    premium: number | null,
     companies: CompanyShortDataT[]
     company: CompanyT
 }

@@ -85,6 +85,7 @@ const Notifications = () => {
                 type = undefined
                 offset = offsets.commonOffset
         }
+        console.log('AULELE', category)
 
         fetchEvents({
             dateStart: null,
@@ -178,7 +179,7 @@ const Notifications = () => {
                         items={ [
                             { value: 'ANY', label: 'Общее' },
                             { value: 'SIGNATURE', label: 'Переподписания' },
-                            { value: 'SIGNATURE', label: 'Ивенты' }
+                            { value: 'EVENT', label: 'Ивенты' }
                         ] }
                     />
                     <div className={ clsx(style.events_container) }>
@@ -189,7 +190,7 @@ const Notifications = () => {
                         }
                         {
                             !isLoading && currentCategoryEvents.length < currentCategoryEventsCount ?
-                                <button className='pagination-button' onClick={fetchMoreEvents}>
+                                <button className='pagination-button' onClick={ fetchMoreEvents }>
                                     Показать еще
                                 </button> : null
                         }
