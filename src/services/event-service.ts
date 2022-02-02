@@ -85,7 +85,7 @@ class EventService {
     static async SendByEmail(eventId: number, email: string, eventType: 'EVENT' | 'SIGNATURE', cb: ResCallback<string>) {
         try {
             const res = await Fetcher.modified.post<string>(`/events/${eventId}/email`, { email }, {
-                params: { type: eventType === 'EVENT' ? 1 : 2 }
+                params: { type: eventType }
             })
 
             if (res.status === 200) {

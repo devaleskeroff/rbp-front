@@ -144,7 +144,7 @@ const Home = () => {
                                     Семь «золотых правил» производства
                                 </p>
                                 <p className={ clsx(style.test_subtitle) }>
-                                    С нулевым травматизмоми с безопасными условиями труда
+                                    С нулевым травматизмом и с безопасными условиями труда
                                 </p>
                                 <button className={`green-colorful-btn ${ clsx(style.start_test_btn) }`}>
                                     Начать тестирование

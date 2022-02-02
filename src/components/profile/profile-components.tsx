@@ -199,10 +199,11 @@ export const UserPassword = () => {
             : <div className={ clsx(style.password_section_content) }>
                 <div className={ clsx(style.password_mask) }>Пароль: <p>**********</p></div>
                 {
-                    user.premium === null ? null :
+                    user.premium === null ?
                         <button className={ clsx(style.edit_password_btn) } onClick={() => setEditMode(true)}>
                             Сменить пароль
                         </button>
+                        : null
                 }
             </div>
     )

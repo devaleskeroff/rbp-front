@@ -30,7 +30,7 @@ const EventEmailModal: FC<EventEmailModalPropsT> = ({ onConfirm, state, setState
        if (!email.value) {
           return
        }
-       EventService.SendByEmail(modalData.event.id, email.value, modalData.event.type, (err, res) => {
+       EventService.SendByEmail(modalData.event.id, email.value, modalData.event.type, (err, _res) => {
            if (err) {
               return setError('При отправке письма произошла ошибка')
            }
