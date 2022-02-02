@@ -125,46 +125,43 @@ const Feedbacks = () => {
                         <BreadCrumb items={ ['Главная', 'Обратная связь'] }/>
                         <Title text='Обратная связь' />
                     </div>
-                    {
-                        userRole === UserRoleEnum.Admin ?
-                            <section className='qa-tab-items full-width'>
-                                <div className='qa-tab__item shadow-sm'>
-                                    <div className='qa-tab__trigger' onClick={ toggleTab }>
-                                        <img src='/img/static/green-arrow_drop_down.png' alt='' className='qa-tab__arrow'/>
-                                        <p className='qa-tab__title'>Задать вопрос</p>
-                                    </div>
-                                    <div className='qa-tab__content'>
-                                        <div className={clsx([style.reply_sections, style.fixed])}>
-                                            <form className={classes.root} noValidate autoComplete="off" onSubmit={ handleSubmit }>
-                                                <TextField label="Тема обращения" name={'title'} variant="filled" onChange={ e => {
-                                                    if (e.target.value.length > 125) {
-                                                        e.target.value = e.target.value.substring(0, e.target.value.length - 1)
-                                                    }
-                                                }} />
-                                                <TextField
-                                                    label="Опишите проблему"
-                                                    name={'description'}
-                                                    multiline
-                                                    rows={4}
-                                                    variant="filled"
-                                                />
-                                                <div className={clsx(style.feedback_form_files_list)}>
-                                                    <LoadedFiles files={ selectedFiles } setSelectedFiles={ setSelectedFiles } />
-                                                </div>
-                                                <div className={clsx(style.feedback_form_actions)}>
-                                                    <button className={clsx(style.feedback_send_btn)} type='submit'>
-                                                        Отправить
-                                                    </button>
-                                                    <input multiple type='file' name='' id='feedback-file' hidden
-                                                           onChange={e => setSelectedFiles(e.target.files)} />
-                                                    <label htmlFor='feedback-file'><img src='/img/static/pin-icon.png' alt=''/></label>
-                                                </div>
-                                            </form>
+                    <section className='qa-tab-items full-width'>
+                        <div className='qa-tab__item shadow-sm'>
+                            <div className='qa-tab__trigger' onClick={ toggleTab }>
+                                <img src='/img/static/green-arrow_drop_down.png' alt='' className='qa-tab__arrow'/>
+                                <p className='qa-tab__title'>Задать вопрос</p>
+                            </div>
+                            <div className='qa-tab__content'>
+                                <div className={clsx([style.reply_sections, style.fixed])}>
+                                    <form className={classes.root} noValidate autoComplete="off" onSubmit={ handleSubmit }>
+                                        <TextField label="Тема обращения" name={'title'} variant="filled" onChange={ e => {
+                                            if (e.target.value.length > 125) {
+                                                e.target.value = e.target.value.substring(0, e.target.value.length - 1)
+                                            }
+                                        }} />
+                                        <TextField
+                                            label="Опишите проблему"
+                                            name={'description'}
+                                            multiline
+                                            rows={4}
+                                            variant="filled"
+                                        />
+                                        <div className={clsx(style.feedback_form_files_list)}>
+                                            <LoadedFiles files={ selectedFiles } setSelectedFiles={ setSelectedFiles } />
                                         </div>
-                                    </div>
+                                        <div className={clsx(style.feedback_form_actions)}>
+                                            <button className={clsx(style.feedback_send_btn)} type='submit'>
+                                                Отправить
+                                            </button>
+                                            <input multiple type='file' name='' id='feedback-file' hidden
+                                                   onChange={e => setSelectedFiles(e.target.files)} />
+                                            <label htmlFor='feedback-file'><img src='/img/static/pin-icon.png' alt=''/></label>
+                                        </div>
+                                    </form>
                                 </div>
-                            </section> : null
-                    }
+                            </div>
+                        </div>
+                    </section>
                     <AnsweredRequests onToggleTab={toggleTab} items={answeredFeedbacks} />
                     <UnAnsweredRequests onToggleTab={toggleTab} items={unansweredFeedbacks} />
                 </div>

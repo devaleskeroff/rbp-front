@@ -11,7 +11,7 @@ import Validator from '@utils/validator'
 import CompanyService from '@services/company-service'
 import AuthService from '@services/auth-service'
 // STORE
-import { $User, setUserData, UserRoleEnum } from '@store/user-store'
+import { $User, $UserRole, setUserData, UserRoleEnum } from '@store/user-store'
 import { $Company, setCompany } from '@store/company/company-store'
 // UTILS
 import { ConcatApiUrl } from '@utils/api-tools'
@@ -130,7 +130,7 @@ export const UserData = () => {
 }
 
 export const UserPassword = () => {
-    const user = useStore($User) as UserDataT
+    const userRole = useStore($UserRole) as UserRoleEnum
     // STATES
     const [editMode, setEditMode] = useState<boolean>(false)
     const [validation, setValidation] = useState({
@@ -199,7 +199,7 @@ export const UserPassword = () => {
             : <div className={ clsx(style.password_section_content) }>
                 <div className={ clsx(style.password_mask) }>Пароль: <p>**********</p></div>
                 {
-                    user.premium === null ?
+                    userRole === UserRoleEnum.SuperAdmin ?
                         <button className={ clsx(style.edit_password_btn) } onClick={() => setEditMode(true)}>
                             Сменить пароль
                         </button>
