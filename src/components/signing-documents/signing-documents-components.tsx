@@ -50,7 +50,8 @@ export const Documents: React.FC<SigningDocumentsPropsT> = ({ items, onReadyToSi
                 anchorElement.click()
                 break;
             case 'docx': case 'xlsx':
-                const hash = btoa(signature.file.path)
+                const filePath = `${ process.env.API_URL }/api/v1/file/${ signature.file.id }?type=workspace&hash=${ signature.file.hash }`
+                const hash = btoa(filePath)
                 const filename = RusToLatin(signature.file.title)
                 anchorElement.setAttribute('href', `${process.env.EDITOR_URL}/?document=${hash}&filename=${filename}&mode=readonly`)
                 anchorElement.click()
