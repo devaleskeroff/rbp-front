@@ -34,14 +34,20 @@ const EventItems: React.FC<EventItemsPropsT> = ({ events, limit }) => {
                         }
                     </p>
                 </div>
-                <p className={ clsx(style.event_item__date, style.margin_top) }>Подписан { moment(event.dateStart).format('lll') }</p>
-                <p className={ clsx(style.event_item__date) }>Действителен до
-                    { ' ' + moment(event.dateFinish).format('lll') }
+                <p className={ clsx(style.event_item__date, style.margin_top) }>
+                    { event.type === 'EVENT' ? 'Начало' : 'Подписан' } { moment(event.dateStart).format('lll') }
+                    { event.type === 'SIGNATURE' && event.dateFinish === 0 ? ' разово' : null }
                 </p>
+                {
+                    event.type === 'SIGNATURE' && event.dateFinish === 0 ? null
+                        : <p className={ clsx(style.event_item__date) }>
+                            Действителен до { moment(event.dateFinish).format('lll') }
+                        </p>
+                }
                 <p className={ clsx([style.event_item__desc, {
                     [style.bolder]: event.type === 'SIGNATURE' && event?.signature?.status === 1
                 }]) }>
-                    { event.desc } { event.type === 'SIGNATURE' ? event.signature?.file.title : '' }
+                    { event.desc } { event.type === 'SIGNATURE' ? event.signature?.file.title : null }
                     {
                         event.type === 'SIGNATURE' ?
                             <><br/>
