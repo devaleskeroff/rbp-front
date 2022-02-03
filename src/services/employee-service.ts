@@ -130,7 +130,7 @@ class EmployeeService {
 
     static async MarkDocumentAsViewed(companyId: number, signatureId: number, verifyingId: string, cb: ResCallback<string>) {
         try {
-            const res = await Fetcher.post<string>(`/company/${companyId}/signature/${signatureId}/signing/mark?verifyingId=${verifyingId}`)
+            const res = await Fetcher.post<string>(`/signature/${signatureId}/signing/mark?verifyingId=${verifyingId}`)
 
             if (res.status === 200) {
                 return cb(null, res)
@@ -142,7 +142,7 @@ class EmployeeService {
 
     static async SendSigningVerificationCode(companyId: number, employeeId: number, verifyingId: string, cb: ResCallback<string>) {
         try {
-            const res = await Fetcher.post<string>(`/company/${companyId}/employee/${employeeId}/signing_code?verifyingId=${verifyingId}`)
+            const res = await Fetcher.post<string>(`/employee/${employeeId}/signing_code?verifyingId=${verifyingId}`)
 
             if (res.status === 200) {
                 return cb(null, res)
