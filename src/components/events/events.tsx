@@ -35,8 +35,11 @@ const EventItems: React.FC<EventItemsPropsT> = ({ events, limit }) => {
                     </p>
                 </div>
                 <p className={ clsx(style.event_item__date, style.margin_top) }>
-                    { event.type === 'EVENT' ? 'Начало' : 'Подписан' } { moment(event.dateStart).format('lll') }
-                    { event.type === 'SIGNATURE' && event.dateFinish === 0 ? ' разово' : null }
+                    { event.type === 'EVENT' ?
+                        'Начало '
+                        : 'Подписан ' + event.type === 'SIGNATURE' && event.dateFinish === 0 ? 'разово ' : null
+                    }
+                    { moment(event.dateStart).format('lll') }
                 </p>
                 {
                     event.type === 'SIGNATURE' && event.dateFinish === 0 ? null

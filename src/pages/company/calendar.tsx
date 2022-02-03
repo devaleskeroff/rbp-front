@@ -316,8 +316,8 @@ const EventCalendar: React.FC<CompanyTabPropsT> = () => {
                     <div className={ clsx(style.events_panel__event_items) }>
                         <CalendarEventItems
                             events={ currentDayEvents }
-                            error={states.error}
-                            isPending={states.isPending}
+                            error={ states.error }
+                            isPending={ states.isPending }
                             onDelete={ onDelete }
                             onUpdate={ onUpdate }
                         />

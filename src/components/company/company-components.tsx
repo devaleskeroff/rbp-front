@@ -107,7 +107,11 @@ export const CalendarEventItems: React.FC<CalendarEventItemsPropsT> = (props) =>
                 </div>
                 <p className={ clsx(style.event_item__date) }>
                     { moment(event.dateStart).format('lll') }
-                    { ' - ' + moment(event.dateFinish).format('lll') }
+                    { event.dateFinish === 0 ?
+                        'Разово ' + moment(event.dateStart).format('lll')
+                        : moment(event.dateStart).format('lll')
+                        + ' - ' + moment(event.dateFinish).format('lll')
+                    }
                 </p>
                 <p className={ clsx(style.event_item__desc) }>
                     { event.desc } { event.type === 'SIGNATURE' ? event.signature?.file.title : '' }
