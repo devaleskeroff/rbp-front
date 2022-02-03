@@ -106,7 +106,6 @@ export const CalendarEventItems: React.FC<CalendarEventItemsPropsT> = (props) =>
                     }
                 </div>
                 <p className={ clsx(style.event_item__date) }>
-                    { moment(event.dateStart).format('lll') }
                     { event.dateFinish === 0 ?
                         'Разово ' + moment(event.dateStart).format('lll')
                         : moment(event.dateStart).format('lll')
