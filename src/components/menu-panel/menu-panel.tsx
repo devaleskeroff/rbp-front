@@ -43,6 +43,7 @@ const MenuPanel: FC<MenuPanelPropsT> = ({ active, onItemClick }) => {
       { imageSrc: '/img/static/news-icon.png', text: 'Новости', link: '/news' },
       { imageSrc: '/img/static/help-icon.png', text: 'Помощь специалисту', link: '/help' },
       { imageSrc: '/img/static/responsibility-icon.png', text: 'Ответственность', link: '/responsibility' },
+      { imageSrc: '/img/static/legal-information-icon.png', text: 'Юридическая информация', link: '/legal-information' },
       { imageSrc: '/img/static/judicial-practice-icon.png', text: 'Судебная практика', link: '/practices' },
       { imageSrc: '/img/static/payment-icon.png', text: 'Оплата', link: '/payment' },
       { imageSrc: '/img/static/qa-icon.png', text: 'Вопрос специалисту', link: '/question-answer' }

@@ -24,6 +24,8 @@ export type ModalItemEnum =
    | 'RespondToFeedbackModal'
    | 'ChoosingExecutorModal'
    | 'UploadBannerModal'
+   | 'CreateLegalInfoFolderModal'
+   | 'UploadLegalInformationModal'
 
 export type SetModalComponentPropsT = {
    component: ModalItemEnum

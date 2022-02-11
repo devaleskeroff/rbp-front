@@ -26,6 +26,8 @@ import {
     RespondToFeedbackModal,
     ChoosingExecutorModal,
     UploadBannerModal,
+    CreateLegalInfoFolderModal,
+    UploadLegalInformationModal,
 } from '../modals/modal-items'
 
 export const ModalsList: ModalsListT = {
@@ -54,6 +56,8 @@ export const ModalsList: ModalsListT = {
     'RespondToFeedbackModal': RespondToFeedbackModal,
     'ChoosingExecutorModal': ChoosingExecutorModal,
     'UploadBannerModal': UploadBannerModal,
+    'CreateLegalInfoFolderModal': CreateLegalInfoFolderModal,
+    'UploadLegalInformationModal': UploadLegalInformationModal,
 }
 
 // СОСТОЯНИЕ МОДАЛЬНОГО ОКНА

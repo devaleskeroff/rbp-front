@@ -24,6 +24,7 @@ import FeedbackItem from '@pages/feedback/feedback-item'
 import Responsibility from '@pages/responsibility'
 import PrescriptionRoutes from '@pages/prescription'
 import SpecialistPlan from '@pages/specialist-plan/specialist-plan'
+import LegalInformation from '@pages/legal-information'
 
 const AuthUserRoutes = () => {
     const user = useStore($User) as UserDataT
@@ -76,6 +77,8 @@ const AuthUserRoutes = () => {
                     <Route path={ ['/news', '/practices', '/practice', '/help'] } component={ NewsAndPracticeRoutes } />
                     {/* RESPONSIBILITY */}
                     <Route exact path={'/responsibility'} component={ Responsibility } />
+                    {/* LEGAL INFORMATION */}
+                    <Route exact path={'/legal-information'} component={ LegalInformation } />
                     {/* NOTIFICATIONS */ }
                     <Route exact path={ '/notifications' } component={ Notifications } />
                     {/* PAYMENT */ }

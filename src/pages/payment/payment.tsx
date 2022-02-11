@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 // TABS
 import PaymentContent from '@pages/payment/payment-content'
-import PaymentHistory from '@pages/payment/payment-history'
 import PaymentTariffs from '@pages/payment/payment-tariffs'
 // COMPONENTS
 import { BreadCrumb, TabItems } from '@components/common'

@@ -40,6 +40,8 @@ const EventCalendar: React.FC<CompanyTabPropsT> = () => {
         isPending: true,
         monthEventsError: false
     })
+    // TODO REMOVE ME LATER
+    const [firstVisit, setFirstVisit] = useState(true)
 
     const { open } = useModal()
 
@@ -84,8 +86,8 @@ const EventCalendar: React.FC<CompanyTabPropsT> = () => {
         }
         setStates({ ...states, error: false, isPending: true })
         fetchEvents({
-            dateStart: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()).getTime(),
-            dateFinish: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1).getTime(),
+            dateStart: firstVisit ? 0 : new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()).getTime(),
+            dateFinish: firstVisit ? 0 : new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1).getTime(),
             cb: (err, res) => {
                 if (err || !res) {
                     return setStates({ ...states, error: true, isPending: false })
@@ -94,6 +96,7 @@ const EventCalendar: React.FC<CompanyTabPropsT> = () => {
                 setStates({ ...states, error: false, isPending: false })
             }
         })
+        setFirstVisit(false)
     }, [currentDate])
 
     // APPOINTING EVENT IN CALENDAR

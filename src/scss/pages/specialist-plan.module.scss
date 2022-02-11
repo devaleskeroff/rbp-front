@@ -108,7 +108,7 @@
     tr {
       td:first-child {
         .chevron_icon_label {
-          margin-left: 24px;
+          margin-left: 10px;
           -webkit-transform: rotate(180deg);
           -moz-transform: rotate(180deg);
           -ms-transform: rotate(180deg);
@@ -202,6 +202,10 @@
 
   table {
     width: 100%;
+
+    thead tr td:first-child {
+      padding-left: 24px;
+    }
 
     tr td {
       width: 140px;

@@ -47,7 +47,7 @@ const UploadResponsibilityModal = () => {
                 return setValidation('Это поле обязательно')
             }
 
-            return ResponsibilityService.UpdateFile(modalData.file.id, title.value, (err, res) => {
+            return ResponsibilityService.UpdateFile(modalData.file.id, title.value, (err, _res) => {
                 if (err) {
                     return setValidation('При изменении файла произошла ошибка')
                 }

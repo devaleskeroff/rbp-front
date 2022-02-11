@@ -52,8 +52,6 @@ const SpecialistListTable: React.FC<{ companyId: number, search: string }> = ({ 
         })
     }
 
-    console.log('SEARCH', search)
-
     const handleSubtaskOpening = (e: ChangeEvent<HTMLInputElement>, taskId: string) => {
         const subtaskId = e.target.id
         const task = openTasks[taskId]
@@ -187,14 +185,15 @@ const SpecialistListTable: React.FC<{ companyId: number, search: string }> = ({ 
                     <td>
                         <div className={ clsx(style.table_buttons) }>
                             <ColorfulButton text={ 'Создать задачу' }
-                                            onClick={ () => open('CreatePlanEventModal', {
-                                                btnText: 'Создать',
-                                                modalData: {
-                                                    modalTitle: 'Создать ивнет',
-                                                    groupId: group.id,
-                                                    companyId
-                                                }
-                                            }) } />
+                                onClick={ () => open('CreatePlanEventModal', {
+                                    btnText: 'Создать',
+                                    modalData: {
+                                        modalTitle: 'Создать ивнет',
+                                        groupId: group.id,
+                                        companyId
+                                    }
+                                }) }
+                            />
                             <Tooltip title="Изменить" placement="top">
                                 <button onClick={() => open('CreatePlanGroupModal', {
                                     modalData: {
@@ -223,7 +222,9 @@ const SpecialistListTable: React.FC<{ companyId: number, search: string }> = ({ 
                 </tr>
                 {/* MAIN TASKS */}
                 {
-                    group.tasks.filter(task => !task.parentId && search ? task.title.match(search) : !task.parentId).map(task => (
+                    group.tasks
+                        .filter(task => !task.parentId && search ? task.title.match(search) : !task.parentId)
+                        .map(task => (
                         <>
                             <tr key={ task.id + task.title } className={ clsx(style.task_row) }
                                 style={ { display: openTasks[`disclosed_${group.id}`]?.display ? 'table-row' : 'none' } }

@@ -12,6 +12,11 @@ import { $ResponsibilityDocuments } from '@store/responsibility-store'
 // STYLES
 import style from '@scss/pages/responsibility.module.scss'
 
+export enum ResponsibilityRequestTypeEnum {
+    RESPONSIBILITY = 'RESPONSIBILITY',
+    LEGAL_INFORMATION = 'LEGAL_INFORMATION'
+}
+
 const Responsibility = () => {
     const userRole = useStore($UserRole)
     const currentDocuments = useStore($ResponsibilityDocuments)
@@ -37,7 +42,11 @@ const Responsibility = () => {
                     {
                         userRole !== UserRoleEnum.SuperAdmin ? null :
                             <div className={ clsx(style.creation_buttons) }>
-                                <ColorfulButton text={'Загрузить документы'} onClick={() => open('UploadResponsibilityModal')} />
+                                <ColorfulButton text={'Загрузить документы'} onClick={() => open('UploadResponsibilityModal', {
+                                    modalData: {
+                                        type: ResponsibilityRequestTypeEnum.RESPONSIBILITY
+                                    }
+                                })} />
                                 <ColorfulButton text={'Создать папку'} plusIcon={false} onClick={() => open('CreateFolderModal', {
                                     modalData: { modalTitle: 'Создать папку', responsibilityMode: true },
                                     btnText: 'Создать'

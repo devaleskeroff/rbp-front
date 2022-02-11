@@ -72,8 +72,7 @@ const ViewTaskModal = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                         </svg>
                     </label>
-                    <label htmlFor="task-status" className={ clsx(tableStyle.checkbox_label) }
-                           style={ { paddingLeft: '10px' } }>
+                    <label htmlFor="task-status" className={ clsx(tableStyle.checkbox_label) }>
                         { taskStatus ? 'Выполнена' : 'Не выполнена' }
                     </label>
                 </label>

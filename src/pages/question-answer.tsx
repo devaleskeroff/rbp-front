@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react'
-import { useStore } from 'effector-react'
 // COMPONENTS
 import { BreadCrumb } from '@components/common'
 import { Title } from '@components/common/common'
-// STORE
-import $QAItems, { fetchQAItems } from '@store/qusetion-answer-store'
 // TYPES
 import { QAItemT } from '@interfaces/question-answer'
 // STYLES
@@ -19,7 +16,7 @@ const QATabs = ({ items }: { items: QAItemT[] }) => {
    const content = items.map((tab, idx) => {
       return (
           <div key={idx} className="qa-tab__item shadow-sm">
-             <div className="qa-tab__trigger" onClick={toggleTab} >
+             <div className="qa-tab__trigger" onClick={ toggleTab } >
                 <img src="/img/static/green-arrow_drop_down.png" alt="" className="qa-tab__arrow"/>
                 <p className="qa-tab__title">{ tab.title }</p>
              </div>

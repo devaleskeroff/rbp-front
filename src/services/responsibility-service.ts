@@ -5,14 +5,21 @@ import {
     CreateResponsibilityDirectoryPropsT,
     GetResponsibilityDocumentsResT
 } from '@interfaces/requests/responsibility'
-import { ResponsibilityDirectoryT, ResponsibilityFileT } from '@interfaces/responsibility'
+import {
+    ResponsibilityDirectoryT,
+    ResponsibilityFileT
+} from '@interfaces/responsibility'
+import { ResponsibilityRequestTypeEnum } from '@pages/responsibility'
 
 class ResponsibilityService {
 
     static async GetResponsibilityDocuments(folderId: number | null, cb: ResCallback<GetResponsibilityDocumentsResT>) {
         try {
             const res = await Fetcher.get<GetResponsibilityDocumentsResT>('/responsibility', {
-                params: { folderId }
+                params: {
+                    folderId,
+                    type: ResponsibilityRequestTypeEnum.RESPONSIBILITY
+                }
             })
 
             if (res.status === 200) {
@@ -25,7 +32,11 @@ class ResponsibilityService {
 
     static async CreateDirectory(data: CreateResponsibilityDirectoryPropsT, cb: ResCallback<ResponsibilityDirectoryT>) {
         try {
-            const res = await Fetcher.put<ResponsibilityDirectoryT>('/responsibility/directory', data)
+            const res = await Fetcher.put<ResponsibilityDirectoryT>('/responsibility/directory', data, {
+                params: {
+                    type: ResponsibilityRequestTypeEnum.RESPONSIBILITY
+                }
+            })
 
             if (res.status === 201) {
                 cb(null, res)
@@ -38,7 +49,10 @@ class ResponsibilityService {
     static async UploadFiles(formData: FormData, folderId: number, cb: ResCallback<ResponsibilityFileT[]>) {
         try {
             const res = await Fetcher.put<ResponsibilityFileT[]>('/responsibility/file', formData, {
-                params: { folderId }
+                params: {
+                    folderId,
+                    type: ResponsibilityRequestTypeEnum.RESPONSIBILITY
+                }
             })
 
             if (res.status === 201) {

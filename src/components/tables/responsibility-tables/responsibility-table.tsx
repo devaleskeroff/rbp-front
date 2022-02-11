@@ -16,7 +16,6 @@ import DeleteIcon from '@assets/images/delete.png'
 // SERVICE
 import ResponsibilityService from '@services/responsibility-service'
 // UTILS
-import { GetFileName } from '@utils/rus-to-latin'
 import { DocumentViewButton } from '@components/common/common'
 // STORE
 import {
@@ -28,10 +27,8 @@ import {
     setResponsibilityLoading, setResponsibilityStates
 } from '@store/responsibility-store'
 import { $UserRole, UserRoleEnum } from '@store/user-store'
-import { $Company } from '@store/company/company-store'
 // TYPES
 import { ResponsibilityDirectoryT, ResponsibilityFileT, ResponsibilityTablePropsT } from '@interfaces/responsibility'
-import { CompanyT } from '@interfaces/company/company'
 // STYLES
 import tableStyle from '@scss/components/tables/base-table.module.scss'
 import style from '@scss/pages/responsibility.module.scss'
@@ -42,7 +39,6 @@ const ResponsibilityTable: React.FC<ResponsibilityTablePropsT> = ({ setWithHisto
     const currentDocuments = useStore($ResponsibilityDocuments)
     const { isFetched, isLoading, error } = useStore($ResponsibilityStates)
     const userRole = useStore($UserRole)
-    const company = useStore($Company) as CompanyT
     // STATES
     const [directoryId, setDirectoryId] = useState<number>(0)
 
@@ -134,7 +130,7 @@ const ResponsibilityTable: React.FC<ResponsibilityTablePropsT> = ({ setWithHisto
     }
 
     const handleDirectoryDelete = (folderId: number) => {
-        ResponsibilityService.DeleteDirectory(folderId, (err, res) => {
+        ResponsibilityService.DeleteDirectory(folderId, (err, _res) => {
             if (err) {
                 return console.log('При удалении папки произошла ошибка')
             }
@@ -148,7 +144,7 @@ const ResponsibilityTable: React.FC<ResponsibilityTablePropsT> = ({ setWithHisto
     }
 
     const handleFileDelete = (id: number) => {
-        return ResponsibilityService.DeleteFile(id, (err, res) => {
+        return ResponsibilityService.DeleteFile(id, (err, _res) => {
             if (err) {
                 return console.log('При удалении файла произошла ошибка')
             }
@@ -244,7 +240,6 @@ const ResponsibilityTable: React.FC<ResponsibilityTablePropsT> = ({ setWithHisto
                 <label htmlFor={`key`} className={ clsx(tableStyle.checkbox_label) }>{ file.title }</label>
             </label>
         )
-        const editorUrl = `${process.env.EDITOR_URL}/?document=${btoa(process.env.API_URL + '/api/v1/file/' + file.id + '?type=responsibility&hash=' + file.hash)}&filename=${GetFileName(file.title, file.extension)}&mode=readonly`
 
         return (
             <tr key={file.id}>

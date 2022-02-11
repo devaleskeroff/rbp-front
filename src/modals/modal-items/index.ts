@@ -23,6 +23,8 @@ import CreateSuperAdminModal from './create-super-admin-modal'
 import RespondToFeedbackModal from './respons-to-feedback-modal'
 import ChoosingExecutorModal from './prescriptions/choosing-executor-modal'
 import UploadBannerModal from './upload-banner-modal'
+import CreateLegalInfoFolderModal from './create-legal-info-folder-modal'
+import UploadLegalInformationModal from './upload-legal-information-modal'
 
 export {
     EventEmailModal,
@@ -50,4 +52,6 @@ export {
     RespondToFeedbackModal,
     ChoosingExecutorModal,
     UploadBannerModal,
+    CreateLegalInfoFolderModal,
+    UploadLegalInformationModal,
 }
