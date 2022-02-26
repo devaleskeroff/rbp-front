@@ -55,6 +55,7 @@ const CreateEventModal = () => {
         const descField = document.querySelector('textarea[name="description"]') as HTMLInputElement
 
         if (!titleField?.value || !descField?.value) {
+            modalBtn.disabled = false
             return setValidation({
                 titleError: !titleField?.value ? 'Это поле обязательно' : '',
                 descError: !descField?.value ? 'Это поле обязательно' : ''
@@ -86,6 +87,7 @@ const CreateEventModal = () => {
         if (modalData.event) {
             return EventService.UpdateEvent(modalData.event.id, eventNewData, (err, res) => {
                 if (err) {
+                    modalBtn.disabled = false
                     return setValidation({ creationError: 'При создании ивента произошла ошибка' })
                 }
                 if (modalComponent.onConfirm) {
@@ -98,6 +100,7 @@ const CreateEventModal = () => {
         // CREATING NEW EVENT
         EventService.CreateEvent(eventNewData, (err, res) => {
             if (err || !res) {
+                modalBtn.disabled = false
                 return setValidation({ creationError: 'При создании ивента произошла ошибка' })
             }
             if (modalComponent.onConfirm) {

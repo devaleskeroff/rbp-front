@@ -117,6 +117,7 @@ const CreateUserModal = () => {
         }
 
         if (Validator.hasError(validating)) {
+            modalBtn.disabled = false
             return setValidation(validating as any)
         }
         const newData = {
@@ -132,6 +133,7 @@ const CreateUserModal = () => {
             return WorkerService.UpdateWorker(modalData.worker.id, newData, (err, res) => {
                 if (err || !res) {
                     if (err?.response?.status === 422) {
+                        modalBtn.disabled = false
                         return setValidation(err.response.data)
                     }
                     return console.log('При обновлении данных пользователя произошла ошибка')
@@ -181,6 +183,7 @@ const CreateUserModal = () => {
         WorkerService.AddNewWorker(newData, (err, res) => {
             if (err || !res) {
                 if (err?.response?.status === 422) {
+                    modalBtn.disabled = false
                     return setValidation(err.response.data)
                 }
                 return console.log('При добавлении нового пользователя произошла ошибка')

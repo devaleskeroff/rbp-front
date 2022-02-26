@@ -44,11 +44,13 @@ const UploadLegalInformationModal = () => {
             const title = document.querySelector('input[name="title"]') as HTMLInputElement
 
             if (!title?.value) {
+                modalBtn.disabled = false
                 return setValidation('Это поле обязательно')
             }
 
             return LegalInformationService.UpdateFile(modalData.file.id, title.value, (err, _res) => {
                 if (err) {
+                    modalBtn.disabled = false
                     return setValidation('При изменении файла произошла ошибка')
                 }
                 if (+(Querystring.folder_id as string) === 0) {
@@ -71,6 +73,7 @@ const UploadLegalInformationModal = () => {
         }
         // UPLOADING NEW FILE
         if (uploadedFiles.length === 0) {
+            modalBtn.disabled = false
             return setValidation('Загрузите файлы')
         }
         const formData = new FormData()
@@ -79,6 +82,7 @@ const UploadLegalInformationModal = () => {
         LegalInformationService.UploadFiles(formData, +(Querystring.folder_id as string) || 0, (err, res) => {
             if (err || !res) {
                 if (err?.response?.status === 422) {
+                    modalBtn.disabled = false
                     return setValidation(err.response.data.uploadError)
                 }
                 return console.log('При загрузке файлов произошла ошибка')

@@ -51,6 +51,7 @@ const UploadWorkspaceDocumentModal = () => {
             WorkspaceService.UploadFiles(formData, (err, res) => {
                 if (err || !res) {
                     if (err?.response?.status === 500 && err.response.data.message.match('large')) {
+                        modalBtn.disabled = false
                         return setError('Недопустимый размер файла. Максимальный размер 5мб')
                     }
                     return console.log('При загрузке файлов произошла ошибка')

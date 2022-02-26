@@ -57,6 +57,7 @@ const CreateCompanyModal = () => {
         }
 
         if (Validator.hasError(validating)) {
+            modalBtn.disabled = false
             return setValidation(validating)
         }
 
@@ -74,6 +75,7 @@ const CreateCompanyModal = () => {
                 (err, res) => {
                     if (err || !res) {
                         if (err?.response?.status === 422) {
+                            modalBtn.disabled = false
                             setValidation(err.response.data)
                         }
                         return console.log('При обновлении данных компании произошла ошибка')
@@ -114,6 +116,7 @@ const CreateCompanyModal = () => {
         }
 
         if (uploadedFiles.length === 0) {
+            modalBtn.disabled = false
             return setValidation({
                 imageError: 'Загрузите изображение'
             })
@@ -122,6 +125,7 @@ const CreateCompanyModal = () => {
         CompanyService.CreateCompany(formData, (err, res) => {
             if (err || !res) {
                 if (err?.response?.status === 422) {
+                    modalBtn.disabled = false
                     setValidation(err.response.data)
                 }
                 return console.log('При создании новой компании произошла ошибка')

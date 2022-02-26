@@ -59,12 +59,15 @@ const CreatePlanEventModal = () => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
+        const modalBtn = document.querySelector('button.modal_btn') as HTMLButtonElement
+        modalBtn.disabled = true
 
         const titleField = document.querySelector('input[name="title"]') as HTMLInputElement
         const descField = document.querySelector('textarea[name="description"]') as HTMLInputElement
 
         const invalidPeriodicityValue = !PeriodicityItems.find(item => item.value === periodicity)
         if (!titleField?.value || !descField?.value || invalidPeriodicityValue) {
+            modalBtn.disabled = false
             return setValidation({
                 titleError: !titleField?.value ? 'Это поле обязательно' : '',
                 descError: !descField?.value ? 'Это поле обязательно' : '',
@@ -103,6 +106,7 @@ const CreatePlanEventModal = () => {
 
             SpecialistPlanService.UpdateEvent(modalData.companyId, modalData.event.id, eventNewData, (err, res) => {
                 if (err || !res) {
+                    modalBtn.disabled = false
                     return console.log('При изменении задачи произошла ошибка')
                 }
                 updatePlanTask({ ...modalData.event, ...eventNewData })
@@ -113,6 +117,7 @@ const CreatePlanEventModal = () => {
         // CREATING NEW EVENT
         SpecialistPlanService.CreateNewEvent(modalData.companyId, eventNewData, (err, res) => {
             if (err || !res) {
+                modalBtn.disabled = false
                 return console.log('При создании события произошла ошибка')
             }
             pushToTasks(res.data)

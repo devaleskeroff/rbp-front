@@ -140,7 +140,7 @@ const CreateEmployeeModal = () => {
         })
         setSelectedPositions(selectedPosItems)
     }
-    
+
     useEffect(() => {
         if (modalData.employee) {
             const defaultSelectedPositionOptions = modalData.employee.positions.map((pos: any) => ({ ...pos, label: pos.title, value: pos.id }))
@@ -177,17 +177,29 @@ const CreateEmployeeModal = () => {
             return console.log('Произошла неожиданная ошибка')
         }
 
+        const positions: number[] = []
+        selectedPositions.forEach(pos => positions.push(...pos.positions))
+
         const validating = {
             ...Validator(nameField.value, 'name').isRequired().withMessage('Это поле обязательное').getErrors(),
-            ...Validator(emailField.value || 'dummyemail@mail.ru', 'email').isEmail().withMessage('Некорректный адрес эл. почты').getErrors()
+            ...Validator(emailField.value || 'dummyemail@mail.ru', 'email')
+                .isEmail()
+                .withMessage('Некорректный адрес эл. почты')
+                .getErrors(),
+            ...Validator(selectedUnits.length.toString(), 'unit')
+                .isGreater(0)
+                .withMessage('Сотрудник должен находиться как минимум в 1 подразделении')
+                .getErrors(),
+            ...Validator(positions.length.toString(), 'position')
+                .isGreater(0)
+                .withMessage('Сотруднику должна быть присвоена как минимум 1 должность')
+                .getErrors()
         }
 
         if (Validator.hasError(validating)) {
+            modalBtn.disabled = false
             return setValidation(validating)
         }
-
-        const positions: number[] = []
-        selectedPositions.forEach(pos => positions.push(...pos.positions))
 
         const newData = {
             name: nameField.value,
@@ -203,6 +215,7 @@ const CreateEmployeeModal = () => {
                 if (err || !res) {
                     if (err?.response?.status === 422) {
                         setValidation(err.response.data)
+                        modalBtn.disabled = false
                     }
                     return console.log('При обновлении данных сотрудника произошла ошибка')
                 }
@@ -252,6 +265,7 @@ const CreateEmployeeModal = () => {
             if (err || !res) {
                 if (err?.response?.status === 422) {
                     setValidation(err.response.data)
+                    modalBtn.disabled = false
                 }
                 return console.log('При добавлении нового сотрудника произошла ошибка')
             }
@@ -294,6 +308,7 @@ const CreateEmployeeModal = () => {
                     styles={ selectColourStyles() }
                     theme={ selectTheme }
                 />
+                <p className="error-text">{ validation.unitError }</p>
                 <Select
                     closeMenuOnSelect={ true }
                     components={ animatedComponents }
@@ -311,6 +326,7 @@ const CreateEmployeeModal = () => {
                     styles={ selectColourStyles() }
                     theme={ selectTheme }
                 />
+                <p className="error-text">{ validation.positionError }</p>
                 <button type="submit" className="modal_btn">{ modalComponent.btnText }</button>
             </form>
         </div>

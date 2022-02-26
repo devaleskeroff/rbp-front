@@ -81,6 +81,7 @@ const CreateSuperAdminModal = () => {
         }
 
         if (Validator.hasError(validating)) {
+            modalBtn.disabled = false
             return setValidation(validating as any)
         }
 
@@ -94,6 +95,7 @@ const CreateSuperAdminModal = () => {
         return AuthService.AddNewSuperAdmin(newSuperAdminData, (err, res) => {
             if (err || !res) {
                 if (err?.response?.status === 422) {
+                    modalBtn.disabled = false
                     return setValidation(err.response.data)
                 }
                 return console.log('При создании суперадмина произошла ошибка')

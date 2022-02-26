@@ -141,7 +141,7 @@ class Validator {
         try {
             const number = Number(this.value)
 
-            if (number < num) {
+            if (number <= num) {
                 this.addError(message, `The field must be greater then ${num}`)
             }
         } catch (err) {
@@ -154,7 +154,7 @@ class Validator {
         try {
             const number = Number(this.value)
 
-            if (number > num) {
+            if (number >= num) {
                 this.addError(message, `The field must be less then ${num}`)
             }
         } catch (err) {
