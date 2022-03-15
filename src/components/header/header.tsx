@@ -11,7 +11,7 @@ import { $Company } from '@store/company/company-store'
 import useModal from '@modals/modal-hook'
 import Loader from '@ui/indicators/loader'
 // UTILS
-import { ConcatApiUrl } from '@utils/api-tools'
+import { concatApiUrl } from '@utils/api-tools'
 // ICONS
 import logo from '@assets/images/header-logo.png'
 // TYPES
@@ -55,7 +55,7 @@ const Header: FC<HeaderPropsT> = (props) => {
     const clickHandler = (e: any) => {
         setAccountPanelDisplay(false)
     }
-    
+
     const handleLogout = () => {
         AuthService.Logout(() => {
             localStorage.removeItem('token')
@@ -76,14 +76,14 @@ const Header: FC<HeaderPropsT> = (props) => {
                             <img src={ logo } alt="OT" className={ clsx(style.header_logo) } />
                         </Link>
                         <Link to={ '/company' } onClick={ () => resetActiveNav('/company') }>
-                            <img src={ ConcatApiUrl(company.image) } alt=""
+                            <img src={ concatApiUrl(company.image) } alt=""
                                  className={ clsx(style.company_logo) } />
                         </Link>
                     </div>
                     {/* ACCOUNT PANEL */ }
                     <div className={ clsx(style.header_account_panel) }>
                         <Link to={ '/profile' } className={ clsx(style.user_small_img_link) }>
-                            <img src={ ConcatApiUrl(user.avatar)  } alt="" className={ clsx(style.user_small_img) } />
+                            <img src={ concatApiUrl(user.avatar)  } alt="" className={ clsx(style.user_small_img) } />
                         </Link>
                         {
                             !user || !company ? <Loader /> :

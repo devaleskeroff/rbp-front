@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import { useStore } from 'effector-react'
 // COMPONENTS
@@ -8,16 +8,21 @@ import useModal from '@modals/modal-hook'
 import CompanyService from '@services/company-service'
 // STORE
 import { $Company } from '@store/company/company-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import {$UserAddPermissions, setModule, UserRoleEnum} from '@store/user-store'
 // TYPES
 import { CompanyTabPropsT } from '@interfaces/company/company'
+import { Modules } from '@interfaces/common'
 // STYLES
 import style from '@scss/pages/company/company-info.module.scss'
 
 const CompanyInfo: React.FC<CompanyTabPropsT> = () => {
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     const company = useStore($Company)
     const { open } = useModal()
+
+    useEffect(() => {
+        setModule(Modules.COMPANY_INFO)
+    }, [])
 
     if (company === null) {
         return <Loader />
@@ -45,7 +50,7 @@ const CompanyInfo: React.FC<CompanyTabPropsT> = () => {
             <div className={ clsx(style.tab_top_content) }>
                 <h5 className={ clsx(style.company_name) }>{ company.name }</h5>
                 {
-                    userRole === UserRoleEnum.Client ? null :
+                    permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                         <button className={ clsx(style.company_edit_btn) } onClick={ onEditCompany }>
                             Редактировать
                         </button>

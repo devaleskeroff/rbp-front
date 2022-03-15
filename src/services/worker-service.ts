@@ -6,9 +6,13 @@ import { AddNewUserPropsT } from '@interfaces/requests/workers'
 
 class WorkerService {
 
-    static async GetWorkers(userId: number, cb: ResCallback<WorkerShortDataT[]>) {
+    static async GetWorkers(adminId: number, cb: ResCallback<WorkerShortDataT[]>) {
         try {
-            const res = await Fetcher.modified.get<WorkerShortDataT[]>('/users')
+            const res = await Fetcher.modified.get<WorkerShortDataT[]>('/users', {
+                params: {
+                    adminId
+                }
+            })
 
             if (res.status === 200) {
                 return cb(null, res)
@@ -18,9 +22,13 @@ class WorkerService {
         }
     }
 
-    static async AddNewWorker(data: AddNewUserPropsT, cb: ResCallback<WorkerShortDataT>) {
+    static async AddNewWorker(adminId: number, data: AddNewUserPropsT, cb: ResCallback<WorkerShortDataT>) {
         try {
-            const res = await Fetcher.modified.put<WorkerShortDataT>('/users', data)
+            const res = await Fetcher.modified.put<WorkerShortDataT>('/users', data, {
+                params: {
+                    adminId
+                }
+            })
 
             if (res.status === 201) {
                 return cb(null, res)
@@ -30,9 +38,13 @@ class WorkerService {
         }
     }
 
-    static async UpdateWorker(workerId: number, data: AddNewUserPropsT, cb: ResCallback<WorkerShortDataT>) {
+    static async UpdateWorker(adminId: number, workerId: number, data: AddNewUserPropsT, cb: ResCallback<WorkerShortDataT>) {
         try {
-            const res = await Fetcher.modified.post<WorkerShortDataT>(`/users/${workerId}`, data)
+            const res = await Fetcher.modified.post<WorkerShortDataT>(`/users/${workerId}`, data, {
+                params: {
+                    adminId
+                }
+            })
 
             if (res.status === 200) {
                 return cb(null, res)

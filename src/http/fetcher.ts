@@ -80,7 +80,7 @@ class Fetcher {
         }
     }
 
-    public async put<ResponseT>(url: string, data: any = {}, config: any = {}) {
+    public async put<ResponseT>(url: string, data: any = {}, config: AxiosRequestConfig = {}) {
         try {
             url = this._modifyUrl(url)
             return await this.$api.put<ResponseT>(url, data, config)
@@ -89,7 +89,7 @@ class Fetcher {
         }
     }
 
-    public async delete<ResponseT>(url: string, config: any = {}) {
+    public async delete<ResponseT>(url: string, config: AxiosRequestConfig = {}) {
         try {
             url = this._modifyUrl(url)
             return await this.$api.delete<ResponseT>(url, config)

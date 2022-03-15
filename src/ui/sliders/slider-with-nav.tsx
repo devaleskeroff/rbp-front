@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Slider from 'react-slick'
 // UTILS
-import { ConcatApiUrl } from '@utils/api-tools'
+import { concatApiUrl } from '@utils/api-tools'
 // STYLES
 import './slider.scss'
 
@@ -54,7 +54,7 @@ class SliderWithNav extends Component<{ images: string[] }> {
                 >
                     {
                         this.state.images.map((image: string, idx: number) => {
-                            return <img key={idx} src={ ConcatApiUrl(image) } alt="" />
+                            return <img key={idx} src={ concatApiUrl(image) } alt="" />
                         })
                     }
                 </Slider>
@@ -69,7 +69,7 @@ class SliderWithNav extends Component<{ images: string[] }> {
                 >
                     {
                         this.state.images.map((image: string, idx: number) => {
-                            return <img key={idx} src={ ConcatApiUrl(image) } style={{ height: '100px', objectFit: 'cover' }} alt="" />
+                            return <img key={idx} src={ concatApiUrl(image) } style={{ height: '100px', objectFit: 'cover' }} alt="" />
                         })
                     }
                 </Slider>

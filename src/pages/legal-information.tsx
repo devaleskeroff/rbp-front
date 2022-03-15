@@ -7,15 +7,13 @@ import { BreadCrumb, TableTopPanel } from '@components/common'
 import { ColorfulButton, Title } from '@components/common/common'
 import LegalInformationTable from '@components/tables/legal-information-tables'
 // STORE
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 import { $LegalInformationDocuments } from '@store/legal-information-store'
-// TYPES
-import { ResponsibilityRequestTypeEnum } from '@pages/responsibility'
 // STYLES
 import style from '@scss/pages/responsibility.module.scss'
 
 const LegalInformation = () => {
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     const currentDocuments = useStore($LegalInformationDocuments)
     const [withHistory, setWithHistory] = useState<boolean>(false)
     const [sortOption, setSortOption] = useState<number>(0)
@@ -37,7 +35,7 @@ const LegalInformation = () => {
                 <div className="bg-white mt-25">
                     {/* CREATION BUTTONS */}
                     {
-                        userRole !== UserRoleEnum.SuperAdmin ? null :
+                        permissions.roleIsNotIn([UserRoleEnum.SuperAdmin]) ? null :
                             <div className={ clsx(style.creation_buttons) }>
                                 <ColorfulButton text={'Загрузить документы'} onClick={() => open('UploadLegalInformationModal')} />
                                 <ColorfulButton text={'Создать папку'} plusIcon={false} onClick={() => open('CreateLegalInfoFolderModal', {

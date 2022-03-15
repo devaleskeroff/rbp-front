@@ -7,7 +7,7 @@ import { BreadCrumb, TableTopPanel } from '@components/common'
 import { ColorfulButton, Title } from '@components/common/common'
 import { ResponsibilityTable } from '@components/tables'
 // STORE
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 import { $ResponsibilityDocuments } from '@store/responsibility-store'
 // STYLES
 import style from '@scss/pages/responsibility.module.scss'
@@ -18,7 +18,7 @@ export enum ResponsibilityRequestTypeEnum {
 }
 
 const Responsibility = () => {
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     const currentDocuments = useStore($ResponsibilityDocuments)
     const [withHistory, setWithHistory] = useState<boolean>(false)
     const [sortOption, setSortOption] = useState<number>(0)
@@ -40,7 +40,7 @@ const Responsibility = () => {
                 <div className="bg-white mt-25">
                     {/* CREATION BUTTONS */}
                     {
-                        userRole !== UserRoleEnum.SuperAdmin ? null :
+                        permissions.roleIsNotIn([UserRoleEnum.SuperAdmin]) ? null :
                             <div className={ clsx(style.creation_buttons) }>
                                 <ColorfulButton text={'Загрузить документы'} onClick={() => open('UploadResponsibilityModal', {
                                     modalData: {

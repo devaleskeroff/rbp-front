@@ -6,12 +6,12 @@ import clsx from 'clsx'
 import moment from 'moment'
 import { useModal } from '@modals/index'
 // STORE
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 import { removeCourse, setSelectedCourse } from '@store/study-store'
 // SERVICE
 import CourseService from '@services/course-service'
 // UTILS
-import { ConcatApiUrl } from '@utils/api-tools'
+import { concatApiUrl } from '@utils/api-tools'
 // ICONS
 import EditIcon from '@assets/images/dark-edit.png'
 import DeleteIcon from '@assets/images/delete.png'
@@ -21,7 +21,7 @@ import { CourseT } from '@interfaces/study-center'
 import style from '@scss/pages/study-center.module.scss'
 
 export const CourseItems = ({ items }: { items: CourseT[] }) => {
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     const history = useHistory()
     const { open } = useModal()
 
@@ -39,7 +39,7 @@ export const CourseItems = ({ items }: { items: CourseT[] }) => {
         return (
             <div key={ idx } className={ clsx(style.course_item) }>
                 {
-                    userRole !== UserRoleEnum.SuperAdmin ? null :
+                    permissions.roleIsNotIn([UserRoleEnum.SuperAdmin]) ? null :
                         <>
                             <Link to={`/study-center/${course.id}`} className={ clsx(style.course_edit_btn) }
                                   onClick={() => setSelectedCourse(course)}>
@@ -56,7 +56,7 @@ export const CourseItems = ({ items }: { items: CourseT[] }) => {
                 }
                 <a target={ '_blank' } href={ course.link } rel="noreferrer">
                     <div className={ `${ clsx(style.img_section) } ${ clsx(style.with_label) }` }>
-                        <img src={ ConcatApiUrl(course.image) } alt=""/>
+                        <img src={ concatApiUrl(course.image) } alt=""/>
                         <div
                             className={ clsx(style.course_label) }>{ course.type === 'COURSE' ? 'Курс' : 'Вебинар' }</div>
                     </div>

@@ -5,11 +5,11 @@ import clsx from 'clsx'
 // COMPONENTS
 import moment from 'moment'
 // UTILS
-import { ConcatApiUrl } from '@utils/api-tools'
+import { concatApiUrl } from '@utils/api-tools'
 import { getTextWithAnchors } from '@utils/common-utils'
 // STORE
 import { setSelectedNewsData } from '@store/news/news-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // TYPES
 import { NewsT } from '@interfaces/news'
 // STYLE
@@ -22,7 +22,7 @@ type NewsItemsPropsT = {
 }
 
 const NewsItems: React.FC<NewsItemsPropsT> = ({ items, path, limit }) => {
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
 
     if (limit) {
         items = items.slice(0,limit)
@@ -33,11 +33,11 @@ const NewsItems: React.FC<NewsItemsPropsT> = ({ items, path, limit }) => {
             <div key={ idx } className={ clsx(style.news_item) }>
                 <Link to={ `/${ path.toLowerCase() }/${ item.id }` } onClick={() => setSelectedNewsData(item)}>
                     <div className={ `${ clsx(style.img_section) }` }>
-                        <img src={ ConcatApiUrl(JSON.parse(item.images)[0]) } alt="" />
+                        <img src={ concatApiUrl(JSON.parse(item.images)[0]) } alt="" />
                     </div>
                     <div className={ clsx(style.info_section) }>
                         {
-                            userRole === UserRoleEnum.Client ? null :
+                            permissions.roleIsIn([UserRoleEnum.Client]) ? null :
                                 <div className={ clsx(style.tags) }>
                                     {
                                         item.tags.split(',').map((tagText, idx) => (

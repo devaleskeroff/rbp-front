@@ -9,7 +9,7 @@ import moment from 'moment'
 // SERVICE
 import EmployeeService from '@services/employee-service'
 // STORE
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // TYPES
 import { CalendarEventItemsPropsT } from '@interfaces/company/event'
 // STYLE
@@ -35,7 +35,7 @@ export const getMonth = (month: number, withEnding: boolean = false) => {
 export const CalendarEventItems: React.FC<CalendarEventItemsPropsT> = (props) => {
     const { events, error, isPending, onUpdate, onDelete } = props
 
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     const { open } = useModal()
 
     const handleReSignature = (e: any, signatureId: number, signerId: number) => {
@@ -65,7 +65,7 @@ export const CalendarEventItems: React.FC<CalendarEventItemsPropsT> = (props) =>
                         }
                     </p>
                     {
-                        userRole === UserRoleEnum.Client ? null :
+                        permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                             <div className={ clsx(style.event_item__buttons) }>
                                 {
                                     event.signature?.status !== 3 ?
@@ -120,7 +120,7 @@ export const CalendarEventItems: React.FC<CalendarEventItemsPropsT> = (props) =>
                                 Подписант: { event.signature?.signer.name }<br/>
                                 Должность: { event.signature?.position.title }
                                 {
-                                    userRole !== UserRoleEnum.Client && event.signature?.status && event.signature.status !== 1 ?
+                                    permissions.roleIsNotIn([UserRoleEnum.Client], true) && event.signature?.status && event.signature.status !== 1 ?
                                         <><br/>
                                             <button className={ clsx(style.event_item__resignature_btn) }
                                                     onClick={e => handleReSignature(e,

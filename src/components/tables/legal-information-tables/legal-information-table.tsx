@@ -18,7 +18,7 @@ import LegalInformationService from '@services/legal-information-service'
 // UTILS
 import { DocumentViewButton } from '@components/common/common'
 // STORE
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // TYPES
 import { ResponsibilityDirectoryT, ResponsibilityFileT, ResponsibilityTablePropsT } from '@interfaces/responsibility'
 // STYLES
@@ -39,7 +39,7 @@ const LegalInformationTable: React.FC<ResponsibilityTablePropsT> = ({ setWithHis
     const commonDocuments = useStore($CommonLegalInformationDocuments)
     const currentDocuments = useStore($LegalInformationDocuments)
     const { isFetched, isLoading, error } = useStore($LegalInformationStates)
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     // STATES
     const [directoryId, setDirectoryId] = useState<number>(0)
 
@@ -189,7 +189,7 @@ const LegalInformationTable: React.FC<ResponsibilityTablePropsT> = ({ setWithHis
                         <span>{ moment(directory.updatedAt).format('DD.MM.YYYY hh:mm') }</span>
                         <div className={ clsx(style.action_buttons) }>
                             {
-                                userRole !== UserRoleEnum.SuperAdmin ? null :
+                                permissions.roleIsNotIn([UserRoleEnum.SuperAdmin]) ? null :
                                     <>
                                         <Tooltip title={'Изменить'} placement='top'>
                                             <img src={ EditIcon } alt="Изменить" onClick={ () => (
@@ -252,7 +252,7 @@ const LegalInformationTable: React.FC<ResponsibilityTablePropsT> = ({ setWithHis
                                 <DocumentViewButton file={file} type={'document'} />
                             </Tooltip>
                             {
-                                userRole !== UserRoleEnum.SuperAdmin ? null :
+                                permissions.roleIsNotIn([UserRoleEnum.SuperAdmin]) ? null :
                                     <Tooltip title={'Изменить'} placement='top'>
                                         <img src={ EditIcon } alt="Изменить" onClick={ () => (
                                             open('UploadLegalInformationModal', {
@@ -275,7 +275,7 @@ const LegalInformationTable: React.FC<ResponsibilityTablePropsT> = ({ setWithHis
                                 </button>
                             </Tooltip>
                             {
-                                userRole !== UserRoleEnum.SuperAdmin ? null :
+                                permissions.roleIsNotIn([UserRoleEnum.SuperAdmin]) ? null :
                                     <Tooltip title={'Удалить'} placement='top'>
                                         <img src={ DeleteIcon } alt="Удалить" onClick={ () => open('ConfirmActionModal', {
                                             btnText: 'Удалить',

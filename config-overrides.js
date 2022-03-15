@@ -43,7 +43,7 @@ module.exports = {
             "@scss": path.resolve(__dirname, "src/scss"),
             "@services": path.resolve(__dirname, "src/services"),
             "@store": path.resolve(__dirname, "src/store"),
-            "@interfaces": path.resolve(__dirname, "src/ts"),
+            "@interfaces": path.resolve(__dirname, "src/types"),
             "@utils": path.resolve(__dirname, "src/utils"),
             "@ui": path.resolve(__dirname, "src/ui"),
             "@modals": path.resolve(__dirname, "src/modals"),

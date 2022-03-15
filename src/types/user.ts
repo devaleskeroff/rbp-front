@@ -1,5 +1,6 @@
 // USER TYPES
 import { CompanyShortDataT, CompanyT } from '@interfaces/company/company'
+import { UserAdditionalPermissions } from '@interfaces/common'
 
 export type UserDataT = {
     id: number
@@ -15,6 +16,7 @@ export type UserDataT = {
     premium: number | null,
     companies: CompanyShortDataT[]
     company: CompanyT
+    additionalPermissions: UserAdditionalPermissions['modules']
 }
 
 export type WorkerShortDataT = {

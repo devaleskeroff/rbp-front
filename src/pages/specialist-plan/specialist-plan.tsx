@@ -18,7 +18,7 @@ import {
     setPlansLoading
 } from '@store/specialist-plan-store'
 // UTILS
-import { ConcatApiUrl } from '@utils/api-tools'
+import { concatApiUrl } from '@utils/api-tools'
 import { getTextExcerpt } from '@utils/common-utils'
 // TYPES
 import { CompanyT } from '@interfaces/company/company'
@@ -142,7 +142,7 @@ const SpecialistPlan = () => {
                             <div key={ company.id } className={ clsx(style.company_item, {
                                 [style.active]: selectedCompanyId === company.id
                             }) } onClick={ () => handleCompanyChanging(company.id) }>
-                                <img src={ ConcatApiUrl(company.image) } alt="" className={ clsx(style.company_img) } />
+                                <img src={ concatApiUrl(company.image) } alt="" className={ clsx(style.company_img) } />
                                 <p className={ clsx(style.company_info_text) }>
                                     {
                                         getTextExcerpt(

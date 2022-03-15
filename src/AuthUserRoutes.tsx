@@ -1,13 +1,14 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { useStore } from 'effector-react'
-import { Route, Switch } from 'react-router-dom'
+import React, {useCallback, useEffect, useState} from 'react'
+import {useStore} from 'effector-react'
+import {Route, Switch} from 'react-router-dom'
 // COMPONENTS
 import Header from '@components/header'
 import MenuPanel from '@components/menu-panel'
 // STORE
-import { $User, UserRoleEnum } from '@store/user-store'
+import { $User, $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // TYPES
 import { UserDataT } from '@interfaces/user'
+import { Modules } from '@interfaces/common'
 // PAGES
 import Home from '@pages/home'
 import UsersRoutes from '@pages/users'
@@ -28,6 +29,7 @@ import LegalInformation from '@pages/legal-information'
 
 const AuthUserRoutes = () => {
     const user = useStore($User) as UserDataT
+    const permissions = useStore($UserAddPermissions)
     const [menuDisplay, setMenuDisplay] = useState<boolean>(false)
     const [activeNavUrl, setActiveNavUrl] = useState<string>('')
 
@@ -62,7 +64,9 @@ const AuthUserRoutes = () => {
                     {/* HOME PAGE */ }
                     <Route exact path={ '/' } component={ Home } />
                     {/* USERS (ONLY FOR ADMIN) */ }
-                    { user.role === UserRoleEnum.Admin || user.role === UserRoleEnum.SuperAdmin ?
+                    {
+                        permissions.roleIsIn([UserRoleEnum.Admin, UserRoleEnum.SuperAdmin])
+                        || permissions.hasAddPermissionsFor(Modules.USERS) ?
                         <Route path={ '/users' } component={ UsersRoutes } /> : null
                     }
                     {/* COMPANY */ }
@@ -93,7 +97,8 @@ const AuthUserRoutes = () => {
                     </Route>
                     {/* PRESCRIPTIONS */}
                     {
-                        user.role === UserRoleEnum.Client ? null :
+                        permissions.roleIsIn([UserRoleEnum.Client])
+                        && !permissions.hasAddPermissionsFor(Modules.PRESCRIPTIONS) ? null :
                             <Route path={'/prescriptions'} component={ PrescriptionRoutes } />
                     }
                     {/* FEEDBACK */}

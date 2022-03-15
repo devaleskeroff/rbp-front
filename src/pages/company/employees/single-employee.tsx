@@ -11,7 +11,7 @@ import { ErrorIndicator } from '@ui/indicators'
 import { $Employees, $EmployeesStates, fetchEmployees, setEmployees } from '@store/company/employees-store'
 import { $Units, setUnits } from '@store/company/units-store'
 import { pushToArchiveEmployees } from '@store/company/archive-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // SERVICE
 import EmployeeService from '@services/employee-service'
 // TYPES
@@ -28,7 +28,7 @@ const SingleEmployee: React.FC<CompanyTabPropsT> = ({ setWithHistory }) => {
     const employees = useStore($Employees)
     const { isFetched } = useStore($EmployeesStates)
     const units = useStore($Units)
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     // STATES
     const [currentEmployee, setCurrentEmployee] = useState<RelatedEmployeeDataT | null>(null)
     const [state, setState] = useState({
@@ -113,7 +113,7 @@ const SingleEmployee: React.FC<CompanyTabPropsT> = ({ setWithHistory }) => {
                                     { currentEmployee.name }
                                 </p>
                                 {
-                                    userRole === UserRoleEnum.Client ? null :
+                                    permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                                         <div className={ clsx(style.single_employee__buttons) }>
                                             <button className={ clsx(style.single_employee__button) }
                                                     onClick={ () => open('CreateEmployeeModal', {
@@ -134,7 +134,7 @@ const SingleEmployee: React.FC<CompanyTabPropsT> = ({ setWithHistory }) => {
                                 }
                             </div>
                             {
-                                userRole === UserRoleEnum.Client ? null :
+                                permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                                     <button className={ clsx(style.send_to_signature_btn) }
                                             onClick={ () => open('SendingForSignatureModal', {
                                                 modalData: {
@@ -146,7 +146,7 @@ const SingleEmployee: React.FC<CompanyTabPropsT> = ({ setWithHistory }) => {
                                         Отправить на подпись
                                     </button>
                             }
-                            <p className={ clsx(style.key_value_item, { ['mt-12']: userRole === UserRoleEnum.Client }) }>
+                            <p className={ clsx(style.key_value_item, { ['mt-12']: permissions.roleIsIn([UserRoleEnum.Client], true) }) }>
                                 Подразделение:
                                 <span>{ currentEmployee.units.map(unit => unit.title).join(', ') }</span>
                             </p>

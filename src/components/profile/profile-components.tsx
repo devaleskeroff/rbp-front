@@ -11,10 +11,10 @@ import Validator from '@utils/validator'
 import CompanyService from '@services/company-service'
 import AuthService from '@services/auth-service'
 // STORE
-import { $User, $UserRole, setUserData, UserRoleEnum } from '@store/user-store'
+import { $User, $UserAddPermissions, setUserData, UserRoleEnum } from '@store/user-store'
 import { $Company, setCompany } from '@store/company/company-store'
 // UTILS
-import { ConcatApiUrl } from '@utils/api-tools'
+import { concatApiUrl } from '@utils/api-tools'
 // ICONS
 import EditIcon from '@assets/images/edit.png'
 import DeleteIcon from '@assets/images/delete.png'
@@ -130,7 +130,7 @@ export const UserData = () => {
 }
 
 export const UserPassword = () => {
-    const userRole = useStore($UserRole) as UserRoleEnum
+    const permissions = useStore($UserAddPermissions)
     // STATES
     const [editMode, setEditMode] = useState<boolean>(false)
     const [validation, setValidation] = useState({
@@ -199,7 +199,7 @@ export const UserPassword = () => {
             : <div className={ clsx(style.password_section_content) }>
                 <div className={ clsx(style.password_mask) }>Пароль: <p>**********</p></div>
                 {
-                    userRole === UserRoleEnum.SuperAdmin ?
+                    permissions.roleIsIn([UserRoleEnum.SuperAdmin]) ?
                         <button className={ clsx(style.edit_password_btn) } onClick={() => setEditMode(true)}>
                             Сменить пароль
                         </button>
@@ -263,7 +263,7 @@ export const Companies = () => {
     const content = useMemo(() => user.companies.map(company => (
         <div key={company.id} className={ clsx(style.company_item, { [style.active]: company.id === selectedCompany.id }) }>
             <div className={ clsx(style.img_section) }>
-                <img src={ ConcatApiUrl(company.image) } alt="" />
+                <img src={ concatApiUrl(company.image) } alt="" />
             </div>
             <div className={ clsx(style.info_section) }>
                 <p className={ clsx(style.company_name) }>{ company.name }</p>

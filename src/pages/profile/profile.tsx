@@ -10,7 +10,7 @@ import { Companies, getOfflinePreview, UserData, UserPassword } from '@component
 // STORE
 import { $User } from '@store/user-store'
 // UTILS
-import { ConcatApiUrl } from '@utils/api-tools'
+import { concatApiUrl } from '@utils/api-tools'
 // TYPES
 import { UserDataT } from '@interfaces/user'
 // ICONS
@@ -52,7 +52,7 @@ const Profile = () => {
                             <input { ...getInputProps() } />
                             <img src={ EditIcon } alt="" className={ clsx(style.edit_icon) } />
                             {/*<img src={ user.avatar ? ConcatApiUrl(user.avatar) : '/img/static/dummy-avatar.png' }*/}
-                            <img src={ ConcatApiUrl(user.avatar) } alt="" className={ clsx(style.profile_img) }
+                            <img src={ concatApiUrl(user.avatar) } alt="" className={ clsx(style.profile_img) }
                             />
                         </div>
                         {/* USER INFO */}

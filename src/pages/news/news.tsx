@@ -8,12 +8,12 @@ import { ErrorIndicator, Loader } from '@ui/indicators'
 // STORE
 import { setNewsActionType, setSelectedNewsData } from '@store/news/news-store'
 import { $News, $NewsCount, $NewsStates, fetchNews } from '@store/news/news-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 
 const itemsPerPage = 8
 
 const News = () => {
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     const news = useStore($News)
     const { news: newsCount } = useStore($NewsCount)
     const { isFetched, isLoading, error } = useStore($NewsStates)
@@ -44,7 +44,7 @@ const News = () => {
                     <div className="content-title-section-with-btn">
                         <Title text='Новости' />
                         {
-                            userRole !== UserRoleEnum.SuperAdmin ? null :
+                            permissions.roleIsNotIn([UserRoleEnum.SuperAdmin]) ? null :
                                 <ColorfulButton link={'/news/create'} text={'Создать новость'}
                                                 onClick={ () => setNewsActionType('createNews') }
                                 />

@@ -5,7 +5,7 @@ import {
     setUserData,
     setUserError,
     setUserLoading,
-    setUserRole
+    setUserAddPermissions
 } from '@store/user-store'
 import { setWpGroups } from '@store/company/workspace-store'
 import { setCompany } from '@store/company/company-store'
@@ -40,7 +40,11 @@ export const checkAuth = createEffect(async () => {
         })
 
         setUserData(res.data.user)
-        setUserRole(res.data.user.role)
+        setUserAddPermissions({
+            id: res.data.user.id,
+            role: res.data.user.role,
+            modules: res.data.user.additionalPermissions
+        })
         setCompany(res.data.user.company)
         setWpGroups(res.data.user.company.groups)
 
@@ -73,7 +77,11 @@ export const login = createEffect<AuthStoreLoginPropsT, void>(async (data) => {
             })
 
             setUserData(res.data.user)
-            setUserRole(res.data.user.role)
+            setUserAddPermissions({
+                id: res.data.user.id,
+                role: res.data.user.role,
+                modules: res.data.user.additionalPermissions
+            })
             setCompany(res.data.user.company)
             setWpGroups(res.data.user.company.groups)
 

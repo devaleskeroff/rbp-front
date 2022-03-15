@@ -8,7 +8,7 @@ import { Tooltip } from '@material-ui/core'
 import UnitService from '@services/unit-service'
 // STORE
 import { $Units, setUnits } from '@store/company/units-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // TYPES
 import { PositionsTablePropsT } from '@interfaces/company/units'
 // ICONS
@@ -21,7 +21,7 @@ import style from '@scss/pages/company/units.module.scss'
 
 const PositionTable: React.FC<PositionsTablePropsT> = ({ items, unitId }) => {
     const units = useStore($Units)
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
 
     const { open } = useModal()
 
@@ -51,7 +51,7 @@ const PositionTable: React.FC<PositionsTablePropsT> = ({ items, unitId }) => {
                 <td>{ firstRow }</td>
                 <td>
                     {
-                        userRole === UserRoleEnum.Client ? null :
+                        permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                             <div className={ clsx(style.unit_actions_col) }>
                                 <Tooltip title="Добавить документы" placement="top">
                                     <img src={ AddDocIcon } alt="" onClick={() => open('AddingUnitDocumentModal', {

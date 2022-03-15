@@ -7,14 +7,15 @@ import clsx from 'clsx'
 import useModal from '@modals/modal-hook'
 import { WorkspaceTable } from '@components/tables'
 import { WorkspaceGroups } from '@components/company'
+import { ColorfulButton } from '@components/common/common'
 // STORE
 import { $WpDocumentsStates, fetchWorkspaceCommonData } from '@store/company/workspace-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import {$UserAddPermissions, setModule, UserRoleEnum} from '@store/user-store'
 // TYPES
 import { CompanyTabPropsT } from '@interfaces/company/company'
+import { Modules } from '@interfaces/common'
 // STYLES
 import style from '@scss/pages/company/company-workspace.module.scss'
-import { ColorfulButton } from '@components/common/common'
 
 export const periods = [
     { label: 'Разово', value: 1001 },
@@ -25,7 +26,7 @@ export const periods = [
 ]
 
 const Workspace: React.FC<CompanyTabPropsT> = ({ setWithHistory }) => {
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     const { isFetched } = useStore($WpDocumentsStates)
     const [activeGroupId, setActiveGroupId] = useState<number>(0)
 
@@ -33,6 +34,8 @@ const Workspace: React.FC<CompanyTabPropsT> = ({ setWithHistory }) => {
     const history = useHistory()
 
     useEffect(() => {
+        setModule(Modules.WORKSPACE)
+
         if (!isFetched) {
             fetchWorkspaceCommonData()
         }
@@ -51,7 +54,7 @@ const Workspace: React.FC<CompanyTabPropsT> = ({ setWithHistory }) => {
                 <WorkspaceGroups activeGroupId={ activeGroupId } setActiveGroupId={ setActiveGroupId } editBtn/>
                 {/* CREATION BUTTONS */ }
                 {
-                    userRole === UserRoleEnum.Client ? null :
+                    permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                         <div className={ clsx(style.workspace_buttons) }>
                             <ColorfulButton text="Создать группу"
                                             onClick={ () => open('CreateWorkspaceGroupModal', {

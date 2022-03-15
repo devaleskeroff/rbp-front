@@ -10,7 +10,7 @@ import { Loader } from '@ui/indicators'
 // SERVICE
 import EmployeeService from '@services/employee-service'
 // UTILS
-import { ConcatApiUrl } from '@utils/api-tools'
+import { concatApiUrl } from '@utils/api-tools'
 // TYPES
 import { EmployeeDataForSigningT } from '@interfaces/company/employees'
 // IMAGES
@@ -113,7 +113,7 @@ const SigningDocuments = () => {
                             <Link to={ '/' }>
                                 <img src={ logo } alt="OT" className={ clsx(headerStyle.header_logo) } />
                             </Link>
-                            <img src={ ConcatApiUrl(employee?.company?.image || '/static/images/dummy-logo.png') } alt=""
+                            <img src={ concatApiUrl(employee?.company?.image || '/static/images/dummy-logo.png') } alt=""
                                  className={ clsx(headerStyle.company_logo) } />
                         </div>
                     </div>

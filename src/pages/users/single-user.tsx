@@ -25,7 +25,7 @@ const SingleUser = () => {
 
     useEffect(() => {
         if (!isFetched) {
-            getWorkers({ userId: user.id })
+            getWorkers({ adminId: user.company.ownerId })
         }
     }, [])
 

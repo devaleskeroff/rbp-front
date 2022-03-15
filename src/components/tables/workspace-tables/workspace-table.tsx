@@ -22,16 +22,13 @@ import {
 } from '@store/company/workspace-store'
 import { $Company } from '@store/company/company-store'
 import { pushToArchiveCommonDocuments } from '@store/company/archive-store'
-import {$User, UserRoleEnum} from '@store/user-store'
+import { $User, $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // SERVICES
 import WorkspaceService from '@services/workspace-service'
 // UTILS
 import { GetFileName } from '@utils/rus-to-latin'
 // TYPES
-import {
-    WorkspaceDirectoryShortDataT,
-    WorkspaceTablePropsT
-} from '@interfaces/company/workspace'
+import { WorkspaceDirectoryShortDataT, WorkspaceTablePropsT } from '@interfaces/company/workspace'
 import { ArchiveDirectoryDataT, ArchiveFileT } from '@interfaces/company/archive'
 import { CompanyT } from '@interfaces/company/company'
 import { UserDataT } from "@interfaces/user";
@@ -49,6 +46,7 @@ const WorkspaceTable: React.FC<WorkspaceTablePropsT> = ({ setWithHistory }) => {
     // STORE
     const company = useStore($Company) as CompanyT
     const user = useStore($User) as UserDataT
+    const permissions = useStore($UserAddPermissions)
     const commonWpDocuments = useStore($CommonGroupDocuments)
     const wpDirectories = useStore($WpDirectories)
     const wpFiles = useStore($WpFiles)
@@ -245,7 +243,7 @@ const WorkspaceTable: React.FC<WorkspaceTablePropsT> = ({ setWithHistory }) => {
                 </td>
                 <td>
                     {
-                        user.role === UserRoleEnum.Client ? null :
+                        permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                             <div className={ clsx(style.table_buttons) }>
                                 <Tooltip title="Изменить" placement="top">
                                     <button>
@@ -320,7 +318,7 @@ const WorkspaceTable: React.FC<WorkspaceTablePropsT> = ({ setWithHistory }) => {
                             <DocumentViewButton file={item} type={'workspace'} />
                         </Tooltip>
                         {
-                            user.role === UserRoleEnum.Client ? null :
+                            permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                                 <>
                                     <Tooltip title="Изменить" placement="top">
                                         <button>
@@ -358,7 +356,7 @@ const WorkspaceTable: React.FC<WorkspaceTablePropsT> = ({ setWithHistory }) => {
                             </button>
                         </Tooltip>
                         {
-                            user.role === UserRoleEnum.Client ? null :
+                            permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                                 <>
                                     <Tooltip title="В архив" placement="top">
                                         <button onClick={ () => sendFileToArchive(item.id) }>

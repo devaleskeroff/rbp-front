@@ -130,7 +130,7 @@ const CreateUserModal = () => {
 
         // UPDATING WORKER DATA
         if (modalData.worker) {
-            return WorkerService.UpdateWorker(modalData.worker.id, newData, (err, res) => {
+            return WorkerService.UpdateWorker(user.company.ownerId, modalData.worker.id, newData, (err, res) => {
                 if (err || !res) {
                     if (err?.response?.status === 422) {
                         modalBtn.disabled = false
@@ -180,7 +180,7 @@ const CreateUserModal = () => {
             })
         }
         // ADDING NEW WORKER
-        WorkerService.AddNewWorker(newData, (err, res) => {
+        WorkerService.AddNewWorker(user.company.ownerId, newData, (err, res) => {
             if (err || !res) {
                 if (err?.response?.status === 422) {
                     modalBtn.disabled = false

@@ -1,11 +1,10 @@
-import React, { FC, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { useStore } from 'effector-react'
+import React, {FC, useEffect} from 'react'
+import {Link} from 'react-router-dom'
+import {useStore} from 'effector-react'
 // STORE
-import { $User, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // TYPES
-import { MenuItemsPropsType, MenuPanelPropsT } from '@interfaces/common'
-import { UserDataT } from '@interfaces/user'
+import { MenuItemsPropsType, MenuPanelPropsT, Modules } from '@interfaces/common'
 // STYLES
 import '@scss/components/menu.scss'
 
@@ -30,7 +29,7 @@ const MenuItems: any = (props: MenuItemsPropsType) => {
 }
 
 const MenuPanel: FC<MenuPanelPropsT> = ({ active, onItemClick }) => {
-   const user = useStore($User) as UserDataT
+   const permissions = useStore($UserAddPermissions)
 
    useEffect(() => {
       onItemClick(window.location.href)
@@ -49,10 +48,16 @@ const MenuPanel: FC<MenuPanelPropsT> = ({ active, onItemClick }) => {
       { imageSrc: '/img/static/qa-icon.png', text: 'Вопрос специалисту', link: '/question-answer' }
    ]
 
-   if (user.role === UserRoleEnum.Admin || user.role === UserRoleEnum.SuperAdmin) {
+   if (
+       permissions.roleIsIn([UserRoleEnum.Admin, UserRoleEnum.SuperAdmin])
+       || permissions.hasAddPermissionsFor(Modules.USERS)
+   ) {
       menuItems.unshift({ imageSrc: '/img/static/users.png', text: 'Пользователи', link: '/users' })
    }
-   if (user.role !== UserRoleEnum.Client) {
+   if (
+       permissions.roleIsNotIn([UserRoleEnum.Client])
+       || permissions.hasAddPermissionsFor(Modules.SPECIALIST_PLAN)
+   ) {
       const newMenuItems = []
       for (let i = 0; i < menuItems.length; i++) {
          newMenuItems.push(menuItems[i])

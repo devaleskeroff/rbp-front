@@ -1,17 +1,17 @@
 import React from 'react'
-import { useStore } from 'effector-react'
+import {useStore} from 'effector-react'
 import clsx from 'clsx'
 //COMPONENTS
 import moment from 'moment'
-import { Loader } from '@ui/indicators'
+import {Loader} from '@ui/indicators'
 // SERVICE
 import EmployeeService from '@services/employee-service'
 // STORE
-import { $Company } from '@store/company/company-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import {$Company} from '@store/company/company-store'
+import {$UserAddPermissions, UserRoleEnum} from '@store/user-store'
 // TYPES
-import { EmployeeSignaturesTablePropsT } from '@interfaces/company/employees'
-import { CompanyT } from '@interfaces/company/company'
+import {EmployeeSignaturesTablePropsT} from '@interfaces/company/employees'
+import {CompanyT} from '@interfaces/company/company'
 // ICONS
 import DownloadIcon from '@assets/images/download.png'
 // STYLES
@@ -19,8 +19,7 @@ import tableStyle from '@scss/components/tables/base-table.module.scss'
 import style from '@scss/pages/company/single-employee.module.scss'
 
 const EmployeeSignaturesTable: React.FC<EmployeeSignaturesTablePropsT> = ({ items, employeeId }) => {
-    const company = useStore($Company) as CompanyT
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
 
     const resendForSignature = (e: any, signatureId: number) => {
         EmployeeService.ReSendForSignature(employeeId, signatureId, (err, res) => {
@@ -30,7 +29,7 @@ const EmployeeSignaturesTable: React.FC<EmployeeSignaturesTablePropsT> = ({ item
             e.target.style.display = 'none'
         })
     }
-    
+
     const tableBodyContent = items?.map(document => (
         <tr key={document.id}>
             <td>
@@ -50,7 +49,7 @@ const EmployeeSignaturesTable: React.FC<EmployeeSignaturesTablePropsT> = ({ item
             <td>{ document.signatureEnd ? moment(document.signatureEnd).format('DD.MM.YYYY') : '' }</td>
             <td>
                 {
-                    userRole !== UserRoleEnum.Client && document.status !== 1 ?
+                    permissions.roleIsNotIn([UserRoleEnum.Client], true) && document.status !== 1 ?
                         <button className={ clsx(style.send_to_signature_btn) } onClick={e => resendForSignature(e, document.id)}>
                             Отправить на подпись
                         </button>

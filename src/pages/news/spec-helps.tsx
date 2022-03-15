@@ -14,12 +14,12 @@ import {
     setSelectedNewsData,
 } from '@store/news/news-store'
 import { $NewsCount } from '@store/news/news-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 
 const itemsPerPage = 8
 
 const SpecHelps = () => {
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     const specHelpsNews = useStore($SpecHelps)
     const { specHelps: specHelpsCount } = useStore($NewsCount)
     const { isFetched, isLoading, error } = useStore($SpecHelpsStates)
@@ -50,7 +50,7 @@ const SpecHelps = () => {
                     <div className="content-title-section-with-btn">
                         <Title text='Новости' />
                         {
-                            userRole !== UserRoleEnum.SuperAdmin ? null :
+                            permissions.roleIsNotIn([UserRoleEnum.SuperAdmin]) ? null :
                                 <ColorfulButton link={'/news/create'} text={'Создать новость'}
                                                 onClick={ () => setNewsActionType('createSpecHelp') }
                                 />

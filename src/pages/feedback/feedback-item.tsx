@@ -8,7 +8,7 @@ import { Title } from '@components/common/common'
 import Loader from '@ui/indicators/loader'
 // STORE
 import { $FeedbackItem, fetchFeedbackItem } from '@store/feedback-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // HOOKS
 import { useModal } from '@modals/index'
 // UTILS
@@ -21,14 +21,14 @@ import style from '@scss/pages/feedback/feedback-item.module.scss'
 
 const FeedbackItemBlocks = ({ feedback }: { feedback: FeedbackT }) => {
     const { open } = useModal()
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
 
     const questionContent = (
         <div className={ clsx(style.feedback_item_section) }>
             <div className={ clsx(style.feedback_item__title) }>
                 <p>Тема обращения: { feedback.title }</p>
                 {
-                    userRole === UserRoleEnum.SuperAdmin && feedback.answer === null ?
+                    permissions.roleIsIn([UserRoleEnum.SuperAdmin]) && feedback.answer === null ?
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24"
                              stroke="currentColor" onClick={() => open('RespondToFeedbackModal', {
                                  modalData: { feedbackId: feedback.id }

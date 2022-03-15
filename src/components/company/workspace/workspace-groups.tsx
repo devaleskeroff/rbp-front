@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
-import { useStore } from 'effector-react'
+import React, {useEffect} from 'react'
+import {useHistory, useLocation} from 'react-router-dom'
+import {useStore} from 'effector-react'
 import clsx from 'clsx'
 import qs from 'qs'
 // HOOKS
 import useModal from '@modals/modal-hook'
 // STORE
-import { $WpGroups } from '@store/company/workspace-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import {$WpGroups} from '@store/company/workspace-store'
+import {$UserAddPermissions, UserRoleEnum} from '@store/user-store'
 // STYLES
 import style from '@scss/pages/company/company-workspace.module.scss'
 
@@ -19,7 +19,7 @@ type WorkspaceGroupsPropsT = {
 
 const WorkspaceGroups: React.FC<WorkspaceGroupsPropsT> = ({ activeGroupId, setActiveGroupId, editBtn = false }) => {
     const wpGroups = useStore($WpGroups)
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
 
     const { open } = useModal()
     const { pathname } = useLocation()
@@ -44,7 +44,7 @@ const WorkspaceGroups: React.FC<WorkspaceGroupsPropsT> = ({ activeGroupId, setAc
                     { item.title }
                 </button>
                 {
-                    userRole !== UserRoleEnum.Client && editBtn ?
+                    permissions.roleIsNotIn([UserRoleEnum.Client], true) && editBtn ?
                         <svg className={ clsx(style.workspace_group_edit_icon) }
                              onClick={ () => open('CreateWorkspaceGroupModal', {
                                  btnText: 'Сохранить',

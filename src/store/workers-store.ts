@@ -38,10 +38,10 @@ export const $WorkersDataStates = createStore<EventStateStoreT>({ isLoading: tru
     .on(serWorkersStates, (_, newState) => newState)
     .reset(resetAllStates)
 
-export const getWorkers = createEffect<(params: { userId: number }) => void>(({ userId }) => {
+export const getWorkers = createEffect<(params: { adminId: number }) => void>(({ adminId }) => {
     setWorkersLoading(true)
 
-    WorkerService.GetWorkers(userId, (err, res) => {
+    WorkerService.GetWorkers(adminId, (err, res) => {
         if (err || !res) {
             setWorkersStates({ error: true, isFetched: false, isLoading: false })
             return console.log('При получении данных пользователей произошла ошибка')

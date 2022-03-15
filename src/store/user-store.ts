@@ -1,7 +1,8 @@
 import { createEvent, createStore } from 'effector'
 // TYPES
 import { UserDataT } from '@interfaces/user'
-import { EventStateStoreT } from '@interfaces/common'
+import { EventStateStoreT, Modules, UserAdditionalPermissions } from '@interfaces/common'
+import { Permissions } from '@utils/api-tools'
 
 // GLOBAL EVENT
 export const resetAllStates = createEvent('Resetting all stores(needed when user logs out or changes company)')
@@ -26,11 +27,19 @@ export const $User = createStore<UserDataT | null | false>(null)
     })
     .reset(resetUserData)
 
-// USER ROLE
-export const setUserRole = createEvent<UserRoleEnum>()
+// USER ADDITIONAL PERMISSIONS
+export const setUserAddPermissions = createEvent<UserAdditionalPermissions>()
+export const setModule = createEvent<Modules>()
 
-export const $UserRole = createStore<UserRoleEnum | null>(null)
-    .on(setUserRole, (_, newState) => newState)
+export const $UserAddPermissions = createStore<Permissions>(new Permissions())
+    .on(setUserAddPermissions, (permissionsClass, permissions) => {
+        permissionsClass.permissions = permissions
+        return permissionsClass
+    })
+    .on(setModule, (permissions, module) => {
+        permissions.module = module
+        return permissions
+    })
     .reset(resetUserData)
 
 // USER DATA STATES

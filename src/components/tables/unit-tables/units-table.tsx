@@ -9,7 +9,7 @@ import { ErrorIndicator, Loader } from '@ui/indicators'
 import { Tooltip } from '@material-ui/core'
 // STORE
 import { $Units, $UnitState, fetchUnits, removeUnit } from '@store/company/units-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // TYPES
 import { UnitsTablePropsT } from '@interfaces/company/units'
 // ICONS
@@ -24,7 +24,7 @@ const UnitsTable: React.FC<UnitsTablePropsT> = ({ setWithHistory }) => {
     // STORE
     const { isLoading, error, isFetched } = useStore($UnitState)
     const units = useStore($Units)
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
 
     const { open } = useModal()
     const history = useHistory()
@@ -47,7 +47,7 @@ const UnitsTable: React.FC<UnitsTablePropsT> = ({ setWithHistory }) => {
             <td>{ unit.employeesCount }</td>
             <td>
             {
-                userRole === UserRoleEnum.Client ? null :
+                permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                     <div className={ clsx(style.unit_actions_col) }>
                         <ColorfulButton text={ 'Добавить должность' } onClick={ () => open('CreateUnitModal', {
                             btnText: 'Добавить',

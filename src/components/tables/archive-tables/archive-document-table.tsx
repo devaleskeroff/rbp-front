@@ -21,7 +21,7 @@ import {
     setArchiveDocumentsLoading
 } from '@store/company/archive-store'
 import { pushToCommonGroupDocuments } from '@store/company/workspace-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // ICON
 import UnarchiveIcon from '@assets/images/unarchive.png'
 // STYLES
@@ -36,7 +36,7 @@ const ArchiveDocumentTable: React.FC<DocumentArchiveTablePropsT> = ({ setWithHis
     const archiveCommonDocuments = useStore($ArchiveCommonDocuments)
     const archiveCurrentDocuments = useStore($ArchiveCurrentDocuments)
     const { isLoading, error } = useStore($ArchiveDocumentsStates)
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     // STATE
     const [directoryId, setDirectoryId] = useState<number>(0)
     const [paths, setPaths] = useState<ArchiveDirectoryDataT[]>([])
@@ -205,7 +205,7 @@ const ArchiveDocumentTable: React.FC<DocumentArchiveTablePropsT> = ({ setWithHis
                 <td>
                     <p className={ clsx(style.document_date) }>{ moment(item.updatedAt).format('DD.MM.YYYY hh:mm') }</p>
                     {
-                        userRole === UserRoleEnum.Client ? null :
+                        permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                             <Tooltip title="Вернуть" placement={'top'}>
                                 <button onClick={ () => UnarchiveHandler(item.id, null) }>
                                     <img src={ UnarchiveIcon } alt="" className={ clsx(style.edit_icon) } />
@@ -248,7 +248,7 @@ const ArchiveDocumentTable: React.FC<DocumentArchiveTablePropsT> = ({ setWithHis
                 <td>
                     <p className={ clsx(style.document_date) }>{ moment(item.updatedAt).format('DD.MM.YYYY hh:mm') }</p>
                     {
-                        userRole === UserRoleEnum.Client ? null :
+                        permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                             <Tooltip title="Вернуть" placement={'top'}>
                                 <button onClick={ () => UnarchiveHandler(null, item.id) }>
                                     <img src={ UnarchiveIcon } alt="" className={ clsx(style.edit_icon) } />

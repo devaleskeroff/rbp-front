@@ -11,7 +11,7 @@ import { Loader } from '@ui/indicators'
 import { EmployeesTable } from '@components/tables'
 // STORE
 import { $Units, $UnitState, fetchUnits } from '@store/company/units-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // SERVICE
 import UnitService from '@services/unit-service'
 // TYPES
@@ -30,7 +30,7 @@ const SingleUnit: React.FC = () => {
     // STORES
     const units = useStore($Units)
     const { isFetched } = useStore($UnitState)
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     // STATES
     const [currentUnit, setCurrentUnit] = useState<UnitShortDataT | undefined>(undefined)
     const [currentUnitEmployees, setCurrentUnitEmployees] = useState<EmployeeListDataT[] | null>(null)
@@ -114,7 +114,7 @@ const SingleUnit: React.FC = () => {
                     type === UnitInfoTypeEnum.positions ?
                         <>
                             {
-                                userRole === UserRoleEnum.Client ? null :
+                                permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                                     <div className={ clsx(style.creation_btn) }>
                                         <ColorfulButton text={ 'Добавить должность' } onClick={ () => open('CreateUnitModal', {
                                             btnText: 'Добавить',
@@ -132,7 +132,7 @@ const SingleUnit: React.FC = () => {
                         : type === UnitInfoTypeEnum.employees ?
                             <>
                                 {
-                                    userRole === UserRoleEnum.Client ? null :
+                                    permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                                         <div className={ clsx(style.creation_btn) }>
                                             <ColorfulButton text={ 'Добавить сотрудника' }
                                                             onClick={ () => open('CreateEmployeeModal', {
@@ -152,7 +152,7 @@ const SingleUnit: React.FC = () => {
                             : type === UnitInfoTypeEnum.documents ?
                                 <>
                                     {
-                                        userRole === UserRoleEnum.Client ? null :
+                                        permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                                             <div className={ clsx(style.creation_btn) }>
                                                 <ColorfulButton text={ 'Добавить документы' }
                                                                 onClick={ () => {

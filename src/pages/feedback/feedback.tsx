@@ -9,7 +9,7 @@ import { AnsweredRequests, UnAnsweredRequests } from '@components/feedback'
 import useStyles from '@ui/material-ui-styles'
 // STORE
 import { $FeedbackItems, $FeedbackStates, createFeedback, fetchFeedbackItems } from '@store/feedback-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // TYPE
 import { FeedbackT } from '@interfaces/feedback'
 // STYLES
@@ -24,7 +24,7 @@ const Feedbacks = () => {
     // STORE
     const feedbacks = useStore($FeedbackItems)
     const { isFetched } = useStore($FeedbackStates)
-    const userRole = useStore($UserRole)
+    const userRole = useStore($UserAddPermissions)
 
     const classes = useStyles()
 

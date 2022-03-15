@@ -26,7 +26,7 @@ import {
     setResponsibilityDocuments, setResponsibilityError,
     setResponsibilityLoading, setResponsibilityStates
 } from '@store/responsibility-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // TYPES
 import { ResponsibilityDirectoryT, ResponsibilityFileT, ResponsibilityTablePropsT } from '@interfaces/responsibility'
 // STYLES
@@ -38,7 +38,7 @@ const ResponsibilityTable: React.FC<ResponsibilityTablePropsT> = ({ setWithHisto
     const commonDocuments = useStore($CommonResponsibilityDocuments)
     const currentDocuments = useStore($ResponsibilityDocuments)
     const { isFetched, isLoading, error } = useStore($ResponsibilityStates)
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     // STATES
     const [directoryId, setDirectoryId] = useState<number>(0)
 
@@ -185,11 +185,10 @@ const ResponsibilityTable: React.FC<ResponsibilityTablePropsT> = ({ setWithHisto
                 </td>
                 <td>
                     <div className={ clsx(style.action_col) }>
-                        {/*<span>{ moment(directory.updatedAt).format('DD.MM.YYYY') }</span>*/}
                         <span>{ moment(directory.updatedAt).format('DD.MM.YYYY hh:mm') }</span>
                         <div className={ clsx(style.action_buttons) }>
                             {
-                                userRole !== UserRoleEnum.SuperAdmin ? null :
+                                permissions.roleIsNotIn([UserRoleEnum.SuperAdmin]) ? null :
                                     <>
                                         <Tooltip title={'Изменить'} placement='top'>
                                             <img src={ EditIcon } alt="Изменить" onClick={ () => (
@@ -252,7 +251,7 @@ const ResponsibilityTable: React.FC<ResponsibilityTablePropsT> = ({ setWithHisto
                                 <DocumentViewButton file={file} type={'document'} />
                             </Tooltip>
                             {
-                                userRole !== UserRoleEnum.SuperAdmin ? null :
+                                permissions.roleIsNotIn([UserRoleEnum.SuperAdmin]) ? null :
                                     <Tooltip title={'Изменить'} placement='top'>
                                         <img src={ EditIcon } alt="Изменить" onClick={ () => (
                                             open('UploadResponsibilityModal', {
@@ -273,9 +272,9 @@ const ResponsibilityTable: React.FC<ResponsibilityTablePropsT> = ({ setWithHisto
                                         <img src={ DownloadIcon } alt="Скачать"/>
                                     </a>
                                 </button>
-                            </Tooltip>  
+                            </Tooltip>
                             {
-                                userRole !== UserRoleEnum.SuperAdmin ? null :
+                                permissions.roleIsNotIn([UserRoleEnum.SuperAdmin]) ? null :
                                     <Tooltip title={'Удалить'} placement='top'>
                                         <img src={ DeleteIcon } alt="Удалить" onClick={ () => open('ConfirmActionModal', {
                                             btnText: 'Удалить',

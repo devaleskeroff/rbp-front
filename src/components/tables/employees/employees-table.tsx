@@ -11,7 +11,7 @@ import { Tooltip } from '@material-ui/core'
 import { $Employees, $EmployeesStates, setEmployees, setEmployeesLoading } from '@store/company/employees-store'
 import { pushToArchiveEmployees } from '@store/company/archive-store'
 import { $Units, setUnits } from '@store/company/units-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // SERVICE
 import EmployeeService from '@services/employee-service'
 // UTILS
@@ -28,7 +28,7 @@ import style from '@scss/pages/company/employees.module.scss'
 const EmployeesTable: React.FC<EmployeeTablePropsT> = ({ unitId, items, setItems }) => {
     // STORES & STATES
     const units = useStore($Units)
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     const employees = useStore($Employees)
     const { isLoading, error } = useStore($EmployeesStates)
     const [renderingEmployees, setRenderingEmployees] = useState(typeof items !== 'undefined' ? items : employees)
@@ -121,7 +121,7 @@ const EmployeesTable: React.FC<EmployeeTablePropsT> = ({ unitId, items, setItems
                 <td>{ getTextExcerpt(employee.positions.map(pos => pos.title).join(', '), 35) }</td>
                 <td>
                 {
-                    userRole === UserRoleEnum.Client ? null :
+                    permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                         <div className={ clsx(style.employee_control_col) }>
                             <Tooltip title="Изменить" placement="top">
                                 <img src={ EditIcon } alt="" onClick={ () => open('CreateEmployeeModal', {

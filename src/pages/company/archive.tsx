@@ -13,8 +13,11 @@ import {
     setArchiveDocumentsError, setArchiveDocumentsFetched,
     setArchiveDocumentsLoading
 } from '@store/company/archive-store'
+// STORE
+import { setModule } from '@store/user-store'
 // TYPES
 import { CompanyTabPropsT } from '@interfaces/company/company'
+import { Modules } from '@interfaces/common'
 // STYLES
 import style from '@scss/pages/company/archive.module.scss'
 
@@ -32,6 +35,8 @@ const Archive: React.FC<CompanyTabPropsT> = ({ setWithHistory }) => {
     const [type, setType] = useState<1 | 2>(1);
 
     useEffect(() => {
+        setModule(Modules.ARCHIVE)
+
         if (!isFetched) {
             setArchiveDocumentsLoading(true)
 

@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useStore } from 'effector-react'
+import {useStore} from 'effector-react'
 import clsx from 'clsx'
 // COMPONENTS
 import { CalendarEventItems, getMonth, setCalendarArrowsOpacity } from '@components/company'
-import Calendar, { Detail } from 'react-calendar'
+import Calendar, {Detail} from 'react-calendar'
 import useModal from '@modals/modal-hook'
 // SERVICE
 import EventService from '@services/event-service'
@@ -12,13 +12,15 @@ import {
     $MonthEvents,
     $MonthEventsStates,
     fetchEvents,
-    fetchMonthEvents, resetNotificationEvents,
+    fetchMonthEvents,
+    resetNotificationEvents,
     setMonthEventsData
 } from '@store/company/event-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, setModule, UserRoleEnum } from '@store/user-store'
 // TYPES
 import { CompanyTabPropsT } from '@interfaces/company/company'
 import { EventShortDataT, EventT } from '@interfaces/company/event'
+import { Modules } from '@interfaces/common'
 // STYLES
 import style from '@scss/pages/company/company-calendar.module.scss'
 
@@ -28,7 +30,7 @@ const EventCalendar: React.FC<CompanyTabPropsT> = () => {
     // STORE
     const monthEvents = useStore($MonthEvents)
     const { isFetched } = useStore($MonthEventsStates)
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     // STATES
     const [calendarView, setCalendarView] = useState<Detail>('month')
     const [currentDate, setCurrentDate] = useState<Date>(today)
@@ -46,6 +48,8 @@ const EventCalendar: React.FC<CompanyTabPropsT> = () => {
     const { open } = useModal()
 
     useEffect(() => {
+        setModule(Modules.CALENDAR)
+
         if (!isFetched) {
             fetchMonthEvents({
                 dateStart: new Date(today.getFullYear(), today.getMonth(), 1).getTime(),
@@ -304,7 +308,7 @@ const EventCalendar: React.FC<CompanyTabPropsT> = () => {
                             </p>
                         </div>
                         {
-                            userRole === UserRoleEnum.Client ? null :
+                            permissions.roleIsIn([UserRoleEnum.Client], true) ? null :
                                 <button className={ clsx(style.calendar_create_event_btn) }
                                         onClick={ () => open('CreateEventModal', {
                                             btnText: 'Создать',

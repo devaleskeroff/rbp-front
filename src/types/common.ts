@@ -1,5 +1,5 @@
 import { AxiosResponse, AxiosError } from 'axios'
-import { JsxElement } from 'typescript'
+import { UserRoleEnum } from '@store/user-store'
 
 export type ResCallback<T> = (err: AxiosError | null, res?: AxiosResponse<T>) => void
 
@@ -17,6 +17,26 @@ export type UnparsedBannersAndSlidesT = {
 export type ParsedBannersAndSlidesT = {
    banners: string[]
    slides: string[]
+}
+
+export type UserAdditionalPermissions = {
+   id: number,
+   // modules: Modules[],
+   modules: string[],
+   role: UserRoleEnum
+}
+
+export enum Modules {
+   NONE = '',
+   USERS = 'USERS',
+   COMPANY_INFO = 'COMPANY_INFO',
+   WORKSPACE = 'WORKSPACE',
+   SUBDIVISION = 'SUBDIVISION',
+   EMPLOYEES = 'EMPLOYEES',
+   CALENDAR = 'CALENDAR',
+   ARCHIVE = 'ARCHIVE',
+   PRESCRIPTIONS = 'PRESCRIPTIONS',
+   SPECIALIST_PLAN = 'SPECIALIST_PLAN',
 }
 
 

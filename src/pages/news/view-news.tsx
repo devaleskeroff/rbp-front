@@ -27,7 +27,7 @@ import {
     removeItemFromNews,
     removeItemFromPractices,
 } from '@store/news/news-store'
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // UTILS
 import { getTextWithAnchors } from '@utils/common-utils'
 // TYPES
@@ -37,7 +37,7 @@ import style from '@scss/pages/news-and-practice/news-and-practice.module.scss'
 
 const ViewNews: React.FC<{ path: NewsType }> = ({ path }) => {
     // STORES
-    const userRole = useStore($UserRole)
+    const permissions = useStore($UserAddPermissions)
     const currentItem = useStore($SelectedNewsData)
     const news = useStore($News)
     const practices = useStore($Practices)
@@ -122,7 +122,7 @@ const ViewNews: React.FC<{ path: NewsType }> = ({ path }) => {
                             states.error ? <ErrorIndicator /> : states.isPending ? <Loader /> : !currentItem ? null :
                                 <div className='flex flex-wrap'>
                                     {
-                                        userRole !== UserRoleEnum.SuperAdmin ? null :
+                                        permissions.roleIsNotIn([UserRoleEnum.SuperAdmin]) ? null :
                                         <>
                                             <ColorfulButton
                                                 link={ `/${ path === 'SPEC_HELP' ? 'help': path.toLowerCase() }/${ 1 }/edit` }
@@ -162,7 +162,7 @@ const ViewNews: React.FC<{ path: NewsType }> = ({ path }) => {
                                     { moment(currentItem.createdAt).format('LLL') }
                                 </p>
                                 {
-                                    userRole === UserRoleEnum.Client ? null :
+                                    permissions.roleIsIn([UserRoleEnum.Client]) ? null :
                                         <div className={ clsx(style.view_news__tag_items) }>
                                             {
                                                 currentItem.tags.split(',').map((tagText, idx) => (

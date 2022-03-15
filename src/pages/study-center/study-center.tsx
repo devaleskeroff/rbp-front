@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { BreadCrumb, Categories } from '@components/common'
 import { ColorfulButton, Title } from '@components/common/common'
 // STORE
-import { $UserRole, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 import {
    $CourseItems,
    $CourseStates,
@@ -25,7 +25,7 @@ const itemsPerPage = 8
 
 const StudyCenter = () => {
    // STORES
-   const userRole = useStore($UserRole)
+   const permissions = useStore($UserAddPermissions)
    const { courses: commonCourses, coursesCount, webinarsCount } = useStore($CourseItems)
    const { isLoading, isFetched, error } = useStore($CourseStates)
    // STATES
@@ -164,7 +164,7 @@ const StudyCenter = () => {
                <div className="content-title-section-with-btn">
                   <Title text='Учебный центр' />
                   {
-                     userRole !== UserRoleEnum.SuperAdmin ? null :
+                     permissions.roleIsNotIn([UserRoleEnum.SuperAdmin]) ? null :
                          <ColorfulButton link={'/study-center/create'} text={'Добавить курс'} />
                   }
                </div>
@@ -177,7 +177,7 @@ const StudyCenter = () => {
                   <p className={ clsx(style.download_doc__title) }>Подайте заявку на обучение</p>
                   <p className={ clsx(style.download_doc__title) }>и получите доступ к выбранному курсу!</p>
                   <div>
-                     <a href={ process.env.API_URL + '/uploads/files/static/zayavka.doc' } download 
+                     <a href={ process.env.API_URL + '/uploads/files/static/zayavka.doc' } download
                         className={`green-colorful-btn ${ clsx(style.download_doc_btn) }`}>
                         Скачать заявку
                         <svg style={{ width: '15px', height: '15px' }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
