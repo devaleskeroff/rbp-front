@@ -46,10 +46,6 @@ const AuthUserRoutes = () => {
         return () => window.removeEventListener('resize', resizeHandler)
     }, [resizeHandler])
 
-    useEffect(() => {
-        console.log(permissions)
-    })
-
     return (
         <>
             {/* HEADER */}
