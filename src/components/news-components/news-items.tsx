@@ -40,9 +40,9 @@ const NewsItems: React.FC<NewsItemsPropsT> = ({ items, path, limit }) => {
                             permissions.roleIsIn([UserRoleEnum.Client]) ? null :
                                 <div className={ clsx(style.tags) }>
                                     {
-                                        item.tags.split(',').map((tagText, idx) => (
+                                        item ? item.tags.split(',').map((tagText, idx) => (
                                             <p key={ idx } className={ clsx(style.tag_item) }>#{ tagText.trim() }</p>
-                                        ))
+                                        )) : null
                                     }
                                 </div>
                         }
