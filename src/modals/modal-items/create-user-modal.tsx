@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useStore } from 'effector-react'
+import React, {useEffect, useState} from 'react'
+import {useStore} from 'effector-react'
 import passwordGenerator from 'generate-password'
 // HOOKS
 import useModal from '@modals/modal-hook'
@@ -8,30 +8,37 @@ import useStyles from '@ui/material-ui-styles'
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import {
-    FilledInput, FormControl, IconButton, InputAdornment,
-    InputLabel, MenuItem, Select, TextField
+    FilledInput,
+    FormControl,
+    IconButton,
+    InputAdornment,
+    InputLabel,
+    MenuItem,
+    Select,
+    TextField
 } from '@material-ui/core'
 import ReactSelect from 'react-select'
 import makeAnimated from 'react-select/animated'
-import { selectColourStyles, selectTheme } from '@components/common/common'
+import {selectColourStyles, selectTheme} from '@components/common/common'
 // VALIDATOR
 import Validator from '@utils/validator'
 // SERVICE
 import WorkerService from '@services/worker-service'
 // STORE
-import { pushToWorkersData, updateWorkerData } from '@store/workers-store'
-import { $User, UserRoleEnum } from '@store/user-store'
-import { $Company, setCompany } from '@store/company/company-store'
+import {pushToWorkersData, updateWorkerData} from '@store/workers-store'
+import {$User, $UserAddPermissions, UserRoleEnum} from '@store/user-store'
+import {$Company, setCompany} from '@store/company/company-store'
 // TYPES
-import { UserDataT } from '@interfaces/user'
-import { SimpleOptionT } from '@interfaces/company/employees'
-import { CompanyT } from '@interfaces/company/company'
+import {UserDataT} from '@interfaces/user'
+import {SimpleOptionT} from '@interfaces/company/employees'
+import {CompanyT} from '@interfaces/company/company'
 // INITIALIZATION
 const animatedComponents = makeAnimated()
 
 const CreateUserModal = () => {
     const user = useStore($User) as UserDataT
     const selectedCompany = useStore($Company) as CompanyT
+    const permissions = useStore($UserAddPermissions)
     // SELECT STATES
     const [companyOptions, setCompanyOptions] = useState<SimpleOptionT[]>([])
     const [selectedCompanyOptions, setCompanySelectedOptions] = useState<SimpleOptionT[]>([])
@@ -54,7 +61,11 @@ const CreateUserModal = () => {
     const classes = useStyles()
 
     useEffect(() => {
-        setCompanyOptions(user.companies.map(company => ({ value: company.id, label: company.name })))
+        setCompanyOptions(
+            user.companies
+                .filter(company => permissions.permissions.role === UserRoleEnum.Admin ? company.ownerId === user.id : true)
+                .map(company => ({ value: company.id, label: company.name }))
+        )
         if (modalData.worker) {
             setValue({ ...value, role: modalData.worker.role })
             setSelectedCompanies(modalData.worker.companies.map((company: { id: number }) => company.id))

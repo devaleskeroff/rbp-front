@@ -5,9 +5,8 @@ import {Route, Switch} from 'react-router-dom'
 import Header from '@components/header'
 import MenuPanel from '@components/menu-panel'
 // STORE
-import { $User, $UserAddPermissions, UserRoleEnum } from '@store/user-store'
+import { $UserAddPermissions, UserRoleEnum } from '@store/user-store'
 // TYPES
-import { UserDataT } from '@interfaces/user'
 import { Modules } from '@interfaces/common'
 // PAGES
 import Home from '@pages/home'
@@ -28,7 +27,6 @@ import SpecialistPlan from '@pages/specialist-plan/specialist-plan'
 import LegalInformation from '@pages/legal-information'
 
 const AuthUserRoutes = () => {
-    const user = useStore($User) as UserDataT
     const permissions = useStore($UserAddPermissions)
     const [menuDisplay, setMenuDisplay] = useState<boolean>(false)
     const [activeNavUrl, setActiveNavUrl] = useState<string>('')
@@ -47,6 +45,10 @@ const AuthUserRoutes = () => {
 
         return () => window.removeEventListener('resize', resizeHandler)
     }, [resizeHandler])
+
+    useEffect(() => {
+        console.log(permissions)
+    })
 
     return (
         <>

@@ -13,6 +13,7 @@ export type CompanyShortDataT = {
    image: string
    legalEntity: string
    inn: string
+   ownerId: number
 }
 
 export type AvailableCompanyDataT = {

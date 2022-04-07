@@ -1,5 +1,5 @@
-import { UserRoleEnum } from '@store/user-store'
-import { Modules, UserAdditionalPermissions } from '@interfaces/common'
+import {UserRoleEnum} from '@store/user-store'
+import {Modules, UserAdditionalPermissions} from '@interfaces/common'
 
 export const concatApiUrl = (url: string): string => {
     return process.env.API_URL + url
@@ -7,18 +7,33 @@ export const concatApiUrl = (url: string): string => {
 
 export class Permissions {
     private _permissions: UserAdditionalPermissions | null;
-    private _module: Modules = Modules.NONE;
+    private _module: Modules;
 
-    constructor(permissions?: UserAdditionalPermissions) {
+    constructor(permissions?: UserAdditionalPermissions, module?: Modules) {
         this._permissions = permissions || null;
+        this._module = module || Modules.NONE
     }
 
     set module(module: Modules) {
         this._module = module;
     }
 
+    get module() {
+        return this._module;
+    }
+
     set permissions(permissions: UserAdditionalPermissions) {
         this._permissions = permissions;
+    }
+
+    get permissions(): UserAdditionalPermissions {
+        return this._permissions!;
+    }
+
+    public setRole(newRole: UserRoleEnum) {
+        if (this._permissions) {
+            this._permissions.role = newRole;
+        }
     }
 
     public hasAddPermissionsFor(module: Modules) {

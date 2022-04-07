@@ -39,7 +39,7 @@ export const checkAuth = createEffect(async () => {
             return company
         })
 
-        setUserData(res.data.user)
+        setUserData({ ...res.data.user, mainRole: res.data.user.role })
         setUserAddPermissions({
             id: res.data.user.id,
             role: res.data.user.role,

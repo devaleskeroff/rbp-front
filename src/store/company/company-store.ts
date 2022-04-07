@@ -27,7 +27,10 @@ export const switchCompany = createEffect<SwitchCompanyResT>(async ({ id }) => {
         resetAllStates()
         setCompany(res.data.company)
         setWpGroups(res.data.company.groups)
-        setSelectedCompanyId(res.data.company.id)
+        setSelectedCompanyId({
+            ownerId: res.data.company.ownerId,
+            companyId: res.data.company.id
+        })
         localStorage.setItem('token', res.data.token)
     } catch (err) {
         console.log(err)

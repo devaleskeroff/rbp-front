@@ -8,6 +8,7 @@ export type UserDataT = {
     email: string
     avatar: string
     role: number
+    mainRole: number
     roleName: string
     phone: string
     createdAt: string

@@ -105,14 +105,11 @@ const Header: FC<HeaderPropsT> = (props) => {
                         }) }>
                             <div className={ clsx(style.account_dropdown_cont) }>
                                 <div className={ clsx(style.user_panel_actions) }>
-                                    {
-                                        user.role === UserRoleEnum.Client || user.role === UserRoleEnum.Specialist ? null :
-                                            <button className={ clsx(style.user_panel_action_item) }
-                                                    onClick={ () => open('CreateCompanyModal') }>
-                                                <img src="/img/static/green-plus.png" alt="" />
-                                                Создать компанию
-                                            </button>
-                                    }
+                                    <button className={ clsx(style.user_panel_action_item) }
+                                            onClick={ () => open('CreateCompanyModal') }>
+                                        <img src="/img/static/green-plus.png" alt="" />
+                                        Создать компанию
+                                    </button>
                                     {
                                         user.role !== UserRoleEnum.SuperAdmin ? null :
                                             <button className={ clsx(style.user_panel_action_item) }
