@@ -47,12 +47,6 @@ const CreateCompanyModal = () => {
             ...Validator(name.value, 'name').isLength({ min: 3 })
                 .withMessage('Это поле должно содержать не менее 5 символов').getErrors(),
             ...Validator(inn.value, 'inn').isRequired()
-                .withMessage('Это поле обязательно').getErrors(),
-            ...Validator(physicalAddress.value, 'physicalAddress').isRequired()
-                .withMessage('Это поле обязательно').getErrors(),
-            ...Validator(legalAddress.value, 'legalAddress').isRequired()
-                .withMessage('Это поле обязательно').getErrors(),
-            ...Validator(legalEntity.value, 'legalEntity').isRequired()
                 .withMessage('Это поле обязательно').getErrors()
         }
 
@@ -64,11 +58,14 @@ const CreateCompanyModal = () => {
         const formData = new FormData()
         formData.append('name', name?.value)
         formData.append('inn', inn?.value)
-        formData.append('companyLogo', uploadedFiles[0])
         formData.append('legalAddress', legalAddress?.value)
         formData.append('physicalAddress', physicalAddress?.value)
         formData.append('legalEntity', legalEntity?.value)
         formData.append('shortDesc', shortDesc?.value)
+
+        if (uploadedFiles.length) {
+            formData.append('companyLogo', uploadedFiles[0]);
+        }
 
         if (id) {
             return CompanyService.UpdateCompany(id, formData,
@@ -115,13 +112,6 @@ const CreateCompanyModal = () => {
             )
         }
 
-        if (uploadedFiles.length === 0) {
-            modalBtn.disabled = false
-            return setValidation({
-                imageError: 'Загрузите изображение'
-            })
-        }
-
         CompanyService.CreateCompany(formData, (err, res) => {
             if (err || !res) {
                 if (err?.response?.status === 422) {
@@ -162,7 +152,7 @@ const CreateCompanyModal = () => {
                 <TextField name="shortDesc" label="Краткое описание" variant="filled"
                            defaultValue={ modalData.shortDesc || '' }/>
                 <p className="error-text">{ validation.shortDescError }</p>
-                <Dropzone maxFiles={ 1 } requiredFiles={ 1 } onUpload={ files => setUploadedFiles(files)}/>
+                <Dropzone maxFiles={ 1 } onUpload={ files => setUploadedFiles(files)}/>
                 <p className="error-text">{ validation.imageError }</p>
                 <button type="submit" className="modal_btn">{ modalComponent.btnText }</button>
             </form>
