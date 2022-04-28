@@ -174,6 +174,18 @@ const StudyCenter = () => {
                   <img src="/img/static/study-center-img.jpg" alt="" />
                </div>
                <div className={ clsx(style.download_doc_section) }>
+                  <p className={ clsx(style.download_doc__title) }>Список обучающихся</p>
+                  <div>
+                     <a href={ process.env.API_URL + '/uploads/files/static/list.zip' } download
+                        className={`green-colorful-btn ${ clsx(style.download_doc_btn) }`}>
+                        Скачать список
+                        <svg style={{ width: '15px', height: '15px' }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                     </a>
+                  </div>
+               </div>
+               <div className={ clsx(style.download_doc_section) }>
                   <p className={ clsx(style.download_doc__title) }>Подайте заявку на обучение</p>
                   <p className={ clsx(style.download_doc__title) }>и получите доступ к выбранному курсу!</p>
                   <div>
